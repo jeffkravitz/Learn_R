@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "Jeff's Journal"
 output:
   html_document:
     toc: true
@@ -16,10 +16,25 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
 
+```{r}
+1+68
+13*3
+```
+
+
+Option+Command+i to insert R code in HTML
+Control+Enter to run inserted R code
+
+```{r}
+joey <- 47
+chance <- 3
+joey + chance
+```
+
 
 This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
 
-# My first post
+# My first post is cool
 
 2018 | 7 | 23 Last compiled: `r Sys.Date()`
 
