@@ -14,21 +14,14 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
-
-```{r}
-1+68
-13*3
-```
-
-
+## Notes to myself:
 Option+Command+i to insert R code in HTML
 Control+Enter to run inserted R code
 
-```{r}
-joey <- 47
-chance <- 3
-joey + chance
+### R Code Insertion Eample:
+```{r eval=FALSE}
+1+68
+13*3
 ```
 
 
@@ -137,7 +130,3 @@ a <- seq(1,100,1) # look up help for seq using ?seq() in console
 print(a)
 
 ```
-
-# Replace this with problem 4
-
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.

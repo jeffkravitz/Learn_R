@@ -402,17 +402,16 @@ div.tocify {
 </div>
 
 
-<p>IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.</p>
-<pre class="r"><code>1+68</code></pre>
-<pre><code>## [1] 69</code></pre>
-<pre class="r"><code>13*3</code></pre>
-<pre><code>## [1] 39</code></pre>
+<div id="notes-to-myself" class="section level2">
+<h2>Notes to myself:</h2>
 <p>Option+Command+i to insert R code in HTML Control+Enter to run inserted R code</p>
-<pre class="r"><code>joey &lt;- 47
-chance &lt;- 3
-joey + chance</code></pre>
-<pre><code>## [1] 50</code></pre>
+<div id="r-code-insertion-eample" class="section level3">
+<h3>R Code Insertion Eample:</h3>
+<pre class="r"><code>1+68
+13*3</code></pre>
 <p>This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a # in front of your text, it will create a top level-header.</p>
+</div>
+</div>
 <div id="my-first-post-is-cool" class="section level1">
 <h1>My first post is cool</h1>
 <p>2018 | 7 | 23 Last compiled: 2019-01-28</p>
@@ -437,7 +436,7 @@ joey + chance</code></pre>
 <p>So, let’s say you are learning how to make a histogram in R. For example, maybe you want to sample 100 numbers from a normal distribution with mean = 0, and standard deviation =1, and then you want to plot a histogram. You can do this right here by using an r code block, like this:</p>
 <pre class="r"><code>samples &lt;- rnorm(100, mean=0, sd=1)
 hist(samples)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>When you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.</p>
 </div>
 <div id="the-big-idea" class="section level1">
@@ -519,10 +518,6 @@ print(a)</code></pre>
 ##  [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
 ##  [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
 ##  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100</code></pre>
-</div>
-<div id="replace-this-with-problem-4" class="section level1">
-<h1>Replace this with problem 4</h1>
-<p>And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.</p>
 </div>
 
 
