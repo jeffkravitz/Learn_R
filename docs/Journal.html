@@ -461,6 +461,22 @@ print(edd)</code></pre>
 print(eddie)</code></pre>
 <pre><code>## [1] 5050</code></pre>
 </div>
+<div id="write-a-function-to-find-the-sum-of-all-integers-between-any-two-values" class="section level2">
+<h2>5. Write a function to find the sum of all integers between any two values</h2>
+<pre class="r"><code>int_sum &lt;- function(x, y) {
+  temp = 0
+  sum = 0
+  if (x &gt; y){
+    temp = x
+    x = y
+    y = temp
+  }
+  for (i in x:y){
+    sum = sum + i
+  }
+  print(sum)
+}</code></pre>
+</div>
 </div>
 
 

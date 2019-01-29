@@ -58,3 +58,20 @@ eddie <- sum(seq(1,100,1))
 print(eddie)
 ```
 
+## 5. Write a function to find the sum of all integers between any two values
+```{r}
+int_sum <- function(x, y) {
+  temp = 0
+  sum = 0
+  if (x > y){
+    temp = x
+    x = y
+    y = temp
+  }
+  for (i in x:y){
+    sum = sum + i
+  }
+  print(sum)
+}
+```
+
