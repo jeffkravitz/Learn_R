@@ -76,3 +76,22 @@ odd_sum <- sum(seq(1,100,2))
 print(odd_sum)
 ```
 
+## 7. List all of the prime numbers from 1 to 1000
+```{r}
+prime_numbers <- c()
+for (i in 3:1000) {
+  prime = TRUE
+  for (j in 2:(i-1)) {
+    if (i %% j == 0) {
+      prime = FALSE
+    }
+  }
+  if (prime == TRUE) {
+    prime_numbers <- c(prime_numbers,i)
+  }
+}
+print(prime_numbers)
+```
+
+
+## 8. 
