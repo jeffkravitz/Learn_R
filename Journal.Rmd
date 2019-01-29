@@ -6,18 +6,13 @@ output:
     toc_float: true
     collapsed: false
     number_sections: false
-    toc_depth: 1
+    toc_depth: 2
     #code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
-
-## Notes to myself:
-Option+Command+i to insert R code in HTML  
-Control+Enter to run inserted R code  
-{r eval=false} to insert R code without running it  
 
 # Easy Problems
 
