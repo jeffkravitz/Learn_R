@@ -57,16 +57,17 @@ print(eddie)
 ```{r}
 int_sum <- function(x, y) {
   temp = 0
-  sum = 0
+  jeff_sum = 0
   if (x > y){
     temp = x
     x = y
     y = temp
   }
   for (i in x:y){
-    sum = sum + i
+    jeff_sum = jeff_sum + i
   }
-  print(sum)
+  return(jeff_sum)
+  print(jeff_sum)
 }
 ```
 
@@ -94,4 +95,27 @@ print(prime_numbers)
 ```
 
 
-## 8. 
+## 8. Generate 100 random numbers
+```{r}
+sample(1:100, 100, replace=T)
+```
+
+## 9. Generate 100 random numbers within a specific range
+```{r}
+sample(1:100, 100, replace=T)
+```
+
+## 10a. Write your own functions to give descriptive  
+statistics for a vector variable: Mean
+```{r}
+jeff_mean <- function(x) {
+  jeff_sum <- 0
+  for (i in 1:(length(x))) {
+    jeff_sum <- jeff_sum + (x[i]/length(x))
+  }
+  return(jeff_sum)
+  print(jeff_sum)
+}
+```
+
+## <span style="color:red">*10b. Write your own functions to give descriptive statistics for a vector variable: Mode*</span>

@@ -25,10 +25,8 @@ This is a portfolio of Jeff Kravitz's work while learning R Markdown. This page 
 <div class="col-sm-6">
 <div class="row" style="padding-top: 30px;">
 
-<a href = "https://bkompleted.com/">
-![](images/kyiv.jpg)
 
-Mural by bkfoxx
+![](images/brain.png)
 </a>
 </div>
 

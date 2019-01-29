@@ -459,16 +459,17 @@ print(eddie)</code></pre>
 <h2>5. Write a function to find the sum of all integers between any two values</h2>
 <pre class="r"><code>int_sum &lt;- function(x, y) {
   temp = 0
-  sum = 0
+  jeff_sum = 0
   if (x &gt; y){
     temp = x
     x = y
     y = temp
   }
   for (i in x:y){
-    sum = sum + i
+    jeff_sum = jeff_sum + i
   }
-  print(sum)
+  return(jeff_sum)
+  print(jeff_sum)
 }</code></pre>
 </div>
 <div id="list-all-of-the-odd-numbers-from-1-to-100" class="section level2">
@@ -503,8 +504,40 @@ print(prime_numbers)</code></pre>
 ## [137] 787 797 809 811 821 823 827 829 839 853 857 859 863 877 881 883 887
 ## [154] 907 911 919 929 937 941 947 953 967 971 977 983 991 997</code></pre>
 </div>
-<div id="section" class="section level2">
-<h2>8.</h2>
+<div id="generate-100-random-numbers" class="section level2">
+<h2>8. Generate 100 random numbers</h2>
+<pre class="r"><code>sample(1:100, 100, replace=T)</code></pre>
+<pre><code>##   [1]  74  73  13  65  95  34  27  76   1  79  56  80   7  21  34  14  78
+##  [18]  11  52  84  63  87  31  76  53  83  64  30  99  38  83  92  29  31
+##  [35]  42  48  51  74  36  85  26   2  96   5  17  68  72  13  82  29  96
+##  [52]  10   3  27  15  30  99  50  15  33  54  20  84  17   7  50  22  78
+##  [69]  81  35  12  39  60  15  75  57  68   7   2  65  54  88  60  30 100
+##  [86]  34  47  49  54   6  84  54  37   4  27  70  51  34  20  42</code></pre>
+</div>
+<div id="generate-100-random-numbers-within-a-specific-range" class="section level2">
+<h2>9. Generate 100 random numbers within a specific range</h2>
+<pre class="r"><code>sample(1:100, 100, replace=T)</code></pre>
+<pre><code>##   [1]  80 100  53  69  54  32   5  72  65  72  94  73  15  43  30  30  19
+##  [18]  98  36  82  38  84   2  93  54  94  78  83  22  55  52  69  17  13
+##  [35]  16  37  74  81  90  46  73  49  31  61  42  21  94  95   3  26  31
+##  [52]  65  31  92  87  51   8  86  34  41  18  42  24  26  89  42  60  37
+##  [69]  91  13  67  75  61  27  27   1  91  13  26   2  91  98  80   8  73
+##  [86]  74  28   1   6  23  51  96  93  20  81   1  56  29  25  59</code></pre>
+</div>
+<div id="a.-write-your-own-functions-to-give-descriptive" class="section level2">
+<h2>10a. Write your own functions to give descriptive</h2>
+<p>statistics for a vector variable: Mean</p>
+<pre class="r"><code>jeff_mean &lt;- function(x) {
+  jeff_sum &lt;- 0
+  for (i in 1:(length(x))) {
+    jeff_sum &lt;- jeff_sum + (x[i]/length(x))
+  }
+  return(jeff_sum)
+  print(jeff_sum)
+}</code></pre>
+</div>
+<div id="b.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-mode" class="section level2">
+<h2><span style="color:red"><em>10b. Write your own functions to give descriptive statistics for a vector variable: Mode</em></span></h2>
 </div>
 </div>
 
