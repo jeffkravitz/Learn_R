@@ -109,7 +109,7 @@ sample(1:100, 100, replace=T)
 x <- c(1,2,3,4,5,6,7,8,9)
 jeff_mean <- function(x) {
   func_mean <- 0
-  for (i in 1:(length(x))) {
+  for (i in 1:length(x)) {
     func_mean <- func_mean + (x[i]/length(x))
   }
   return(func_mean)
@@ -130,7 +130,7 @@ jeff_mode <- function(x) {
   max_count_pos <- match(max(y),y)
   max_count <- max(y)
   #Check for multiple modes
-  for (i in 1:(length(x))) {
+  for (i in 1:length(x)) {
     if (y[i] == max_count) {
       if ((x[i] %in% x_copy[-1]) == FALSE) {
         mode_list <- c(mode_list,x[i])
@@ -167,5 +167,50 @@ jeff_range <- function(x) {
   return(func_range)
 }
 jeff_range(x)
+```
+
+## 10d. Write your own functions to give descriptive statistics for a vector variable: Standard Deviation
+```{r}
+x <- c(1,2,3,4,5,6,7,8,9)
+jeff_sd <- function(x) {
+  func_mean <- mean(x)
+  var <- 0
+  for (i in 1:length(x)) {
+    var <- var + (func_mean - x[i])^2
+    var <- var/length(x)
+    stdev <- sqrt(var)
+  }
+  return(stdev)
+}
+jeff_sd(x)
+```
+
+## 11. Count the number of characters in a string variable
+```{r}
+hi <- "hello there"
+nchar(hi)
+```
+
+## 12. Count the number of words in a string variable
+```{r}
+name <- "my name jeff"
+word_count <- length(strsplit(name,' ')[[1]])
+print(word_count)
+```
+
+## 13. Count the number of sentences in a string variable
+```{r}
+alice <- "If I had a world of my own, everything would be nonsense. Nothing would be what it is, because everything would be what it isn't. And contrary wise, what is, it wouldn't be. And what it wouldn't be, it would."
+sentence_count <- length(strsplit(alice,"\\.")[[1]])
+print(sentence_count)
+strsplit(alice,'\\.')[[1]]
+```
+
+## 14. Count the number of times a specific character occurs in a string variable
+```{r}
+alice <- "Curiouser and curiouser!"
+find <- "u"
+count <- length(which(strsplit(alice, "")[[1]]==find))
+print(count)
 ```
 

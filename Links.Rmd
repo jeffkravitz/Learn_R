@@ -35,9 +35,18 @@ output:
 
 # Notes (for mac)
 
-1. **Insert R code in HTML**: Option+Command+i  
-2. **Run inserted R code:** Control+Enter  
-3. **Insert R code without running it:** {r eval=false}
+1. **Insert R code in HTML**: 
+```{r eval=FALSE}
+Option+Command+i  
+```
+2. **Run inserted R code:** 
+```{r eval=FALSE}
+Control+Enter  
+```
+3. **Insert R code without running it:**
+```{r eval=FALSE}
+{r eval=false}
+```
 4. **Insert linked text:** 
 ```{r eval=FALSE}
 [text](link)
