@@ -56,7 +56,6 @@ print(eddie)
 ## 5. Write a function to find the sum of all integers between any two values
 ```{r}
 int_sum <- function(x, y) {
-  temp = 0
   jeff_sum = 0
   #Switch x and y if (x > y) -- enables for loop
   if (x > y){
@@ -69,12 +68,13 @@ int_sum <- function(x, y) {
   }
   return(jeff_sum)
 }
+int_sum(5,1)
 ```
 
 ## 6. List all of the odd numbers from 1 to 100
 ```{r}
-odd_sum <- sum(seq(1,100,2))
-print(odd_sum)
+odd_nums <- seq(1,100,2)
+print(odd_nums)
 ```
 
 ## 7. List all of the prime numbers from 1 to 1000
@@ -213,4 +213,31 @@ find <- "u"
 count <- length(which(strsplit(alice, "")[[1]]==find))
 print(count)
 ```
+
+## 15. Do a logical test to see if one word is found within the text of another string variable
+```{r}
+alice <- "If I had a world of my own, everything would be nonsense. Nothing would be what it is, because everything would be what it isn't. And contrary wise, what is, it wouldn't be. And what it wouldn't be, it would."
+find <- "everything"
+exist <- grep(find, alice)
+print(exist)
+```
+
+## 16. <span style="color:red">Put the current computer time in milliseconds into a variable</span>
+
+## 17. <span style="color:red">Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</span>
+
+## 18. <span style="color:red">Read a .txt file or .csv file into a variable</span>
+
+## 19. Output the contents of a variable to a .txt file
+```{r}
+jeff_file <- file("output.txt")
+writeLines(c("Hello","World"), jeff_file)
+close(jeff_file)
+```
+
+## 20. <span style="color:red">Create a variable that stores a 20x20 matrix of random numbers</span>
+
+## 21. <span style="color:red">Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</span>
+
+# Hard Problems
 
