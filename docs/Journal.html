@@ -460,6 +460,7 @@ print(eddie)</code></pre>
 <pre class="r"><code>int_sum &lt;- function(x, y) {
   temp = 0
   jeff_sum = 0
+  #Switch x and y if (x &gt; y) -- enables for loop
   if (x &gt; y){
     temp = x
     x = y
@@ -528,18 +529,42 @@ print(prime_numbers)</code></pre>
 <h2>10a. Write your own functions to give descriptive statistics for a vector variable: Mean</h2>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5,6,7,8,9)
 jeff_mean &lt;- function(x) {
-  jeff_sum &lt;- 0
+  func_mean &lt;- 0
   for (i in 1:(length(x))) {
-    jeff_sum &lt;- jeff_sum + (x[i]/length(x))
+    func_mean &lt;- func_mean + (x[i]/length(x))
   }
-  return(jeff_sum)
-  print(jeff_sum)
+  return(func_mean)
+  print(func_mean)
 }
 jeff_mean(x)</code></pre>
 <pre><code>## [1] 5</code></pre>
 </div>
 <div id="b.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-mode" class="section level2">
-<h2><span style="color:red"><em>10b. Write your own functions to give descriptive statistics for a vector variable: Mode</em></span></h2>
+<h2>10b. Write your own functions to give descriptive statistics for a vector variable: Mode</h2>
+<pre class="r"><code>x &lt;- c(1,1,1,1,2,2,3,3,3,4,4,4,4)
+jeff_mode &lt;- function(x) {
+  y &lt;- length(length(x))
+  mode_list &lt;- c()
+  x_copy &lt;- x
+  for (i in 1:length(x)) {
+    y[i] &lt;- length(which(x %in% x[i]))
+  }
+  max_count_pos &lt;- match(max(y),y)
+  max_count &lt;- max(y)
+  #Check for multiple modes
+  for (i in 1:(length(x))) {
+    if (y[i] == max_count) {
+      if ((x[i] %in% x_copy[-1]) == FALSE) {
+        mode_list &lt;- c(mode_list,x[i])
+      }
+    }
+    x_copy &lt;- x_copy[-1]
+  }
+  return(mode_list)
+  print(mode_list)
+}
+jeff_mode(x)</code></pre>
+<pre><code>## [1] 1 4</code></pre>
 </div>
 <div id="c.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-median" class="section level2">
 <h2>10c. Write your own functions to give descriptive statistics for a vector variable: Median</h2>
@@ -558,7 +583,6 @@ jeff_median &lt;- function(x) {
 jeff_median(x)</code></pre>
 <pre><code>## [1] 5</code></pre>
 <pre><code>## [1] 5</code></pre>
-<p>```</p>
 </div>
 </div>
 

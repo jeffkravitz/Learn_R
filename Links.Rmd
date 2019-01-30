@@ -42,4 +42,8 @@ output:
 ```{r eval=FALSE}
 [text](link)
 ```
+5. **Change color of text:** 
+```{r eval=FALSE}
+<span style="color:red">TEXT HERE</span>
+```
 

@@ -58,6 +58,7 @@ print(eddie)
 int_sum <- function(x, y) {
   temp = 0
   jeff_sum = 0
+  #Switch x and y if (x > y) -- enables for loop
   if (x > y){
     temp = x
     x = y
@@ -109,17 +110,42 @@ sample(1:100, 100, replace=T)
 ```{r}
 x <- c(1,2,3,4,5,6,7,8,9)
 jeff_mean <- function(x) {
-  jeff_sum <- 0
+  func_mean <- 0
   for (i in 1:(length(x))) {
-    jeff_sum <- jeff_sum + (x[i]/length(x))
+    func_mean <- func_mean + (x[i]/length(x))
   }
-  return(jeff_sum)
-  print(jeff_sum)
+  return(func_mean)
+  print(func_mean)
 }
 jeff_mean(x)
 ```
 
-## <span style="color:red">*10b. Write your own functions to give descriptive statistics for a vector variable: Mode*</span>
+## 10b. Write your own functions to give descriptive statistics for a vector variable: Mode
+```{r}
+x <- c(1,1,1,1,2,2,3,3,3,4,4,4,4)
+jeff_mode <- function(x) {
+  y <- length(length(x))
+  mode_list <- c()
+  x_copy <- x
+  for (i in 1:length(x)) {
+    y[i] <- length(which(x %in% x[i]))
+  }
+  max_count_pos <- match(max(y),y)
+  max_count <- max(y)
+  #Check for multiple modes
+  for (i in 1:(length(x))) {
+    if (y[i] == max_count) {
+      if ((x[i] %in% x_copy[-1]) == FALSE) {
+        mode_list <- c(mode_list,x[i])
+      }
+    }
+    x_copy <- x_copy[-1]
+  }
+  return(mode_list)
+  print(mode_list)
+}
+jeff_mode(x)
+```
 
 ## 10c. Write your own functions to give descriptive statistics for a vector variable: Median
 ```{r}
@@ -136,7 +162,5 @@ jeff_median <- function(x) {
   return(x)
 }
 jeff_median(x)
-```
-
 ```
 
