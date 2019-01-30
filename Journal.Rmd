@@ -105,9 +105,9 @@ sample(1:100, 100, replace=T)
 sample(1:100, 100, replace=T)
 ```
 
-## 10a. Write your own functions to give descriptive  
-statistics for a vector variable: Mean
+## 10a. Write your own functions to give descriptive statistics for a vector variable: Mean
 ```{r}
+x <- c(1,2,3,4,5,6,7,8,9)
 jeff_mean <- function(x) {
   jeff_sum <- 0
   for (i in 1:(length(x))) {
@@ -116,6 +116,27 @@ jeff_mean <- function(x) {
   return(jeff_sum)
   print(jeff_sum)
 }
+jeff_mean(x)
 ```
 
 ## <span style="color:red">*10b. Write your own functions to give descriptive statistics for a vector variable: Mode*</span>
+
+## 10c. Write your own functions to give descriptive statistics for a vector variable: Median
+```{r}
+x <- c(1,2,3,4,5,6,7,8,9)
+jeff_median <- function(x) {
+  while (length(x) > 2) {
+    loc <- match(c(max(x),min(x)),x)
+    x <- x[-loc]
+    }
+    if (length(x) == 2) {
+    x <- (x[1]+x[2])/2
+    }
+  print(x)
+  return(x)
+}
+jeff_median(x)
+```
+
+```
+

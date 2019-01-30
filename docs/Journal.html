@@ -524,20 +524,41 @@ print(prime_numbers)</code></pre>
 ##  [69]  91  13  67  75  61  27  27   1  91  13  26   2  91  98  80   8  73
 ##  [86]  74  28   1   6  23  51  96  93  20  81   1  56  29  25  59</code></pre>
 </div>
-<div id="a.-write-your-own-functions-to-give-descriptive" class="section level2">
-<h2>10a. Write your own functions to give descriptive</h2>
-<p>statistics for a vector variable: Mean</p>
-<pre class="r"><code>jeff_mean &lt;- function(x) {
+<div id="a.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-mean" class="section level2">
+<h2>10a. Write your own functions to give descriptive statistics for a vector variable: Mean</h2>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,6,7,8,9)
+jeff_mean &lt;- function(x) {
   jeff_sum &lt;- 0
   for (i in 1:(length(x))) {
     jeff_sum &lt;- jeff_sum + (x[i]/length(x))
   }
   return(jeff_sum)
   print(jeff_sum)
-}</code></pre>
+}
+jeff_mean(x)</code></pre>
+<pre><code>## [1] 5</code></pre>
 </div>
 <div id="b.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-mode" class="section level2">
 <h2><span style="color:red"><em>10b. Write your own functions to give descriptive statistics for a vector variable: Mode</em></span></h2>
+</div>
+<div id="c.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-median" class="section level2">
+<h2>10c. Write your own functions to give descriptive statistics for a vector variable: Median</h2>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,6,7,8,9)
+jeff_median &lt;- function(x) {
+  while (length(x) &gt; 2) {
+    loc &lt;- match(c(max(x),min(x)),x)
+    x &lt;- x[-loc]
+    }
+    if (length(x) == 2) {
+    x &lt;- (x[1]+x[2])/2
+    }
+  print(x)
+  return(x)
+}
+jeff_median(x)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p>```</p>
 </div>
 </div>
 
