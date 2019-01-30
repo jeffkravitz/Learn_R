@@ -68,7 +68,6 @@ int_sum <- function(x, y) {
     jeff_sum = jeff_sum + i
   }
   return(jeff_sum)
-  print(jeff_sum)
 }
 ```
 
@@ -95,7 +94,6 @@ for (i in 3:1000) {
 print(prime_numbers)
 ```
 
-
 ## 8. Generate 100 random numbers
 ```{r}
 sample(1:100, 100, replace=T)
@@ -115,7 +113,6 @@ jeff_mean <- function(x) {
     func_mean <- func_mean + (x[i]/length(x))
   }
   return(func_mean)
-  print(func_mean)
 }
 jeff_mean(x)
 ```
@@ -142,7 +139,6 @@ jeff_mode <- function(x) {
     x_copy <- x_copy[-1]
   }
   return(mode_list)
-  print(mode_list)
 }
 jeff_mode(x)
 ```
@@ -158,9 +154,18 @@ jeff_median <- function(x) {
     if (length(x) == 2) {
     x <- (x[1]+x[2])/2
     }
-  print(x)
   return(x)
 }
 jeff_median(x)
+```
+
+## 10d. Write your own functions to give descriptive statistics for a vector variable: Range
+```{r}
+x <- c(1,2,3,4,5,6,7,8,9)
+jeff_range <- function(x) {
+  func_range <- max(x)-min(x)
+  return(func_range)
+}
+jeff_range(x)
 ```
 

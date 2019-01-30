@@ -470,7 +470,6 @@ print(eddie)</code></pre>
     jeff_sum = jeff_sum + i
   }
   return(jeff_sum)
-  print(jeff_sum)
 }</code></pre>
 </div>
 <div id="list-all-of-the-odd-numbers-from-1-to-100" class="section level2">
@@ -534,7 +533,6 @@ jeff_mean &lt;- function(x) {
     func_mean &lt;- func_mean + (x[i]/length(x))
   }
   return(func_mean)
-  print(func_mean)
 }
 jeff_mean(x)</code></pre>
 <pre><code>## [1] 5</code></pre>
@@ -561,7 +559,6 @@ jeff_mode &lt;- function(x) {
     x_copy &lt;- x_copy[-1]
   }
   return(mode_list)
-  print(mode_list)
 }
 jeff_mode(x)</code></pre>
 <pre><code>## [1] 1 4</code></pre>
@@ -577,12 +574,20 @@ jeff_median &lt;- function(x) {
     if (length(x) == 2) {
     x &lt;- (x[1]+x[2])/2
     }
-  print(x)
   return(x)
 }
 jeff_median(x)</code></pre>
 <pre><code>## [1] 5</code></pre>
-<pre><code>## [1] 5</code></pre>
+</div>
+<div id="d.-write-your-own-functions-to-give-descriptive-statistics-for-a-vector-variable-range" class="section level2">
+<h2>10d. Write your own functions to give descriptive statistics for a vector variable: Range</h2>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,6,7,8,9)
+jeff_range &lt;- function(x) {
+  func_range &lt;- max(x)-min(x)
+  return(func_range)
+}
+jeff_range(x)</code></pre>
+<pre><code>## [1] 8</code></pre>
 </div>
 </div>
 
