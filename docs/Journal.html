@@ -673,6 +673,206 @@ close(jeff_file)</code></pre>
 </div>
 <div id="hard-problems" class="section level1">
 <h1>Hard Problems</h1>
+<div id="the-fizzbuzz-problem" class="section level2">
+<h2><span style="color:red">1. The FizzBuzz Problem</span></h2>
+<p>List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number.</p>
+</div>
+<div id="frequeny-counts" class="section level2">
+<h2><span style="color:red">2. Frequeny Counts</span></h2>
+<p>Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
+</div>
+<div id="test-the-random-number-generator" class="section level2">
+<h2><span style="color:red">3. Test the Random Number Generator</span></h2>
+<p>Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
+</div>
+<div id="create-a-multiplication-table" class="section level2">
+<h2><span style="color:red">4. Create a Multiplication Table</span></h2>
+<p>Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
+</div>
+<div id="encrypt-and-decrypt-the-alphabet" class="section level2">
+<h2><span style="color:red">5. Encrypt and Decrypt the Alphabet</span></h2>
+<p>Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.</p>
+</div>
+<div id="snakes-and-latters" class="section level2">
+<h2>6. Snakes and Latters</h2>
+<p>Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.</p>
+<pre class="r"><code>spot &lt;- 1
+move &lt;- 0
+count &lt;- replicate(1000, 0)
+for (i in 1:1000) {
+  while (spot &lt;= 25) {
+  move &lt;- sample(1:6, 1)
+  spot &lt;- spot + move
+  if (spot == 3) {
+    spot &lt;- 11
+  }
+  else if (spot == 6) {
+    spot &lt;- 17
+  }
+  else if (spot == 9) {
+    spot &lt;- 18
+  }
+  else if (spot == 10) {
+    spot &lt;- 12
+  }
+  else if (spot == 14) {
+    spot &lt;- 4
+  }
+  else if (spot == 19) {
+    spot &lt;- 8
+  }
+  else if (spot == 22) {
+    spot &lt;- 20
+  }
+  else if (spot == 24) {
+    spot &lt;- 16
+  }
+  count = count + 1
+  }
+}
+avg_moves &lt;- mean(count)
+print(avg_moves)</code></pre>
+<pre><code>## [1] 9</code></pre>
+</div>
+<div id="dice-rolling-simulations" class="section level2">
+<h2><span style="color:red">7. Dice Rolling Simulations</span></h2>
+<p>Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.</p>
+</div>
+<div id="monte-hall-problem" class="section level2">
+<h2><span style="color:red">8. Monte Hall Problem</span></h2>
+<p>The monte-hall problem is as follows. A contestant in a game show is presented with three closed doors. They are told that a prize is behind one door, and two goats are behind the other two doors. They are asked to choose which door contains the prize. After making their choice the game show host opens one of the remaining two doors (not chosen by the contestant), and reveals a goat. There are now two door remaining. The contestant is asked if they would like to switch their choice to the other door, or keep their initial choice. The correct answer is that the participant should switch their initial choice, and choose the other door. This will increase their odds of winning. Demonstrate by monte-carlo simulation that the odds of winning is higher if the participant switches than if the participants keeps their original choice.</p>
+</div>
+<div id="doors-problem" class="section level2">
+<h2>9. 100 Doors Problem</h2>
+<p>Problem: You have 100 doors in a row that are all initially closed. You make 100 passes by the doors. The first time through, you visit every door and toggle the door (if the door is closed, you open it; if it is open, you close it). The second time you only visit every 2nd door (door 2, 4, 6, etc.). The third time, every 3rd door (door 3, 6, 9, etc.), etc, until you only visit the 100th door.</p>
+<pre class="r"><code>doors &lt;- replicate(100, 0)
+for (i in 1:100) {
+  for (j in i:100) {
+    if (doors[j] == 0) {
+      doors[j] &lt;- 1
+    }
+    else {
+      doors[j] &lt;- 0
+    }
+  }
+}
+print(doors)</code></pre>
+<pre><code>##   [1] 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1
+##  [36] 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+##  [71] 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0</code></pre>
+</div>
+<div id="bottles-of-beer-problem" class="section level2">
+<h2>10. 99 Bottles of Beer Problem</h2>
+<p>In this puzzle, write code to print out the entire “99 bottles of beer on the wall”&quot; song.</p>
+<pre class="r"><code>i &lt;- 99
+lyrics_1 &lt;- &quot; bottles of beer on the wall,&quot;
+lyrics_2 &lt;- &quot;bottles of beer. Take one down, pass it around,&quot;
+lyrics_3 &lt;- &quot;bottles of beer on the wall!&quot;
+while (i &gt; 0) {
+  each_lyric &lt;- paste(i,lyrics_1,i,lyrics_2,i-1,lyrics_3)
+  print(each_lyric)
+  i = i -1
+}</code></pre>
+<pre><code>## [1] &quot;99  bottles of beer on the wall, 99 bottles of beer. Take one down, pass it around, 98 bottles of beer on the wall!&quot;
+## [1] &quot;98  bottles of beer on the wall, 98 bottles of beer. Take one down, pass it around, 97 bottles of beer on the wall!&quot;
+## [1] &quot;97  bottles of beer on the wall, 97 bottles of beer. Take one down, pass it around, 96 bottles of beer on the wall!&quot;
+## [1] &quot;96  bottles of beer on the wall, 96 bottles of beer. Take one down, pass it around, 95 bottles of beer on the wall!&quot;
+## [1] &quot;95  bottles of beer on the wall, 95 bottles of beer. Take one down, pass it around, 94 bottles of beer on the wall!&quot;
+## [1] &quot;94  bottles of beer on the wall, 94 bottles of beer. Take one down, pass it around, 93 bottles of beer on the wall!&quot;
+## [1] &quot;93  bottles of beer on the wall, 93 bottles of beer. Take one down, pass it around, 92 bottles of beer on the wall!&quot;
+## [1] &quot;92  bottles of beer on the wall, 92 bottles of beer. Take one down, pass it around, 91 bottles of beer on the wall!&quot;
+## [1] &quot;91  bottles of beer on the wall, 91 bottles of beer. Take one down, pass it around, 90 bottles of beer on the wall!&quot;
+## [1] &quot;90  bottles of beer on the wall, 90 bottles of beer. Take one down, pass it around, 89 bottles of beer on the wall!&quot;
+## [1] &quot;89  bottles of beer on the wall, 89 bottles of beer. Take one down, pass it around, 88 bottles of beer on the wall!&quot;
+## [1] &quot;88  bottles of beer on the wall, 88 bottles of beer. Take one down, pass it around, 87 bottles of beer on the wall!&quot;
+## [1] &quot;87  bottles of beer on the wall, 87 bottles of beer. Take one down, pass it around, 86 bottles of beer on the wall!&quot;
+## [1] &quot;86  bottles of beer on the wall, 86 bottles of beer. Take one down, pass it around, 85 bottles of beer on the wall!&quot;
+## [1] &quot;85  bottles of beer on the wall, 85 bottles of beer. Take one down, pass it around, 84 bottles of beer on the wall!&quot;
+## [1] &quot;84  bottles of beer on the wall, 84 bottles of beer. Take one down, pass it around, 83 bottles of beer on the wall!&quot;
+## [1] &quot;83  bottles of beer on the wall, 83 bottles of beer. Take one down, pass it around, 82 bottles of beer on the wall!&quot;
+## [1] &quot;82  bottles of beer on the wall, 82 bottles of beer. Take one down, pass it around, 81 bottles of beer on the wall!&quot;
+## [1] &quot;81  bottles of beer on the wall, 81 bottles of beer. Take one down, pass it around, 80 bottles of beer on the wall!&quot;
+## [1] &quot;80  bottles of beer on the wall, 80 bottles of beer. Take one down, pass it around, 79 bottles of beer on the wall!&quot;
+## [1] &quot;79  bottles of beer on the wall, 79 bottles of beer. Take one down, pass it around, 78 bottles of beer on the wall!&quot;
+## [1] &quot;78  bottles of beer on the wall, 78 bottles of beer. Take one down, pass it around, 77 bottles of beer on the wall!&quot;
+## [1] &quot;77  bottles of beer on the wall, 77 bottles of beer. Take one down, pass it around, 76 bottles of beer on the wall!&quot;
+## [1] &quot;76  bottles of beer on the wall, 76 bottles of beer. Take one down, pass it around, 75 bottles of beer on the wall!&quot;
+## [1] &quot;75  bottles of beer on the wall, 75 bottles of beer. Take one down, pass it around, 74 bottles of beer on the wall!&quot;
+## [1] &quot;74  bottles of beer on the wall, 74 bottles of beer. Take one down, pass it around, 73 bottles of beer on the wall!&quot;
+## [1] &quot;73  bottles of beer on the wall, 73 bottles of beer. Take one down, pass it around, 72 bottles of beer on the wall!&quot;
+## [1] &quot;72  bottles of beer on the wall, 72 bottles of beer. Take one down, pass it around, 71 bottles of beer on the wall!&quot;
+## [1] &quot;71  bottles of beer on the wall, 71 bottles of beer. Take one down, pass it around, 70 bottles of beer on the wall!&quot;
+## [1] &quot;70  bottles of beer on the wall, 70 bottles of beer. Take one down, pass it around, 69 bottles of beer on the wall!&quot;
+## [1] &quot;69  bottles of beer on the wall, 69 bottles of beer. Take one down, pass it around, 68 bottles of beer on the wall!&quot;
+## [1] &quot;68  bottles of beer on the wall, 68 bottles of beer. Take one down, pass it around, 67 bottles of beer on the wall!&quot;
+## [1] &quot;67  bottles of beer on the wall, 67 bottles of beer. Take one down, pass it around, 66 bottles of beer on the wall!&quot;
+## [1] &quot;66  bottles of beer on the wall, 66 bottles of beer. Take one down, pass it around, 65 bottles of beer on the wall!&quot;
+## [1] &quot;65  bottles of beer on the wall, 65 bottles of beer. Take one down, pass it around, 64 bottles of beer on the wall!&quot;
+## [1] &quot;64  bottles of beer on the wall, 64 bottles of beer. Take one down, pass it around, 63 bottles of beer on the wall!&quot;
+## [1] &quot;63  bottles of beer on the wall, 63 bottles of beer. Take one down, pass it around, 62 bottles of beer on the wall!&quot;
+## [1] &quot;62  bottles of beer on the wall, 62 bottles of beer. Take one down, pass it around, 61 bottles of beer on the wall!&quot;
+## [1] &quot;61  bottles of beer on the wall, 61 bottles of beer. Take one down, pass it around, 60 bottles of beer on the wall!&quot;
+## [1] &quot;60  bottles of beer on the wall, 60 bottles of beer. Take one down, pass it around, 59 bottles of beer on the wall!&quot;
+## [1] &quot;59  bottles of beer on the wall, 59 bottles of beer. Take one down, pass it around, 58 bottles of beer on the wall!&quot;
+## [1] &quot;58  bottles of beer on the wall, 58 bottles of beer. Take one down, pass it around, 57 bottles of beer on the wall!&quot;
+## [1] &quot;57  bottles of beer on the wall, 57 bottles of beer. Take one down, pass it around, 56 bottles of beer on the wall!&quot;
+## [1] &quot;56  bottles of beer on the wall, 56 bottles of beer. Take one down, pass it around, 55 bottles of beer on the wall!&quot;
+## [1] &quot;55  bottles of beer on the wall, 55 bottles of beer. Take one down, pass it around, 54 bottles of beer on the wall!&quot;
+## [1] &quot;54  bottles of beer on the wall, 54 bottles of beer. Take one down, pass it around, 53 bottles of beer on the wall!&quot;
+## [1] &quot;53  bottles of beer on the wall, 53 bottles of beer. Take one down, pass it around, 52 bottles of beer on the wall!&quot;
+## [1] &quot;52  bottles of beer on the wall, 52 bottles of beer. Take one down, pass it around, 51 bottles of beer on the wall!&quot;
+## [1] &quot;51  bottles of beer on the wall, 51 bottles of beer. Take one down, pass it around, 50 bottles of beer on the wall!&quot;
+## [1] &quot;50  bottles of beer on the wall, 50 bottles of beer. Take one down, pass it around, 49 bottles of beer on the wall!&quot;
+## [1] &quot;49  bottles of beer on the wall, 49 bottles of beer. Take one down, pass it around, 48 bottles of beer on the wall!&quot;
+## [1] &quot;48  bottles of beer on the wall, 48 bottles of beer. Take one down, pass it around, 47 bottles of beer on the wall!&quot;
+## [1] &quot;47  bottles of beer on the wall, 47 bottles of beer. Take one down, pass it around, 46 bottles of beer on the wall!&quot;
+## [1] &quot;46  bottles of beer on the wall, 46 bottles of beer. Take one down, pass it around, 45 bottles of beer on the wall!&quot;
+## [1] &quot;45  bottles of beer on the wall, 45 bottles of beer. Take one down, pass it around, 44 bottles of beer on the wall!&quot;
+## [1] &quot;44  bottles of beer on the wall, 44 bottles of beer. Take one down, pass it around, 43 bottles of beer on the wall!&quot;
+## [1] &quot;43  bottles of beer on the wall, 43 bottles of beer. Take one down, pass it around, 42 bottles of beer on the wall!&quot;
+## [1] &quot;42  bottles of beer on the wall, 42 bottles of beer. Take one down, pass it around, 41 bottles of beer on the wall!&quot;
+## [1] &quot;41  bottles of beer on the wall, 41 bottles of beer. Take one down, pass it around, 40 bottles of beer on the wall!&quot;
+## [1] &quot;40  bottles of beer on the wall, 40 bottles of beer. Take one down, pass it around, 39 bottles of beer on the wall!&quot;
+## [1] &quot;39  bottles of beer on the wall, 39 bottles of beer. Take one down, pass it around, 38 bottles of beer on the wall!&quot;
+## [1] &quot;38  bottles of beer on the wall, 38 bottles of beer. Take one down, pass it around, 37 bottles of beer on the wall!&quot;
+## [1] &quot;37  bottles of beer on the wall, 37 bottles of beer. Take one down, pass it around, 36 bottles of beer on the wall!&quot;
+## [1] &quot;36  bottles of beer on the wall, 36 bottles of beer. Take one down, pass it around, 35 bottles of beer on the wall!&quot;
+## [1] &quot;35  bottles of beer on the wall, 35 bottles of beer. Take one down, pass it around, 34 bottles of beer on the wall!&quot;
+## [1] &quot;34  bottles of beer on the wall, 34 bottles of beer. Take one down, pass it around, 33 bottles of beer on the wall!&quot;
+## [1] &quot;33  bottles of beer on the wall, 33 bottles of beer. Take one down, pass it around, 32 bottles of beer on the wall!&quot;
+## [1] &quot;32  bottles of beer on the wall, 32 bottles of beer. Take one down, pass it around, 31 bottles of beer on the wall!&quot;
+## [1] &quot;31  bottles of beer on the wall, 31 bottles of beer. Take one down, pass it around, 30 bottles of beer on the wall!&quot;
+## [1] &quot;30  bottles of beer on the wall, 30 bottles of beer. Take one down, pass it around, 29 bottles of beer on the wall!&quot;
+## [1] &quot;29  bottles of beer on the wall, 29 bottles of beer. Take one down, pass it around, 28 bottles of beer on the wall!&quot;
+## [1] &quot;28  bottles of beer on the wall, 28 bottles of beer. Take one down, pass it around, 27 bottles of beer on the wall!&quot;
+## [1] &quot;27  bottles of beer on the wall, 27 bottles of beer. Take one down, pass it around, 26 bottles of beer on the wall!&quot;
+## [1] &quot;26  bottles of beer on the wall, 26 bottles of beer. Take one down, pass it around, 25 bottles of beer on the wall!&quot;
+## [1] &quot;25  bottles of beer on the wall, 25 bottles of beer. Take one down, pass it around, 24 bottles of beer on the wall!&quot;
+## [1] &quot;24  bottles of beer on the wall, 24 bottles of beer. Take one down, pass it around, 23 bottles of beer on the wall!&quot;
+## [1] &quot;23  bottles of beer on the wall, 23 bottles of beer. Take one down, pass it around, 22 bottles of beer on the wall!&quot;
+## [1] &quot;22  bottles of beer on the wall, 22 bottles of beer. Take one down, pass it around, 21 bottles of beer on the wall!&quot;
+## [1] &quot;21  bottles of beer on the wall, 21 bottles of beer. Take one down, pass it around, 20 bottles of beer on the wall!&quot;
+## [1] &quot;20  bottles of beer on the wall, 20 bottles of beer. Take one down, pass it around, 19 bottles of beer on the wall!&quot;
+## [1] &quot;19  bottles of beer on the wall, 19 bottles of beer. Take one down, pass it around, 18 bottles of beer on the wall!&quot;
+## [1] &quot;18  bottles of beer on the wall, 18 bottles of beer. Take one down, pass it around, 17 bottles of beer on the wall!&quot;
+## [1] &quot;17  bottles of beer on the wall, 17 bottles of beer. Take one down, pass it around, 16 bottles of beer on the wall!&quot;
+## [1] &quot;16  bottles of beer on the wall, 16 bottles of beer. Take one down, pass it around, 15 bottles of beer on the wall!&quot;
+## [1] &quot;15  bottles of beer on the wall, 15 bottles of beer. Take one down, pass it around, 14 bottles of beer on the wall!&quot;
+## [1] &quot;14  bottles of beer on the wall, 14 bottles of beer. Take one down, pass it around, 13 bottles of beer on the wall!&quot;
+## [1] &quot;13  bottles of beer on the wall, 13 bottles of beer. Take one down, pass it around, 12 bottles of beer on the wall!&quot;
+## [1] &quot;12  bottles of beer on the wall, 12 bottles of beer. Take one down, pass it around, 11 bottles of beer on the wall!&quot;
+## [1] &quot;11  bottles of beer on the wall, 11 bottles of beer. Take one down, pass it around, 10 bottles of beer on the wall!&quot;
+## [1] &quot;10  bottles of beer on the wall, 10 bottles of beer. Take one down, pass it around, 9 bottles of beer on the wall!&quot;
+## [1] &quot;9  bottles of beer on the wall, 9 bottles of beer. Take one down, pass it around, 8 bottles of beer on the wall!&quot;
+## [1] &quot;8  bottles of beer on the wall, 8 bottles of beer. Take one down, pass it around, 7 bottles of beer on the wall!&quot;
+## [1] &quot;7  bottles of beer on the wall, 7 bottles of beer. Take one down, pass it around, 6 bottles of beer on the wall!&quot;
+## [1] &quot;6  bottles of beer on the wall, 6 bottles of beer. Take one down, pass it around, 5 bottles of beer on the wall!&quot;
+## [1] &quot;5  bottles of beer on the wall, 5 bottles of beer. Take one down, pass it around, 4 bottles of beer on the wall!&quot;
+## [1] &quot;4  bottles of beer on the wall, 4 bottles of beer. Take one down, pass it around, 3 bottles of beer on the wall!&quot;
+## [1] &quot;3  bottles of beer on the wall, 3 bottles of beer. Take one down, pass it around, 2 bottles of beer on the wall!&quot;
+## [1] &quot;2  bottles of beer on the wall, 2 bottles of beer. Take one down, pass it around, 1 bottles of beer on the wall!&quot;
+## [1] &quot;1  bottles of beer on the wall, 1 bottles of beer. Take one down, pass it around, 0 bottles of beer on the wall!&quot;</code></pre>
+</div>
 </div>
 
 
