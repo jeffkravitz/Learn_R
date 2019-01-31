@@ -222,9 +222,25 @@ exist <- grep(find, alice)
 print(exist)
 ```
 
-## 16. <span style="color:red">Put the current computer time in milliseconds into a variable</span>
+## 16. Put the current computer time in milliseconds into a variable
+```{r}
+current_time <- as.numeric(Sys.time())
+print(current_time)
+```
 
-## 17. <span style="color:red">Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</span>
+## 17. Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+```{r}
+start_time <- as.numeric(Sys.time())
+## Start example code
+ed <- length(100)
+for (i in 1:100) {
+  ed[i] <- i
+}
+## End example code
+end_time <- as.numeric(Sys.time())
+run_time <- end_time - start_time
+print(run_time)
+```
 
 ## 18. <span style="color:red">Read a .txt file or .csv file into a variable</span>
 
@@ -241,28 +257,48 @@ close(jeff_file)
 
 # Hard Problems
 
-## <span style="color:red">1. The FizzBuzz Problem</span>
+## 1. The FizzBuzz Problem
 List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number.
+```{r}
+total <- 1
+for (i in 2:100) {
+  if (i %% 3 == 0) {
+    if (i %% 5 == 0) {
+      total <- paste(total,"FizzBuzz", sep = ", ")
+    }
+    else {
+      total <- paste(total,"Fizz", sep = ", ")
+    }
+  }
+  else if (i %% 5 == 0) {
+    total <- paste(total, "Buzz", sep = ", ")
+  }
+  else {
+    total <- paste(total, i, sep = ", ")
+  }
+}
+print(total)
+```
 
-## <span style="color:red">2. Frequeny Counts</span>
+## 2. <span style="color:red">Frequeny Counts</span>
 Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.
 
-## <span style="color:red">3. Test the Random Number Generator</span>
+## 3. <span style="color:red">Test the Random Number Generator</span>
 Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.
 
-## <span style="color:red">4. Create a Multiplication Table</span>
+## 4. <span style="color:red">Create a Multiplication Table</span>
 Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.
 
-## <span style="color:red">5. Encrypt and Decrypt the Alphabet</span>
+## 5. <span style="color:red">Encrypt and Decrypt the Alphabet</span>
 Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.
 
 ## 6. Snakes and Latters
 Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.
 ```{r}
-spot <- 1
 move <- 0
 count <- replicate(1000, 0)
 for (i in 1:1000) {
+  spot <- 1
   while (spot <= 25) {
   move <- sample(1:6, 1)
   spot <- spot + move
@@ -290,43 +326,45 @@ for (i in 1:1000) {
   else if (spot == 24) {
     spot <- 16
   }
-  count = count + 1
+  count[i] = count[i] + 1
   }
 }
 avg_moves <- mean(count)
 print(avg_moves)
 ```
 
-
-## <span style="color:red">7. Dice Rolling Simulations</span>
+## 7. <span style="color:red">Dice Rolling Simulations</span>
 Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.
 
-## <span style="color:red">8. Monte Hall Problem</span>
+## 8. <span style="color:red">Monte Hall Problem</span>
 The monte-hall problem is as follows. A contestant in a game show is presented with three closed doors. They are told that a prize is behind one door, and two goats are behind the other two doors. They are asked to choose which door contains the prize. After making their choice the game show host opens one of the remaining two doors (not chosen by the contestant), and reveals a goat. There are now two door remaining. The contestant is asked if they would like to switch their choice to the other door, or keep their initial choice. The correct answer is that the participant should switch their initial choice, and choose the other door. This will increase their odds of winning. Demonstrate by monte-carlo simulation that the odds of winning is higher if the participant switches than if the participants keeps their original choice.
 
 ## 9. 100 Doors Problem
 Problem: You have 100 doors in a row that are all initially closed. You make 100 passes by the doors. The first time through, you visit every door and toggle the door (if the door is closed, you open it; if it is open, you close it). The second time you only visit every 2nd door (door 2, 4, 6, etc.). The third time, every 3rd door (door 3, 6, 9, etc.), etc, until you only visit the 100th door.
 ```{r}
 doors <- replicate(100, 0)
+j = 1
 for (i in 1:100) {
-  for (j in i:100) {
+  k = j
+  while (j <= 100) {
     if (doors[j] == 0) {
       doors[j] <- 1
     }
     else {
       doors[j] <- 0
     }
+    j = j + k
   }
+  j = i + 1
 }
 print(doors)
 ```
-
 
 ## 10. 99 Bottles of Beer Problem
 In this puzzle, write code to print out the entire “99 bottles of beer on the wall”" song.
 ```{r}
 i <- 99
-lyrics_1 <- " bottles of beer on the wall,"
+lyrics_1 <- "bottles of beer on the wall,"
 lyrics_2 <- "bottles of beer. Take one down, pass it around,"
 lyrics_3 <- "bottles of beer on the wall!"
 while (i > 0) {
