@@ -121,7 +121,7 @@ jeff_mean(x)
 ```{r}
 x <- c(1,1,1,1,2,2,3,3,3,4,4,4,4)
 jeff_mode <- function(x) {
-  y <- length(length(x))
+  y <- c()
   mode_list <- c()
   x_copy <- x
   for (i in 1:length(x)) {
@@ -266,8 +266,8 @@ print(data)
 ## 21. Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
 ```{r}
 data <- replicate(20, runif(20, min = 0, max = 100))
-write.csv(data, file = "data_comma.csv", sep=",")
-write.csv(data, file = "data_tab.csv", sep="\t")
+write.csv(data, file = "data_comma.csv", sep = ",")
+write.csv(data, file = "data_tab.csv", sep = "\t")
 ```
 
 
@@ -298,6 +298,24 @@ print(total)
 
 ## 2. <span style="color:red">Frequeny Counts</span>
 Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.
+```{r}
+alice <- "curiouser and curiouser!"
+table(unlist(strsplit(alice, split = "")))
+```
+
+Without using table:
+```{r}
+alice <- "curiouser and curiouser!"
+letters <- unique(unlist(strsplit(alice, split="")))
+count <- c()
+for (i in 1:length(letters)) {
+  count[i] <- length(which(strsplit(alice, "")[[1]]==letters[i]))
+}
+alice_data <- data.frame(count,letters)
+print(alice_data)
+
+```
+
 
 ## 3. <span style="color:red">Test the Random Number Generator</span>
 Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.

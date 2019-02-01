@@ -544,7 +544,7 @@ jeff_mean(x)</code></pre>
 <h2>10b. Write your own functions to give descriptive statistics for a vector variable: Mode</h2>
 <pre class="r"><code>x &lt;- c(1,1,1,1,2,2,3,3,3,4,4,4,4)
 jeff_mode &lt;- function(x) {
-  y &lt;- length(length(x))
+  y &lt;- c()
   mode_list &lt;- c()
   x_copy &lt;- x
   for (i in 1:length(x)) {
@@ -772,8 +772,8 @@ print(data)</code></pre>
 <div id="output-any-matrix-to-a-txt-file-using-commas-or-tabs-to-separate-column-values-and-new-lines-to-separate-row-values" class="section level2">
 <h2>21. Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</h2>
 <pre class="r"><code>data &lt;- replicate(20, runif(20, min = 0, max = 100))
-write.csv(data, file = &quot;data_comma.csv&quot;, sep=&quot;,&quot;)
-write.csv(data, file = &quot;data_tab.csv&quot;, sep=&quot;\t&quot;)</code></pre>
+write.csv(data, file = &quot;data_comma.csv&quot;, sep = &quot;,&quot;)
+write.csv(data, file = &quot;data_tab.csv&quot;, sep = &quot;\t&quot;)</code></pre>
 </div>
 </div>
 <div id="hard-problems" class="section level1">
@@ -804,6 +804,33 @@ print(total)</code></pre>
 <div id="frequeny-counts" class="section level2">
 <h2>2. <span style="color:red">Frequeny Counts</span></h2>
 <p>Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
+<pre class="r"><code>alice &lt;- &quot;curiouser and curiouser!&quot;
+table(unlist(strsplit(alice, split = &quot;&quot;)))</code></pre>
+<pre><code>## 
+##   ! a c d e i n o r s u 
+## 2 1 1 2 1 2 2 1 2 4 2 4</code></pre>
+<p>Without using table:</p>
+<pre class="r"><code>alice &lt;- &quot;curiouser and curiouser!&quot;
+letters &lt;- unique(unlist(strsplit(alice, split=&quot;&quot;)))
+count &lt;- c()
+for (i in 1:length(letters)) {
+  count[i] &lt;- length(which(strsplit(alice, &quot;&quot;)[[1]]==letters[i]))
+}
+alice_data &lt;- data.frame(count,letters)
+print(alice_data)</code></pre>
+<pre><code>##    count letters
+## 1      2       c
+## 2      4       u
+## 3      4       r
+## 4      2       i
+## 5      2       o
+## 6      2       s
+## 7      2       e
+## 8      2        
+## 9      1       a
+## 10     1       n
+## 11     1       d
+## 12     1       !</code></pre>
 </div>
 <div id="test-the-random-number-generator" class="section level2">
 <h2>3. <span style="color:red">Test the Random Number Generator</span></h2>
