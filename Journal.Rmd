@@ -296,7 +296,7 @@ for (i in 2:100) {
 print(total)
 ```
 
-## 2. <span style="color:red">Frequeny Counts</span>
+## 2. Frequeny Counts
 Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.
 ```{r}
 alice <- "curiouser and curiouser!"
@@ -313,15 +313,34 @@ for (i in 1:length(letters)) {
 }
 alice_data <- data.frame(count,letters)
 print(alice_data)
-
 ```
 
 
-## 3. <span style="color:red">Test the Random Number Generator</span>
+## 3. Test the Random Number Generator
 Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.
+```{r}
+numbers <- round(runif(3000000, min = 0, max = 100))
+count <- c()
+for (i in 1:100) {
+  count[i] <- length(which(numbers %in% i))
+}
+print(count)
+plot(count)
+```
+
 
 ## 4. <span style="color:red">Create a Multiplication Table</span>
 Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.
+```{r}
+x <- seq(0, 10, 1)
+data <- data.frame(x)
+for (i in 2:11) {
+  data <- data.frame(data, x*(i-1))
+  data[1,i] <- i-1
+}
+print(data)
+```
+
 
 ## 5. <span style="color:red">Encrypt and Decrypt the Alphabet</span>
 Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.

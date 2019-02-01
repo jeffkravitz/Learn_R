@@ -802,7 +802,7 @@ print(total)</code></pre>
 <pre><code>## [1] &quot;1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, 17, Fizz, 19, Buzz, Fizz, 22, 23, Fizz, Buzz, 26, Fizz, 28, 29, FizzBuzz, 31, 32, Fizz, 34, Buzz, Fizz, 37, 38, Fizz, Buzz, 41, Fizz, 43, 44, FizzBuzz, 46, 47, Fizz, 49, Buzz, Fizz, 52, 53, Fizz, Buzz, 56, Fizz, 58, 59, FizzBuzz, 61, 62, Fizz, 64, Buzz, Fizz, 67, 68, Fizz, Buzz, 71, Fizz, 73, 74, FizzBuzz, 76, 77, Fizz, 79, Buzz, Fizz, 82, 83, Fizz, Buzz, 86, Fizz, 88, 89, FizzBuzz, 91, 92, Fizz, 94, Buzz, Fizz, 97, 98, Fizz, Buzz&quot;</code></pre>
 </div>
 <div id="frequeny-counts" class="section level2">
-<h2>2. <span style="color:red">Frequeny Counts</span></h2>
+<h2>2. Frequeny Counts</h2>
 <p>Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
 <pre class="r"><code>alice &lt;- &quot;curiouser and curiouser!&quot;
 table(unlist(strsplit(alice, split = &quot;&quot;)))</code></pre>
@@ -833,12 +833,61 @@ print(alice_data)</code></pre>
 ## 12     1       !</code></pre>
 </div>
 <div id="test-the-random-number-generator" class="section level2">
-<h2>3. <span style="color:red">Test the Random Number Generator</span></h2>
+<h2>3. Test the Random Number Generator</h2>
 <p>Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
+<pre class="r"><code>numbers &lt;- round(runif(3000000, min = 0, max = 100))
+count &lt;- c()
+for (i in 1:100) {
+  count[i] &lt;- length(which(numbers %in% i))
+}
+print(count)</code></pre>
+<pre><code>##   [1] 30188 30231 30070 30172 29983 30234 30280 29810 29736 29850 29817
+##  [12] 30077 29931 29907 29897 30152 30429 29963 29944 29657 30176 29967
+##  [23] 30132 30151 29816 29949 30154 30051 29527 30014 30044 29590 29744
+##  [34] 30080 30153 29937 30232 30025 29925 29967 29910 29814 30155 30062
+##  [45] 29895 30187 29723 30017 29891 29728 30086 29817 30071 29830 29765
+##  [56] 30223 30149 29971 29752 30225 30382 30074 30055 29918 29875 30067
+##  [67] 30026 30079 30040 29800 30055 30082 30199 29906 29883 30059 30080
+##  [78] 29972 29862 30247 30299 29778 30313 29867 30072 30088 29678 30188
+##  [89] 30122 30069 29857 29964 30030 30150 29567 30068 30163 29840 29967
+## [100] 14941</code></pre>
+<pre class="r"><code>plot(count)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="create-a-multiplication-table" class="section level2">
 <h2>4. <span style="color:red">Create a Multiplication Table</span></h2>
 <p>Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
+<pre class="r"><code>x &lt;- seq(0, 10, 1)
+data &lt;- data.frame(x)
+for (i in 2:11) {
+  data &lt;- data.frame(data, x*(i-1))
+  data[1,i] &lt;- i-1
+}
+print(data)</code></pre>
+<pre><code>##     x x....i...1. x....i...1..1 x....i...1..2 x....i...1..3 x....i...1..4
+## 1   0           1             2             3             4             5
+## 2   1           1             2             3             4             5
+## 3   2           2             4             6             8            10
+## 4   3           3             6             9            12            15
+## 5   4           4             8            12            16            20
+## 6   5           5            10            15            20            25
+## 7   6           6            12            18            24            30
+## 8   7           7            14            21            28            35
+## 9   8           8            16            24            32            40
+## 10  9           9            18            27            36            45
+## 11 10          10            20            30            40            50
+##    x....i...1..5 x....i...1..6 x....i...1..7 x....i...1..8 x....i...1..9
+## 1              6             7             8             9            10
+## 2              6             7             8             9            10
+## 3             12            14            16            18            20
+## 4             18            21            24            27            30
+## 5             24            28            32            36            40
+## 6             30            35            40            45            50
+## 7             36            42            48            54            60
+## 8             42            49            56            63            70
+## 9             48            56            64            72            80
+## 10            54            63            72            81            90
+## 11            60            70            80            90           100</code></pre>
 </div>
 <div id="encrypt-and-decrypt-the-alphabet" class="section level2">
 <h2>5. <span style="color:red">Encrypt and Decrypt the Alphabet</span></h2>
@@ -883,7 +932,7 @@ for (i in 1:1000) {
 }
 avg_moves &lt;- mean(count)
 print(avg_moves)</code></pre>
-<pre><code>## [1] 9.042</code></pre>
+<pre><code>## [1] 8.951</code></pre>
 </div>
 <div id="dice-rolling-simulations" class="section level2">
 <h2>7. <span style="color:red">Dice Rolling Simulations</span></h2>
