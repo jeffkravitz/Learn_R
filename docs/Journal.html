@@ -670,7 +670,9 @@ print(run_time)</code></pre>
 <pre><code>## [1] 0.03837299</code></pre>
 </div>
 <div id="read-a-.txt-file-or-.csv-file-into-a-variable" class="section level2">
-<h2>18. <span style="color:red">Read a .txt file or .csv file into a variable</span></h2>
+<h2>18. Read a .txt file or .csv file into a variable</h2>
+<pre class="r"><code>txt_data &lt;- scan(file = &quot;insert_file_here.txt&quot;)
+csv_data &lt;- csv.read(file = &quot;insert_file_here.csv&quot;)</code></pre>
 </div>
 <div id="output-the-contents-of-a-variable-to-a-.txt-file" class="section level2">
 <h2>19. Output the contents of a variable to a .txt file</h2>
@@ -679,10 +681,99 @@ writeLines(c(&quot;Hello&quot;,&quot;World&quot;), jeff_file)
 close(jeff_file)</code></pre>
 </div>
 <div id="create-a-variable-that-stores-a-20x20-matrix-of-random-numbers" class="section level2">
-<h2>20. <span style="color:red">Create a variable that stores a 20x20 matrix of random numbers</span></h2>
+<h2>20. Create a variable that stores a 20x20 matrix of random numbers</h2>
+<pre class="r"><code>data &lt;- replicate(20, runif(20, min = 0, max = 100))
+print(data)</code></pre>
+<pre><code>##             [,1]      [,2]      [,3]     [,4]      [,5]      [,6]
+##  [1,] 31.4571414 86.906644 52.401972 87.12893 98.576842 98.394633
+##  [2,]  1.4691139 33.524129  2.921018 61.67209 34.461451 87.116235
+##  [3,] 20.0109409 18.151245 12.684381 85.36001 44.245597 44.805776
+##  [4,]  0.3753518 97.199982 69.379139 20.03038 30.901071 64.702894
+##  [5,] 97.1394680  8.152514 66.592529 76.90438 61.885633 63.244258
+##  [6,] 88.8444053  4.654671 53.767449 10.58691  4.825884 73.667101
+##  [7,] 41.1011951 37.212192 10.712585 25.31126 94.522315 87.442303
+##  [8,] 74.7044157 30.870774 69.370495 78.38070 30.729418 63.031620
+##  [9,] 25.7454852  3.517468 59.029936 92.53954 87.133791 85.724566
+## [10,] 98.3736525 41.426747 59.071611 61.48672 36.168366 25.673936
+## [11,]  2.9443457 85.590905 52.757802 43.22145 87.148964 78.386712
+## [12,] 50.6110846 50.696509 20.342389 97.29020 77.104251 34.136409
+## [13,] 47.5325615  1.597625 67.800964 79.11165 72.831853 79.100410
+## [14,] 61.1402216 83.240608 82.218820 90.02878 57.920768 79.287762
+## [15,] 95.9651229 81.922990 25.353330 35.57343 86.838417  5.283929
+## [16,] 99.4357729 98.673542 74.925314 98.19676 40.888527 27.180527
+## [17,]  1.1273218 25.407565 72.309543 62.46683 46.115070 81.858068
+## [18,] 61.6317487  9.672096 19.749049 40.58127 20.147632 57.971726
+## [19,] 42.1321413 97.750190 39.271959 67.06472 28.273787 77.201649
+## [20,] 55.9793032 38.418550 48.133140 82.19791  9.797905 54.937402
+##            [,7]     [,8]      [,9]     [,10]     [,11]      [,12]
+##  [1,] 86.234410 71.83161 27.485773  1.427863 45.276645 36.5355199
+##  [2,] 20.353518 28.40820 12.736577 96.857118 41.785206 94.6034154
+##  [3,] 24.901712 56.73553 35.014047 53.662358 22.434556 18.0230673
+##  [4,]  9.360377 61.68772  3.559320 64.457307 29.243427 63.5729277
+##  [5,] 18.302980 74.04338 74.850867 46.236614 44.280584 83.6822500
+##  [6,] 23.942694 79.66843 65.065590  7.969797 90.353722  0.1627712
+##  [7,]  3.641830 94.93027 44.219940 70.413352 43.835958 80.2723496
+##  [8,] 14.241791 22.54540 45.620271 78.244237 89.330934 97.5297167
+##  [9,] 25.513582 12.30240 62.658352 55.160862 12.868104 88.6039966
+## [10,] 65.179191 93.97080 44.890635 46.526249 24.255823 23.3118317
+## [11,] 36.496213 31.71191 75.425652 62.409055 81.021143 19.0646757
+## [12,] 77.054885 35.96304 96.152488 73.687682 75.531308 92.7939685
+## [13,] 91.540194 65.33212  5.768841 28.264844 70.876150 81.0454812
+## [14,] 84.444747 49.34543 20.155970 50.417203 49.579343 37.3480317
+## [15,]  8.724243 24.00461 27.502379 22.363631 96.759060 18.1283930
+## [16,] 10.338000 42.13198 95.679451 35.959550  5.629505 60.1208133
+## [17,] 75.430309 99.49244 29.877436 67.978876 64.054276 39.5095295
+## [18,] 55.466086 18.70538  1.360393  7.064508  3.334826 59.6070721
+## [19,]  6.413944 59.58653 94.585948 63.122865 89.521718 67.4386848
+## [20,] 42.493176 48.70948 55.742465 39.340578 30.831693 43.2118950
+##           [,13]     [,14]     [,15]     [,16]    [,17]     [,18]    [,19]
+##  [1,] 62.779915 61.121792 57.794058 74.594839 98.23823 80.968834 49.97782
+##  [2,] 40.719995 91.222764 24.282697 66.195012 98.40603 21.233762 99.23356
+##  [3,]  2.786428 95.043149 73.041859 28.843089 35.57746 37.298626 14.23888
+##  [4,] 30.332172 32.006148 61.574199  9.737269 50.53155 51.096936 50.33491
+##  [5,] 98.153407 55.544029 37.532662 11.360765 80.18527  1.117351 89.16841
+##  [6,] 39.946326  4.061994 79.467713 28.952362 11.52466  5.726606 48.41759
+##  [7,] 21.662266 67.973979 12.626663  6.536698 93.89845  1.346892 17.09973
+##  [8,] 36.754704  1.348358  8.452038 64.811484 65.49472 70.222658 41.89680
+##  [9,] 41.921581 71.924561 56.584596 99.900017 17.58525 87.043757 54.54843
+## [10,] 47.071638  8.391750 97.339555 99.134513 41.50335 70.171305 85.05052
+## [11,] 28.189255 64.578989 13.719954  1.762156 12.88886 61.596608 82.26932
+## [12,] 34.495437 93.080743 68.765760 76.282477 42.49233 81.787674 89.44983
+## [13,]  6.570352 89.543021 54.422667 86.185771 72.90877 45.927517 11.31806
+## [14,] 30.783175 25.539473  7.024057 68.832128 35.04147 67.108710 15.02747
+## [15,]  3.040351 72.063702 92.876910 76.201409 94.74137 43.236100 54.62234
+## [16,] 30.215260 30.568119 77.841402 75.936426 91.34380 64.229647 17.08602
+## [17,] 30.008453 15.248993 33.231451 83.170194 73.48105 33.342065 86.67047
+## [18,] 83.920470 11.630493 40.408757 69.919475 16.17758 76.517058 94.86248
+## [19,] 47.984758 40.919392 22.420912 15.213760 36.07798 95.255757 17.87431
+## [20,] 74.100488 39.497353 61.548491 11.983465 50.31913 70.480059 89.42036
+##           [,20]
+##  [1,] 32.025505
+##  [2,] 52.079154
+##  [3,] 90.138822
+##  [4,] 79.052454
+##  [5,] 64.880654
+##  [6,] 17.330784
+##  [7,] 39.329453
+##  [8,] 34.357286
+##  [9,] 30.652089
+## [10,] 50.416355
+## [11,] 70.601327
+## [12,]  9.262062
+## [13,]  4.286412
+## [14,] 28.315985
+## [15,] 26.109251
+## [16,] 11.877275
+## [17,]  8.204687
+## [18,] 26.497295
+## [19,] 29.194037
+## [20,] 19.767617</code></pre>
 </div>
 <div id="output-any-matrix-to-a-txt-file-using-commas-or-tabs-to-separate-column-values-and-new-lines-to-separate-row-values" class="section level2">
-<h2>21. <span style="color:red">Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</span></h2>
+<h2>21. Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</h2>
+<pre class="r"><code>data &lt;- replicate(20, runif(20, min = 0, max = 100))
+write.csv(data, file = &quot;data_comma.csv&quot;, sep=&quot;,&quot;)
+write.csv(data, file = &quot;data_tab.csv&quot;, sep=&quot;\t&quot;)</code></pre>
 </div>
 </div>
 <div id="hard-problems" class="section level1">
@@ -726,8 +817,8 @@ print(total)</code></pre>
 <h2>5. <span style="color:red">Encrypt and Decrypt the Alphabet</span></h2>
 <p>Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.</p>
 </div>
-<div id="snakes-and-latters" class="section level2">
-<h2>6. Snakes and Latters</h2>
+<div id="snakes-and-ladders" class="section level2">
+<h2>6. Snakes and Ladders</h2>
 <p>Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.</p>
 <pre class="r"><code>move &lt;- 0
 count &lt;- replicate(1000, 0)
@@ -765,7 +856,7 @@ for (i in 1:1000) {
 }
 avg_moves &lt;- mean(count)
 print(avg_moves)</code></pre>
-<pre><code>## [1] 8.955</code></pre>
+<pre><code>## [1] 9.042</code></pre>
 </div>
 <div id="dice-rolling-simulations" class="section level2">
 <h2>7. <span style="color:red">Dice Rolling Simulations</span></h2>

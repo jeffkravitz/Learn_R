@@ -242,7 +242,12 @@ run_time <- end_time - start_time
 print(run_time)
 ```
 
-## 18. <span style="color:red">Read a .txt file or .csv file into a variable</span>
+## 18. Read a .txt file or .csv file into a variable
+```{r eval=FALSE}
+txt_data <- scan(file = "insert_file_here.txt")
+csv_data <- csv.read(file = "insert_file_here.csv")
+```
+
 
 ## 19. Output the contents of a variable to a .txt file
 ```{r}
@@ -251,9 +256,20 @@ writeLines(c("Hello","World"), jeff_file)
 close(jeff_file)
 ```
 
-## 20. <span style="color:red">Create a variable that stores a 20x20 matrix of random numbers</span>
+## 20. Create a variable that stores a 20x20 matrix of random numbers
+```{r}
+data <- replicate(20, runif(20, min = 0, max = 100))
+print(data)
+```
 
-## 21. <span style="color:red">Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</span>
+
+## 21. Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
+```{r}
+data <- replicate(20, runif(20, min = 0, max = 100))
+write.csv(data, file = "data_comma.csv", sep=",")
+write.csv(data, file = "data_tab.csv", sep="\t")
+```
+
 
 # Hard Problems
 
@@ -292,7 +308,7 @@ Generate a matrix for a multiplication table. For example, the labels for the co
 ## 5. <span style="color:red">Encrypt and Decrypt the Alphabet</span>
 Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.
 
-## 6. Snakes and Latters
+## 6. Snakes and Ladders
 Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.
 ```{r}
 move <- 0
