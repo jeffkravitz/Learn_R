@@ -329,18 +329,18 @@ plot(count)
 ```
 
 
-## 4. <span style="color:red">Create a Multiplication Table</span>
+## 4. Create a Multiplication Table
 Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.
 ```{r}
-x <- seq(0, 10, 1)
-data <- data.frame(x)
-for (i in 2:11) {
-  data <- data.frame(data, x*(i-1))
-  data[1,i] <- i-1
+x <- seq(1, 10, 1)
+data <- matrix(x, nrow = 10, ncol = 10)
+for (i in 1:10) {
+  x <- seq(i, i*10, i)
+  data[,i] <- x
 }
+#data <- matrix(x, nrow = 10, ncol = 1)
 print(data)
 ```
-
 
 ## 5. <span style="color:red">Encrypt and Decrypt the Alphabet</span>
 Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.

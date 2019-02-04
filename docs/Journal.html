@@ -855,39 +855,27 @@ print(count)</code></pre>
 <p><img src="Journal_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="create-a-multiplication-table" class="section level2">
-<h2>4. <span style="color:red">Create a Multiplication Table</span></h2>
+<h2>4. Create a Multiplication Table</h2>
 <p>Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
-<pre class="r"><code>x &lt;- seq(0, 10, 1)
-data &lt;- data.frame(x)
-for (i in 2:11) {
-  data &lt;- data.frame(data, x*(i-1))
-  data[1,i] &lt;- i-1
+<pre class="r"><code>x &lt;- seq(1, 10, 1)
+data &lt;- matrix(x, nrow = 10, ncol = 10)
+for (i in 1:10) {
+  x &lt;- seq(i, i*10, i)
+  data[,i] &lt;- x
 }
+#data &lt;- matrix(x, nrow = 10, ncol = 1)
 print(data)</code></pre>
-<pre><code>##     x x....i...1. x....i...1..1 x....i...1..2 x....i...1..3 x....i...1..4
-## 1   0           1             2             3             4             5
-## 2   1           1             2             3             4             5
-## 3   2           2             4             6             8            10
-## 4   3           3             6             9            12            15
-## 5   4           4             8            12            16            20
-## 6   5           5            10            15            20            25
-## 7   6           6            12            18            24            30
-## 8   7           7            14            21            28            35
-## 9   8           8            16            24            32            40
-## 10  9           9            18            27            36            45
-## 11 10          10            20            30            40            50
-##    x....i...1..5 x....i...1..6 x....i...1..7 x....i...1..8 x....i...1..9
-## 1              6             7             8             9            10
-## 2              6             7             8             9            10
-## 3             12            14            16            18            20
-## 4             18            21            24            27            30
-## 5             24            28            32            36            40
-## 6             30            35            40            45            50
-## 7             36            42            48            54            60
-## 8             42            49            56            63            70
-## 9             48            56            64            72            80
-## 10            54            63            72            81            90
-## 11            60            70            80            90           100</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    1    2    3    4    5    6    7    8    9    10
+##  [2,]    2    4    6    8   10   12   14   16   18    20
+##  [3,]    3    6    9   12   15   18   21   24   27    30
+##  [4,]    4    8   12   16   20   24   28   32   36    40
+##  [5,]    5   10   15   20   25   30   35   40   45    50
+##  [6,]    6   12   18   24   30   36   42   48   54    60
+##  [7,]    7   14   21   28   35   42   49   56   63    70
+##  [8,]    8   16   24   32   40   48   56   64   72    80
+##  [9,]    9   18   27   36   45   54   63   72   81    90
+## [10,]   10   20   30   40   50   60   70   80   90   100</code></pre>
 </div>
 <div id="encrypt-and-decrypt-the-alphabet" class="section level2">
 <h2>5. <span style="color:red">Encrypt and Decrypt the Alphabet</span></h2>
