@@ -450,6 +450,81 @@ div.tocify {
 <li><strong>Change color of text:</strong></li>
 </ol>
 <pre class="r"><code>&lt;span style=&quot;color:red&quot;&gt;TEXT HERE&lt;/span&gt;</code></pre>
+<pre class="r"><code>#Notes from 1/4/19
+
+# Class Type Examples
+a &lt;- 1
+b &lt;- &quot;hello world&quot;
+d &lt;- &quot;3&quot;
+vector &lt;- c(1,2,3,4,5,6,7,6,5,6,5,1000)
+class(a)
+class(b)
+class(vector)
+
+# Indexing
+vector[8]
+vector[8:10]
+vector[c(10,10,10,10,10,10)]
+vector[c(1,2,3,3,2,1)]
+
+# Logical Indexing
+vector[vector &gt; 6]
+vector[vector &lt; 6]
+vector[vector &gt;= 6]
+vector[vector &lt;= 6]
+vector[vector == 6]
+vector[vector != 6]  
+
+# Replcament Usiong Indexing
+vector[8] &lt;- 3000
+vector[1:2] &lt;- c(10,15)
+vector[1:2] &lt;- c(10,15,17)  # Error: cannot replace 2 positions with 3 items
+vector[7] &lt;- &quot;j&quot;  # Turns entire vector into character class
+
+# Class Types
+a &lt;- c(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;)
+class(a)
+b &lt;- a
+class(b)
+as.numeric(b)
+
+# Splitting by period
+a &lt;- &quot;gwaesr. dfgh fgiu out. yirde tsdgf.&quot;
+a[1]
+b &lt;- strsplit(a,split=&quot;[.]&quot;)
+class(b)\
+
+# Lists
+a &lt;- &quot;gwaesdfghfgiouigrdtsdgf.&quot;
+a[1]
+b &lt;- strsplit(a,split=&quot;&quot;)
+class(b)
+b
+b[[1]]
+b[[1]][5]
+example_list &lt;- list(a=1, b=4, d=c(1,2,3,4))
+example_list[[2]]
+
+#Unlisting
+b &lt;- unlist(strsplit(a,split=&quot;&quot;))
+b[5]
+
+# Matrices
+a &lt;- matrix(0, nrow = 5, ncol = 5)
+View(a)
+
+# Data Frames
+first_names &lt;- c(&quot;jeff&quot;, &quot;matt&quot;, &quot;steve&quot;)
+ages &lt;- c(100, 200, 150)
+grades &lt;- c(89, 56, 99)
+everybody &lt;- data.frame(first_names, ages, grades)
+View(everybody)
+everybody$first_names
+everybody$ages[1] &lt;- 12
+everybody$grades[1]
+
+# Levels
+class(everybody$first_names) # Factor Class</code></pre>
 </div>
 
 

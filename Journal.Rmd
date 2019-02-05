@@ -342,8 +342,50 @@ for (i in 1:10) {
 print(data)
 ```
 
-## 5. <span style="color:red">Encrypt and Decrypt the Alphabet</span>
+## 5. Encrypt and Decrypt the Alphabet
 Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.
+```{r}
+# Initialize text and randomized keycode
+alice <- "curiouser and curiouser"
+split_alice <- unlist(strsplit(alice, split=""))
+alphabet <- c("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+coded_alice <- c()
+keycode <- data.frame(c(1:26),alphabet,sample(1:26, 26, replace = FALSE))
+print(alice)
+# Translate each character into the coded equivalent
+for (i in 1:length(split_alice)) {
+  for (j in 1:26) {
+    if (split_alice[i] == keycode[j,2]) {
+      coded_alice <- paste(coded_alice, as.character(keycode[keycode[j,3],2]), sep="")
+    }
+    else if (split_alice[i] == " "){
+      coded_alice <- paste(coded_alice, "")
+      break
+    }
+  }
+}
+print(coded_alice)
+# Decode text
+coded_alice <- unlist(strsplit(coded_alice, split=""))
+decoded_alice <- c()
+for (i in 1:length(coded_alice)) {
+  for (j in 1:26) {
+    if (coded_alice[i] == keycode[j,2]) {
+      for (k in 1:26) {
+        if (keycode[k,3] == keycode[j,1]) {
+          decoded_alice <- paste(decoded_alice, as.character(keycode[k,2]), sep="")
+        }
+      }
+    }
+    else if (coded_alice[i] == " "){
+      decoded_alice <- paste(decoded_alice, "")
+      break
+    }
+  }
+}
+print(decoded_alice)
+```
+
 
 ## 6. Snakes and Ladders
 Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.
@@ -386,11 +428,63 @@ avg_moves <- mean(count)
 print(avg_moves)
 ```
 
-## 7. <span style="color:red">Dice Rolling Simulations</span>
-Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.
+With shorter code:
+```{r}
+move <- 0
+count <- replicate(1000, 0)
+game_grid <- data.frame(c(3,6,9,10,14,19,22,24),c(11,17,18,12,4,8,20,16))
+for (i in 1:1000) {
+  spot <- 1
+  while (spot <= 25) {
+  move <- sample(1:6, 1)
+  spot <- spot + move
+  for (i in 1:8) {
+    if (spot == game_grid[i,1]) {
+      spot <- game_grid[i,2]
+    }
+  }
+  count[i] = count[i] + 1
+  }
+}
+avg_moves <- mean(count)
+print(avg_moves)
+```
 
-## 8. <span style="color:red">Monte Hall Problem</span>
+## 7. Dice Rolling Simulations
+Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.
+```{r}
+prob <- data.frame(c(2:12),replicate(11,0))
+for (i in 1:10000) {
+  roll <- sum(sample(1:6, 2, replace = TRUE))
+  for (j in 2:12) {
+    if (roll == j) {
+      prob[j-1,2] = prob[j-1,2] + 1
+    }
+  }
+}
+prob[,2] = prob[,2]/10000
+print(prob)
+```
+
+## 8. Monte Hall Problem
 The monte-hall problem is as follows. A contestant in a game show is presented with three closed doors. They are told that a prize is behind one door, and two goats are behind the other two doors. They are asked to choose which door contains the prize. After making their choice the game show host opens one of the remaining two doors (not chosen by the contestant), and reveals a goat. There are now two door remaining. The contestant is asked if they would like to switch their choice to the other door, or keep their initial choice. The correct answer is that the participant should switch their initial choice, and choose the other door. This will increase their odds of winning. Demonstrate by monte-carlo simulation that the odds of winning is higher if the participant switches than if the participants keeps their original choice.
+```{r}
+choice <- c("Stay","Switch")
+probability_of_winning <- c(0,0)
+prob <- data.frame(choice,probability_of_winning)
+for (i in 1:10000) {
+  stay_prob <- sample(1:3, 1)
+  if (stay_prob == 1) {
+    prob[1,2] <- prob[1,2] + 1
+  }
+  switch_prob <- sample(1:2, 1)
+  if (switch_prob == 1) {
+    prob[2,2] <- prob[2,2] + 1
+  }
+}
+prob[,2] <- prob[,2]/10000
+print(prob)
+```
 
 ## 9. 100 Doors Problem
 Problem: You have 100 doors in a row that are all initially closed. You make 100 passes by the doors. The first time through, you visit every door and toggle the door (if the door is closed, you open it; if it is open, you close it). The second time you only visit every 2nd door (door 2, 4, 6, etc.). The third time, every 3rd door (door 3, 6, 9, etc.), etc, until you only visit the 100th door.
@@ -398,7 +492,8 @@ Problem: You have 100 doors in a row that are all initially closed. You make 100
 doors <- replicate(100, 0)
 j = 1
 for (i in 1:100) {
-  k = j
+  j = i
+  k = i
   while (j <= 100) {
     if (doors[j] == 0) {
       doors[j] <- 1
@@ -408,7 +503,6 @@ for (i in 1:100) {
     }
     j = j + k
   }
-  j = i + 1
 }
 print(doors)
 ```

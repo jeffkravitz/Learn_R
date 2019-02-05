@@ -56,3 +56,91 @@ Control+Enter
 <span style="color:red">TEXT HERE</span>
 ```
 
+
+
+
+
+
+```{r eval=FALSE}
+#Notes from 1/4/19
+
+# Class Type Examples
+a <- 1
+b <- "hello world"
+d <- "3"
+vector <- c(1,2,3,4,5,6,7,6,5,6,5,1000)
+class(a)
+class(b)
+class(vector)
+
+# Indexing
+vector[8]
+vector[8:10]
+vector[c(10,10,10,10,10,10)]
+vector[c(1,2,3,3,2,1)]
+
+# Logical Indexing
+vector[vector > 6]
+vector[vector < 6]
+vector[vector >= 6]
+vector[vector <= 6]
+vector[vector == 6]
+vector[vector != 6]  
+
+# Replcament Usiong Indexing
+vector[8] <- 3000
+vector[1:2] <- c(10,15)
+vector[1:2] <- c(10,15,17)  # Error: cannot replace 2 positions with 3 items
+vector[7] <- "j"  # Turns entire vector into character class
+
+# Class Types
+a <- c("1","2","3")
+class(a)
+b <- a
+class(b)
+as.numeric(b)
+
+# Splitting by period
+a <- "gwaesr. dfgh fgiu out. yirde tsdgf."
+a[1]
+b <- strsplit(a,split="[.]")
+class(b)\
+
+# Lists
+a <- "gwaesdfghfgiouigrdtsdgf."
+a[1]
+b <- strsplit(a,split="")
+class(b)
+b
+b[[1]]
+b[[1]][5]
+example_list <- list(a=1, b=4, d=c(1,2,3,4))
+example_list[[2]]
+
+#Unlisting
+b <- unlist(strsplit(a,split=""))
+b[5]
+
+# Matrices
+a <- matrix(0, nrow = 5, ncol = 5)
+View(a)
+
+# Data Frames
+first_names <- c("jeff", "matt", "steve")
+ages <- c(100, 200, 150)
+grades <- c(89, 56, 99)
+everybody <- data.frame(first_names, ages, grades)
+View(everybody)
+everybody$first_names
+everybody$ages[1] <- 12
+everybody$grades[1]
+
+# Levels
+class(everybody$first_names) # Factor Class
+
+
+
+
+```
+
+
