@@ -1,5 +1,5 @@
 ---
-title: "Resources"
+title: "Course Notes"
 output: 
   html_document:
     toc: true
@@ -9,29 +9,9 @@ output:
     toc_depth: 2
 ---
 
-# Additional R resources
-
-## Crump
-
-1. [Matt Crump's new stats book](https://crumplab.github.io/statistics/)
-
-2. [Matt Crump's older programming book](https://crumplab.github.io/programmingforpsych/)
-
-3. [Matt Crump's lab manual](https://crumplab.github.io/statisticsLab/)
-
-## Open source textbooks
-
-1. [Danielle Navarro's free Psych Stats textbook using R](https://compcogscisydney.org/learning-statistics-with-r/)
-
-2. [Daniell Navarro's recently made website for introducing R](http://compcogscisydney.org/psyr/)
-
-3. [Guide for R Markdown](https://bookdown.org/yihui/rmarkdown/)
-
-## Other
-
-1. [Stackoverflow](https://stackoverflow.com) 
-
-2. [Journal Template](https://crumplab.github.io/LabJournalWebsite/Journal.html)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
 
 # Notes (for mac)
 
@@ -55,14 +35,12 @@ Control+Enter
 ```{r eval=FALSE}
 <span style="color:red">TEXT HERE</span>
 ```
+  
+  
+# Class Notes
 
-
-
-
-
-
+## Notes from 1/4/19
 ```{r eval=FALSE}
-#Notes from 1/4/19
 
 # Class Type Examples
 a <- 1
@@ -137,10 +115,4 @@ everybody$grades[1]
 
 # Levels
 class(everybody$first_names) # Factor Class
-
-
-
-
 ```
-
-

@@ -19,7 +19,8 @@ output: html_document
 
 # **R Markdown Journal**
 
-This is a portfolio of Jeff Kravitz's work while learning R Markdown. This page was created from Matt Crump's template.
+This is a portfolio of Jeff Kravitz's work while learning R Markdown.  
+Jeff's academic email is jkravitz.edu@gmail.com
 
 </div>
 <div class="col-sm-6">

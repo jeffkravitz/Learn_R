@@ -11,7 +11,7 @@
 
 
 
-<title>Resources</title>
+<title>Dictionary</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -383,7 +383,13 @@ div.tocify {
   <a href="Journal.html">Journal</a>
 </li>
 <li>
-  <a href="Links.html">Resources</a>
+  <a href="Dictionary.html">Dictionary</a>
+</li>
+<li>
+  <a href="Notes.html">Notes</a>
+</li>
+<li>
+  <a href="Resources.html">Resources</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -397,134 +403,214 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Resources</h1>
+<h1 class="title toc-ignore">Dictionary</h1>
 
 </div>
 
 
-<div id="additional-r-resources" class="section level1">
-<h1>Additional R resources</h1>
-<div id="crump" class="section level2">
-<h2>Crump</h2>
+<div id="functions" class="section level1">
+<h1>Functions</h1>
+<div id="general" class="section level2">
+<h2>General</h2>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://crumplab.github.io/statistics/">Matt Crump’s new stats book</a></p></li>
-<li><p><a href="https://crumplab.github.io/programmingforpsych/">Matt Crump’s older programming book</a></p></li>
-<li><p><a href="https://crumplab.github.io/statisticsLab/">Matt Crump’s lab manual</a></p></li>
+<li>help(topic)</li>
+<li>?topic</li>
+<li>ls()</li>
+<li>dir()</li>
+<li>list.files()</li>
 </ol>
 </div>
-<div id="open-source-textbooks" class="section level2">
-<h2>Open source textbooks</h2>
+<div id="input-and-output" class="section level2">
+<h2>Input and output</h2>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://compcogscisydney.org/learning-statistics-with-r/">Danielle Navarro’s free Psych Stats textbook using R</a></p></li>
-<li><p><a href="http://compcogscisydney.org/psyr/">Daniell Navarro’s recently made website for introducing R</a></p></li>
-<li><p><a href="https://bookdown.org/yihui/rmarkdown/">Guide for R Markdown</a></p></li>
+<li>save()</li>
+<li>load()</li>
+<li>data()</li>
+<li>library()</li>
+<li>read.table()</li>
+<li>read.csv()</li>
+<li>scan()</li>
+<li>print()</li>
+<li>cat()</li>
+<li>write.table()</li>
 </ol>
 </div>
-<div id="other" class="section level2">
-<h2>Other</h2>
+<div id="data-creation" class="section level2">
+<h2>Data Creation</h2>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://stackoverflow.com">Stackoverflow</a></p></li>
-<li><p><a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal Template</a></p></li>
+<li>c()</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10)</li>
+<li>seq()</li>
+<li>rep()</li>
+<li>data.frame()</li>
+<li>list()</li>
+<li>matrix()</li>
+<li>factor()</li>
+<li>rbind()</li>
+<li>cbind()</li>
 </ol>
 </div>
+<div id="slicing-and-extracting-data" class="section level2">
+<h2>Slicing and extracting data</h2>
 </div>
-<div id="notes-for-mac" class="section level1">
-<h1>Notes (for mac)</h1>
+<div id="indexing-vectors" class="section level2">
+<h2>indexing vectors</h2>
 <ol style="list-style-type: decimal">
-<li><strong>Insert R code in HTML</strong>:</li>
+<li>x[n] nth element</li>
+<li>x[-n] all but nth element</li>
+<li>x[1:n] first n elements</li>
+<li>x[-(1:n)] elements from n+1 to the end</li>
+<li>x[c(1,4,2)] specific elements</li>
+<li>x[“name”] elements named “name”</li>
+<li>x[x&gt;3] all elements greater than 3</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set</li>
 </ol>
-<pre class="r"><code>Option+Command+i  </code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Run inserted R code:</strong></li>
+</div>
+<div id="indexing-lists" class="section level2">
+<h2>Indexing lists</h2>
+<ol style="list-style-type: decimal">
+<li>x[n] list with elements n</li>
+<li>x[[n]] nt h element of the list</li>
+<li>x[[“name”]] element of the list named “name”</li>
+<li>x$name id.</li>
 </ol>
-<pre class="r"><code>Control+Enter  </code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Insert R code without running it:</strong></li>
+</div>
+<div id="indexing-matrices" class="section level2">
+<h2>Indexing matrices</h2>
+<ol style="list-style-type: decimal">
+<li>x[i,j] element at row i, column j</li>
+<li>x[i,] row i</li>
+<li>x[,j] column j</li>
+<li>x[,c(1,3)] columns 1 and 3</li>
+<li>x[“name”,] row named “name”</li>
 </ol>
-<pre class="r"><code>{r eval=false}</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Insert linked text:</strong></li>
+</div>
+<div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level2">
+<h2>Indexing data frames (matrix indexing plus the following)</h2>
+<ol style="list-style-type: decimal">
+<li>x[[“name”]] column named “name”</li>
+<li>x$nameid.</li>
 </ol>
-<pre class="r"><code>[text](link)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Change color of text:</strong></li>
+</div>
+<div id="variable-conversion" class="section level2">
+<h2>Variable conversion</h2>
+<ol style="list-style-type: decimal">
+<li>as.data.frame(x)</li>
+<li>as.numeric(x)</li>
+<li>as.logical(x)</li>
+<li>as.character(x)</li>
 </ol>
-<pre class="r"><code>&lt;span style=&quot;color:red&quot;&gt;TEXT HERE&lt;/span&gt;</code></pre>
-<pre class="r"><code>#Notes from 1/4/19
-
-# Class Type Examples
-a &lt;- 1
-b &lt;- &quot;hello world&quot;
-d &lt;- &quot;3&quot;
-vector &lt;- c(1,2,3,4,5,6,7,6,5,6,5,1000)
-class(a)
-class(b)
-class(vector)
-
-# Indexing
-vector[8]
-vector[8:10]
-vector[c(10,10,10,10,10,10)]
-vector[c(1,2,3,3,2,1)]
-
-# Logical Indexing
-vector[vector &gt; 6]
-vector[vector &lt; 6]
-vector[vector &gt;= 6]
-vector[vector &lt;= 6]
-vector[vector == 6]
-vector[vector != 6]  
-
-# Replcament Usiong Indexing
-vector[8] &lt;- 3000
-vector[1:2] &lt;- c(10,15)
-vector[1:2] &lt;- c(10,15,17)  # Error: cannot replace 2 positions with 3 items
-vector[7] &lt;- &quot;j&quot;  # Turns entire vector into character class
-
-# Class Types
-a &lt;- c(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;)
-class(a)
-b &lt;- a
-class(b)
-as.numeric(b)
-
-# Splitting by period
-a &lt;- &quot;gwaesr. dfgh fgiu out. yirde tsdgf.&quot;
-a[1]
-b &lt;- strsplit(a,split=&quot;[.]&quot;)
-class(b)\
-
-# Lists
-a &lt;- &quot;gwaesdfghfgiouigrdtsdgf.&quot;
-a[1]
-b &lt;- strsplit(a,split=&quot;&quot;)
-class(b)
-b
-b[[1]]
-b[[1]][5]
-example_list &lt;- list(a=1, b=4, d=c(1,2,3,4))
-example_list[[2]]
-
-#Unlisting
-b &lt;- unlist(strsplit(a,split=&quot;&quot;))
-b[5]
-
-# Matrices
-a &lt;- matrix(0, nrow = 5, ncol = 5)
-View(a)
-
-# Data Frames
-first_names &lt;- c(&quot;jeff&quot;, &quot;matt&quot;, &quot;steve&quot;)
-ages &lt;- c(100, 200, 150)
-grades &lt;- c(89, 56, 99)
-everybody &lt;- data.frame(first_names, ages, grades)
-View(everybody)
-everybody$first_names
-everybody$ages[1] &lt;- 12
-everybody$grades[1]
-
-# Levels
-class(everybody$first_names) # Factor Class</code></pre>
+</div>
+<div id="variable-information" class="section level2">
+<h2>Variable information</h2>
+<ol style="list-style-type: decimal">
+<li>is.na(x)</li>
+<li>is.null(x)</li>
+<li>is.data.frame(x)</li>
+<li>is.numeric(x)</li>
+<li>is.character(x)</li>
+<li>length(x)</li>
+<li>dim(x)</li>
+<li>dimnames(x)</li>
+<li>nrow(x)</li>
+<li>ncol(x)</li>
+<li>class()</li>
+<li>attributes()</li>
+</ol>
+</div>
+<div id="data-selection-and-manipulation" class="section level2">
+<h2>Data selection and manipulation</h2>
+<ol style="list-style-type: decimal">
+<li>which.max()</li>
+<li>which.min()</li>
+<li>which()</li>
+<li>sort()</li>
+<li>unique()</li>
+<li>table()</li>
+<li>sample()</li>
+</ol>
+</div>
+<div id="math" class="section level2">
+<h2>Math</h2>
+<ol style="list-style-type: decimal">
+<li>max()</li>
+<li>min()</li>
+<li>range()</li>
+<li>sum()</li>
+<li>mean()</li>
+<li>median()</li>
+<li>var()</li>
+<li>sd()</li>
+<li>cor()</li>
+<li>round()</li>
+<li>abs()</li>
+</ol>
+</div>
+<div id="matrices" class="section level2">
+<h2>Matrices</h2>
+<ol style="list-style-type: decimal">
+<li>t()</li>
+<li>diag()</li>
+<li>rowSums()</li>
+<li>colSums()</li>
+<li>rowMeans()</li>
+<li>colMeans()</li>
+</ol>
+</div>
+<div id="advanced-data-processing" class="section level2">
+<h2>Advanced Data processing</h2>
+<ol style="list-style-type: decimal">
+<li>apply()</li>
+<li>aggregate()</li>
+</ol>
+</div>
+<div id="strings" class="section level2">
+<h2>Strings</h2>
+<ol style="list-style-type: decimal">
+<li>paste()</li>
+<li>strsplit()</li>
+<li>tolower()</li>
+<li>toupper</li>
+</ol>
+</div>
+<div id="plotting" class="section level2">
+<h2>Plotting</h2>
+<ol style="list-style-type: decimal">
+<li>hist()</li>
+<li>plot()</li>
+</ol>
+</div>
+<div id="distributions" class="section level2">
+<h2>Distributions</h2>
+<ol style="list-style-type: decimal">
+<li>rnorm()</li>
+<li>runif()</li>
+</ol>
+</div>
+<div id="programming" class="section level2">
+<h2>Programming</h2>
+<ol style="list-style-type: decimal">
+<li>show that you can define a function</li>
+<li>show that you can write a for loop</li>
+<li>show that you can write a while loop</li>
+<li>show that you can write an if else statement</li>
+<li>Explain what return() does inside a function, show you can use it</li>
+<li>Explain what break() does, show you can use it</li>
+</ol>
+</div>
+<div id="installing-some-packages" class="section level2">
+<h2>Installing some packages</h2>
+<p>Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.</p>
+<ol style="list-style-type: decimal">
+<li>ggplot2</li>
+<li>dplyr</li>
+<li>shiny</li>
+<li>data.table</li>
+<li>reshape2</li>
+<li>stringr</li>
+</ol>
+</div>
 </div>
 
 
