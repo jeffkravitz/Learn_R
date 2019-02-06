@@ -413,27 +413,70 @@ div.tocify {
 <div id="general" class="section level2">
 <h2>General</h2>
 <ol style="list-style-type: decimal">
-<li>help(topic)</li>
-<li>?topic</li>
-<li>ls()</li>
-<li>dir()</li>
-<li>list.files()</li>
+<li>help(topic) Opens the topic in the R-help tab; describes the function and arguments used.</li>
 </ol>
+<pre class="r"><code>help(mean)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>?topic Opens the topic in the R-help tab; describes the function and arguments used.</li>
+</ol>
+<pre class="r"><code>?mean</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>ls() Lists the objects in the current R environment.</li>
+</ol>
+<pre class="r"><code>ls()</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>dir() Lists the names of each file in the R project.</li>
+</ol>
+<pre class="r"><code>dir()</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>list.files() Lists the names of each file in the R project.</li>
+</ol>
+<pre class="r"><code>list.files()</code></pre>
 </div>
 <div id="input-and-output" class="section level2">
 <h2>Input and output</h2>
 <ol style="list-style-type: decimal">
-<li>save()</li>
-<li>load()</li>
-<li>data()</li>
-<li>library()</li>
-<li>read.table()</li>
-<li>read.csv()</li>
-<li>scan()</li>
-<li>print()</li>
-<li>cat()</li>
-<li>write.table()</li>
+<li>save() Saves an R object to a specified file.</li>
 </ol>
+<pre class="r"><code>x &lt;- 1
+save(&quot;x&quot;, file=&quot;newfile.txt&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>load() Loads saved data.</li>
+</ol>
+<pre class="r"><code>load(file=&quot;newfile.txt&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>data() Loads specified data.</li>
+</ol>
+<pre class="r"><code>data(&quot;UCBAdmissions&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>library() Loads a library/package into R.</li>
+</ol>
+<pre class="r"><code>library(psych)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>read.table() Reads a table and produces a data frame.</li>
+</ol>
+<pre class="r"><code>read.table(file = &quot;newfile.txt&quot;)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>read.csv() Reads a table and produces a data frame.</li>
+</ol>
+<pre class="r"><code>read.csv(file = &quot;newfile.csv&quot;)</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>scan() Read data into a vector from the console or file.</li>
+</ol>
+<pre class="r"><code>scan(file = &quot;newfile.txt&quot;)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>print() Prints the contents.</li>
+</ol>
+<pre class="r"><code>print(&quot;hello&quot;)</code></pre>
+<pre><code>## [1] &quot;hello&quot;</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>cat() Concatenates and prints the contents.</li>
+</ol>
+<pre class="r"><code>cat(&quot;hello&quot;,&quot;there&quot;)</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>write.table() Converts contents to a data frame and prints.</li>
+</ol>
+<pre class="r"><code>write.table(x, file = &quot;newfile.txt&quot;)</code></pre>
 </div>
 <div id="data-creation" class="section level2">
 <h2>Data Creation</h2>

@@ -18,24 +18,97 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ## General
 
 1. help(topic) 
-2. ?topic
-3. ls()
-4. dir()
-5. list.files()
+Opens the topic in the R-help tab; describes the function and arguments used.
+```{r eval=FALSE}
+help(mean)
+```
 
+2. ?topic
+Opens the topic in the R-help tab; describes the function and arguments used.
+```{r eval=FALSE}
+?mean
+```
+
+3. ls()
+Lists the objects in the current R environment.
+```{r eval=FALSE}
+ls()
+```
+
+4. dir()
+Lists the names of each file in the R project.
+```{r eval=FALSE}
+dir()
+```
+
+5. list.files()
+Lists the names of each file in the R project.
+```{r eval=FALSE}
+list.files()
+```
 
 ## Input and output
 
 1. save()
+Saves an R object to a specified file.
+```{r eval=FALSE}
+x <- 1
+save("x", file="newfile.txt")
+```
+
 2. load()
+Loads saved data.
+```{r eval=FALSE}
+load(file="newfile.txt")
+```
+
 3. data()
+Loads specified data.
+```{r eval=FALSE}
+data("UCBAdmissions")
+```
+
 4. library()
+Loads a library/package into R.
+```{r eval=FALSE}
+library(psych)
+```
+
 5. read.table()
+Reads a table and produces a data frame.
+```{r eval=FALSE}
+read.table(file = "newfile.txt")
+```
+
 6. read.csv()
+Reads a table and produces a data frame.
+```{r eval=FALSE}
+read.csv(file = "newfile.csv")
+```
+
 7. scan()
+Read data into a vector from the console or file.
+```{r eval=FALSE}
+scan(file = "newfile.txt")
+```
+
 8. print()
+Prints the contents.
+```{r}
+print("hello")
+```
+
 9. cat()
+Concatenates and prints the contents.
+```{r eval=FALSE}
+cat("hello","there")
+```
+
 10. write.table()
+Converts contents to a data frame and prints.
+```{r eval=FALSE}
+write.table(x, file = "newfile.txt")
+```
 
 ## Data Creation
 
