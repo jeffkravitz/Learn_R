@@ -228,15 +228,50 @@ x[,c(1,3)]
 
 
 ## Indexing data frames (matrix indexing plus the following) 
-1. x[["name"]] column named "name"
+1. <span style="color:red>x[["name"]] column named "name"</span>
+
 2. x$nameid.
+Returns column of x labeled "nameid".
+```{r}
+a <- c(1,10,100)
+b <- c(2,20,200)
+c <- c(3,30,300)
+x <- data.frame(a,b,c)
+x$a
+```
 
 ## Variable conversion
 
 1. as.data.frame(x)
+Transforms object into a data frame.
+```{r}
+x <- as.data.frame(matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE))
+x
+```
+
 2. as.numeric(x)
+Transforms object into numeric class (if possible).
+```{r}
+x <- "1"
+x <- as.numeric(x)
+class(x)
+```
+
 3. as.logical(x)
+Transforms object into boolean class (if possible).
+```{r}
+x <- 1
+x <- as.logical(x)
+class(x)
+```
+
 4. as.character(x)
+Transforms object into character class.
+```{r}
+x <- 1
+x <- as.character(x)
+class(x)
+```
 
 ## Variable information
 1. is.na(x)
