@@ -275,17 +275,94 @@ class(x)
 
 ## Variable information
 1. is.na(x)
+Returns logical value TRUE is value is N/A or missing.
+```{r}
+x <- 1
+is.na(x[2])
+```
+
 2. is.null(x)
+Returns logical value TRUE is value is null.
+```{r}
+x <- 1
+is.null(x[2])
+```
+
 3. is.data.frame(x)
+Returns logical value TRUE if object class is a data frame.
+```{r}
+x <- data.frame(1,1)
+is.data.frame(x)
+```
+
 4. is.numeric(x)
+Returns logical value TRUE if object class is numeric.
+```{r}
+x <- 1
+is.numeric(x)
+```
+
 5. is.character(x)
+Returns logical value TRUE if object class is character.
+```{r}
+x <- "1"
+is.character(x)
+```
+
 6. length(x)
+Returns the length of the object.
+```{r}
+x <- c(1,2,3)
+length(x)
+```
+
 7. dim(x)
+Returns the dimensions of the object (prints the amount of rows and columns).
+```{r}
+x <- cbind(c(1,2,3),c(11,12,13))
+x
+dim(x)
+```
+
 8. dimnames(x)
+Returns the names of the dimensions of an object.
+```{r}
+a <- c(1,10,100)
+b <- c(2,20,200)
+c <- c(3,30,300)
+x <- data.frame(a,b,c)
+dimnames(x)
+```
+
 9. nrow(x)
+Returns the number of rows in an object.
+```{r}
+x <- cbind(c(1,2,3),c(11,12,13))
+nrows(x)
+```
+
 10. ncol(x)
+Returns the number of columns in an object.
+```{r}
+x <- cbind(c(1,2,3),c(11,12,13))
+ncol(x)
+```
+
 11. class()
+Returns the class type of an object.
+```{r}
+x <- 1
+y <- "1"
+class(x)
+class(y)
+```
+
 12. attributes()
+Lists the attributes of a given object.
+```{r}
+x <- cbind(c(1,2,3),c(11,12,13))
+attributes(x)
+```
 
 ## Data selection and manipulation
 1. which.max()
