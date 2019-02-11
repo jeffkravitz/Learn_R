@@ -113,13 +113,13 @@ write.table(x, file = "newfile.txt")
 ## Data Creation
 
 1. c()
-Concatonates (combines) data into a vector
+Concatonates (combines) data into a vector.
 ```{r}
 c(1,2,3)
 ```
 
 2. from:to (where from and to are replaced with numbers, e.g. 1:10)
-Lists all numbers in between the given numbers
+Lists all numbers in between the given numbers.
 ```{r}
 1:10
 ```
@@ -131,24 +131,48 @@ seq(2,10,3)
 ```
 
 4. rep()
-Replicates the values in the first argument for the amount in the second argument
+Replicates the values in the first argument for the amount in the second argument.
 ```{r}
 rep(5, 10)
 ```
 
 4. x[-(1:n)] elements from n+1 to the end
-Calls the object x without the values in indices 1 to n
+Returns values of x besides the values in indices 1 to n.
 ```{r}
 x <- 1:10
 x[-(1:5)]
 ```
 
-
 5. x[c(1,4,2)] specific elements
+Returns the values of x in the indices of 1, 4, and 2.
+```{r}
+x <- 1:10
+x[c(1,4,2)]
+```
+
 6. x["name"] elements named "name"
+
+
 7. x[x>3] all elements greater than 3
+Returns the values of x that are greater than 3.
+```{r}
+x <- 1:10
+x[x>3]
+```
+
 8. x[x > 3 & x < 5] all elements between 3 and 5
+Returns the va;ues of x that are greater than 3 and less than 5.
+```{r}
+x <- 1:10
+x[x>3 & x<5]
+```
+
 9. x[x %in% c("a","and","the")] all elements in given set
+Reutrns the values of x that match "a", "and", and "the".
+```{r}
+x <- c("This","is","the","example","and","the","text","that","will","be","analyzed")
+x[x %in% c("a","and","the")]
+```
 
 ## Indexing lists
 1. x[n] list with elements n

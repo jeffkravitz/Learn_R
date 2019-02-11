@@ -481,12 +481,12 @@ save(&quot;x&quot;, file=&quot;newfile.txt&quot;)</code></pre>
 <div id="data-creation" class="section level2">
 <h2>Data Creation</h2>
 <ol style="list-style-type: decimal">
-<li>c() Concatonates (combines) data into a vector</li>
+<li>c() Concatonates (combines) data into a vector.</li>
 </ol>
 <pre class="r"><code>c(1,2,3)</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>from:to (where from and to are replaced with numbers, e.g. 1:10) Lists all numbers in between the given numbers</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10) Lists all numbers in between the given numbers.</li>
 </ol>
 <pre class="r"><code>1:10</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -496,23 +496,41 @@ save(&quot;x&quot;, file=&quot;newfile.txt&quot;)</code></pre>
 <pre class="r"><code>seq(2,10,3)</code></pre>
 <pre><code>## [1] 2 5 8</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>rep() Replicates the values in the first argument for the amount in the second argument</li>
+<li>rep() Replicates the values in the first argument for the amount in the second argument.</li>
 </ol>
 <pre class="r"><code>rep(5, 10)</code></pre>
 <pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>x[-(1:n)] elements from n+1 to the end Calls the object x without the values in indices 1 to n</li>
+<li>x[-(1:n)] elements from n+1 to the end Returns values of x besides the values in indices 1 to n.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1:10
 x[-(1:5)]</code></pre>
 <pre><code>## [1]  6  7  8  9 10</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>x[c(1,4,2)] specific elements</li>
-<li>x[“name”] elements named “name”</li>
-<li>x[x&gt;3] all elements greater than 3</li>
-<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
-<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set</li>
+<li>x[c(1,4,2)] specific elements Returns the values of x in the indices of 1, 4, and 2.</li>
 </ol>
+<pre class="r"><code>x &lt;- 1:10
+x[c(1,4,2)]</code></pre>
+<pre><code>## [1] 1 4 2</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>x[“name”] elements named “name”</p></li>
+<li><p>x[x&gt;3] all elements greater than 3 Returns the values of x that are greater than 3.</p></li>
+</ol>
+<pre class="r"><code>x &lt;- 1:10
+x[x&gt;3]</code></pre>
+<pre><code>## [1]  4  5  6  7  8  9 10</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5 Returns the va;ues of x that are greater than 3 and less than 5.</li>
+</ol>
+<pre class="r"><code>x &lt;- 1:10
+x[x&gt;3 &amp; x&lt;5]</code></pre>
+<pre><code>## [1] 4</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set Reutrns the values of x that match “a”, “and”, and “the”.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(&quot;This&quot;,&quot;is&quot;,&quot;the&quot;,&quot;example&quot;,&quot;and&quot;,&quot;the&quot;,&quot;text&quot;,&quot;that&quot;,&quot;will&quot;,&quot;be&quot;,&quot;analyzed&quot;)
+x[x %in% c(&quot;a&quot;,&quot;and&quot;,&quot;the&quot;)]</code></pre>
+<pre><code>## [1] &quot;the&quot; &quot;and&quot; &quot;the&quot;</code></pre>
 </div>
 <div id="indexing-lists" class="section level2">
 <h2>Indexing lists</h2>
