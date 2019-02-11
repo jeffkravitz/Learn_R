@@ -481,28 +481,32 @@ save(&quot;x&quot;, file=&quot;newfile.txt&quot;)</code></pre>
 <div id="data-creation" class="section level2">
 <h2>Data Creation</h2>
 <ol style="list-style-type: decimal">
-<li>c()</li>
-<li>from:to (where from and to are replaced with numbers, e.g. 1:10)</li>
-<li>seq()</li>
-<li>rep()</li>
-<li>data.frame()</li>
-<li>list()</li>
-<li>matrix()</li>
-<li>factor()</li>
-<li>rbind()</li>
-<li>cbind()</li>
+<li>c() Concatonates (combines) data into a vector</li>
 </ol>
-</div>
-<div id="slicing-and-extracting-data" class="section level2">
-<h2>Slicing and extracting data</h2>
-</div>
-<div id="indexing-vectors" class="section level2">
-<h2>indexing vectors</h2>
-<ol style="list-style-type: decimal">
-<li>x[n] nth element</li>
-<li>x[-n] all but nth element</li>
-<li>x[1:n] first n elements</li>
-<li>x[-(1:n)] elements from n+1 to the end</li>
+<pre class="r"><code>c(1,2,3)</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10) Lists all numbers in between the given numbers</li>
+</ol>
+<pre class="r"><code>1:10</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>seq() Lists numbers from the first argument to the second argument, adding the third argument to the first argument until the third argument is reached.</li>
+</ol>
+<pre class="r"><code>seq(2,10,3)</code></pre>
+<pre><code>## [1] 2 5 8</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>rep() Replicates the values in the first argument for the amount in the second argument</li>
+</ol>
+<pre class="r"><code>rep(5, 10)</code></pre>
+<pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>x[-(1:n)] elements from n+1 to the end Calls the object x without the values in indices 1 to n</li>
+</ol>
+<pre class="r"><code>x &lt;- 1:10
+x[-(1:5)]</code></pre>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<ol start="5" style="list-style-type: decimal">
 <li>x[c(1,4,2)] specific elements</li>
 <li>x[“name”] elements named “name”</li>
 <li>x[x&gt;3] all elements greater than 3</li>

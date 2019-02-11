@@ -113,24 +113,37 @@ write.table(x, file = "newfile.txt")
 ## Data Creation
 
 1. c()
+Concatonates (combines) data into a vector
+```{r}
+c(1,2,3)
+```
+
 2. from:to (where from and to are replaced with numbers, e.g. 1:10)
+Lists all numbers in between the given numbers
+```{r}
+1:10
+```
+
 3. seq()
+Lists numbers from the first argument to the second argument, adding the third argument to the first argument until the third argument is reached.
+```{r}
+seq(2,10,3)
+```
+
 4. rep()
-5. data.frame()
-6. list()
-7. matrix()
-8. factor()
-9. rbind()
-10. cbind()
+Replicates the values in the first argument for the amount in the second argument
+```{r}
+rep(5, 10)
+```
 
-## Slicing and extracting data
-
-## indexing vectors
-
-1. x[n] nth element
-2. x[-n] all but nth element
-3. x[1:n] first n elements
 4. x[-(1:n)] elements from n+1 to the end
+Calls the object x without the values in indices 1 to n
+```{r}
+x <- 1:10
+x[-(1:5)]
+```
+
+
 5. x[c(1,4,2)] specific elements
 6. x["name"] elements named "name"
 7. x[x>3] all elements greater than 3
