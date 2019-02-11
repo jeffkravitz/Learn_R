@@ -632,31 +632,140 @@ class(x)</code></pre>
 <div id="variable-information" class="section level2">
 <h2>Variable information</h2>
 <ol style="list-style-type: decimal">
-<li>is.na(x)</li>
-<li>is.null(x)</li>
-<li>is.data.frame(x)</li>
-<li>is.numeric(x)</li>
-<li>is.character(x)</li>
-<li>length(x)</li>
-<li>dim(x)</li>
-<li>dimnames(x)</li>
-<li>nrow(x)</li>
-<li>ncol(x)</li>
-<li>class()</li>
-<li>attributes()</li>
+<li>is.na(x) Returns logical value TRUE is value is N/A or missing.</li>
 </ol>
+<pre class="r"><code>x &lt;- 1
+is.na(x[2])</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>is.null(x) Returns logical value TRUE is value is null.</li>
+</ol>
+<pre class="r"><code>x &lt;- 1
+is.null(x[2])</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>is.data.frame(x) Returns logical value TRUE if object class is a data frame.</li>
+</ol>
+<pre class="r"><code>x &lt;- data.frame(1,1)
+is.data.frame(x)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>is.numeric(x) Returns logical value TRUE if object class is numeric.</li>
+</ol>
+<pre class="r"><code>x &lt;- 1
+is.numeric(x)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>is.character(x) Returns logical value TRUE if object class is character.</li>
+</ol>
+<pre class="r"><code>x &lt;- &quot;1&quot;
+is.character(x)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>length(x) Returns the length of the object.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,3)
+length(x)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>dim(x) Returns the dimensions of the object (prints the amount of rows and columns).</li>
+</ol>
+<pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
+x</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1   11
+## [2,]    2   12
+## [3,]    3   13</code></pre>
+<pre class="r"><code>dim(x)</code></pre>
+<pre><code>## [1] 3 2</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>dimnames(x) Returns the names of the dimensions of an object.</li>
+</ol>
+<pre class="r"><code>a &lt;- c(1,10,100)
+b &lt;- c(2,20,200)
+c &lt;- c(3,30,300)
+x &lt;- data.frame(a,b,c)
+dimnames(x)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>nrow(x) Returns the number of rows in an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
+nrow(x)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>ncol(x) Returns the number of columns in an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
+ncol(x)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>class() Returns the class type of an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- 1
+y &lt;- &quot;1&quot;
+class(x)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>class(y)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>attributes() Lists the attributes of a given object.</li>
+</ol>
+<pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
+attributes(x)</code></pre>
+<pre><code>## $dim
+## [1] 3 2</code></pre>
 </div>
 <div id="data-selection-and-manipulation" class="section level2">
 <h2>Data selection and manipulation</h2>
 <ol style="list-style-type: decimal">
-<li>which.max()</li>
-<li>which.min()</li>
-<li>which()</li>
-<li>sort()</li>
-<li>unique()</li>
-<li>table()</li>
-<li>sample()</li>
+<li>which.max() Returns the index of the maximum value of an object.</li>
 </ol>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
+which.max(x)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>which.min() Returns the index of the minimum value of an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
+which.min(x)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>which() Returns the indices of the values of x that match the logical condition.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
+which(x==5)</code></pre>
+<pre><code>## [1] 5 6</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>sort() Sorts the data.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(3,5,1,4,2)
+sort(x)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>unique() Removes duplicates from an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
+unique(x)</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>table() Produces a table of the counts of each value in an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
+table(x)</code></pre>
+<pre><code>## x
+## 1 2 3 4 5 6 
+## 1 2 1 1 2 1</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>sample() Produces a random sample of a specified size from an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
+sample(x, 3)</code></pre>
+<pre><code>## [1] 5 6 2</code></pre>
 </div>
 <div id="math" class="section level2">
 <h2>Math</h2>

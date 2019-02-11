@@ -338,7 +338,7 @@ dimnames(x)
 Returns the number of rows in an object.
 ```{r}
 x <- cbind(c(1,2,3),c(11,12,13))
-nrows(x)
+nrow(x)
 ```
 
 10. ncol(x)
@@ -366,12 +366,53 @@ attributes(x)
 
 ## Data selection and manipulation
 1. which.max()
+Returns the index of the maximum value of an object.
+```{r}
+x <- c(1,2,3,4,5,5,6,7)
+which.max(x)
+```
+
 2. which.min()
+Returns the index of the minimum value of an object.
+```{r}
+x <- c(1,2,3,4,5,5,6,7)
+which.min(x)
+```
+
 3. which()
+Returns the indices of the values of x that match the logical condition.
+```{r}
+x <- c(1,2,3,4,5,5,6,7)
+which(x==5)
+```
+
 4. sort()
+Sorts the data.
+```{r}
+x <- c(3,5,1,4,2)
+sort(x)
+```
+
 5. unique()
+Removes duplicates from an object.
+```{r}
+x <- c(1,2,2,3,4,5,5,6)
+unique(x)
+```
+
 6. table()
+Produces a table of the counts of each value in an object.
+```{r}
+x <- c(1,2,2,3,4,5,5,6)
+table(x)
+```
+
 7. sample()
+Produces a random sample of a specified size from an object.
+```{r}
+x <- c(1,2,2,3,4,5,5,6)
+sample(x, 3)
+```
 
 ## Math
 1. max()
