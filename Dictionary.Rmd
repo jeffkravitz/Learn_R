@@ -17,31 +17,31 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 ## General
 
-1. help(topic) 
+1. help(topic)  
 Opens the topic in the R-help tab; describes the function and arguments used.
 ```{r eval=FALSE}
 help(mean)
 ```
 
-2. ?topic
+2. ?topic  
 Opens the topic in the R-help tab; describes the function and arguments used.
 ```{r eval=FALSE}
 ?mean
 ```
 
-3. ls()
+3. ls()  
 Lists the objects in the current R environment.
 ```{r eval=FALSE}
 ls()
 ```
 
-4. dir()
+4. dir()  
 Lists the names of each file in the R project.
 ```{r eval=FALSE}
 dir()
 ```
 
-5. list.files()
+5. list.files()  
 Lists the names of each file in the R project.
 ```{r eval=FALSE}
 list.files()
@@ -49,62 +49,62 @@ list.files()
 
 ## Input and output
 
-1. save()
+1. save()  
 Saves an R object to a specified file.
 ```{r eval=FALSE}
 x <- 1
 save("x", file="newfile.txt")
 ```
 
-2. load()
+2. load()  
 Loads saved data.
 ```{r eval=FALSE}
 load(file="newfile.txt")
 ```
 
-3. data()
+3. data()  
 Loads specified data.
 ```{r eval=FALSE}
 data("UCBAdmissions")
 ```
 
-4. library()
+4. library()  
 Loads a library/package into R.
 ```{r eval=FALSE}
 library(psych)
 ```
 
-5. read.table()
+5. read.table()  
 Reads a table and produces a data frame.
 ```{r eval=FALSE}
 read.table(file = "newfile.txt")
 ```
 
-6. read.csv()
+6. read.csv()  
 Reads a table and produces a data frame.
 ```{r eval=FALSE}
 read.csv(file = "newfile.csv")
 ```
 
-7. scan()
+7. scan()  
 Read data into a vector from the console or file.
 ```{r eval=FALSE}
 scan(file = "newfile.txt")
 ```
 
-8. print()
+8. print()  
 Prints the contents.
 ```{r}
 print("hello")
 ```
 
-9. cat()
+9. cat()  
 Concatenates and prints the contents.
 ```{r eval=FALSE}
 cat("hello","there")
 ```
 
-10. write.table()
+10. write.table()  
 Converts contents to a data frame and prints.
 ```{r eval=FALSE}
 write.table(x, file = "newfile.txt")
@@ -112,62 +112,63 @@ write.table(x, file = "newfile.txt")
 
 ## Data Creation
 
-1. c()
+1. c()  
 Concatonates (combines) data into a vector.
 ```{r}
 c(1,2,3)
 ```
 
-2. from:to (where from and to are replaced with numbers, e.g. 1:10)
+2. from:to (where from and to are replaced with numbers, e.g. 1:10)  
 Lists all numbers in between the given numbers.
 ```{r}
 1:10
 ```
 
-3. seq()
+3. seq()  
 Lists numbers from the first argument to the second argument, adding the third argument to the first argument until the third argument is reached.
 ```{r}
 seq(2,10,3)
 ```
 
-4. rep()
+4. rep()  
 Replicates the values in the first argument for the amount in the second argument.
 ```{r}
 rep(5, 10)
 ```
 
-4. x[-(1:n)] elements from n+1 to the end
+4. x[-(1:n)] elements from n+1 to the end  
 Returns values of x besides the values in indices 1 to n.
 ```{r}
 x <- 1:10
 x[-(1:5)]
 ```
 
-5. x[c(1,4,2)] specific elements
+5. x[c(1,4,2)] specific elements  
 Returns the values of x in the indices of 1, 4, and 2.
 ```{r}
 x <- 1:10
 x[c(1,4,2)]
 ```
 
-6. <span style="color:red">x["name"] elements named "name"</span>
+6. <span style="color:red">x["name"] elements named "name"</span>  
+Use table function?
 
 
-7. x[x>3] all elements greater than 3
+7. x[x>3] all elements greater than 3  
 Returns the values of x that are greater than 3.
 ```{r}
 x <- 1:10
 x[x>3]
 ```
 
-8. x[x > 3 & x < 5] all elements between 3 and 5
+8. x[x > 3 & x < 5] all elements between 3 and 5  
 Returns the va;ues of x that are greater than 3 and less than 5.
 ```{r}
 x <- 1:10
 x[x>3 & x<5]
 ```
 
-9. x[x %in% c("a","and","the")] all elements in given set
+9. x[x %in% c("a","and","the")] all elements in given set  
 Reutrns the values of x that match "a", "and", and "the".
 ```{r}
 x <- c("This","is","the","example","and","the","text","that","will","be","analyzed")
@@ -175,62 +176,62 @@ x[x %in% c("a","and","the")]
 ```
 
 ## Indexing lists
-1. x[n] list with elements n
+1. x[n] list with elements n  
 Returns the nth object in the list, in list format.
 ```{r}
 x <- list("a" <- c(1,10), "b" <- c(2,20), "c" <- c(3,30))
 x[2]
 ```
 
-2. x[[n]] nt h element of the list
-Returns the nth object in the list.
+2. x[[n]] nt h element of the list  
+Returns the nth object in the list. 
 ```{r}
 x <- list("a" <- c(1,10), "b" <- c(2,20), "c" <- c(3,30))
 x[[2]]
 ```
 
-3. <span style="color:red">x[["name"]] element of the list named "name"</span>
+3. <span style="color:red">x[["name"]] element of the list named "name"</span>  
 
 
-4. <span style="color:red">x$name id.</span>
+4. <span style="color:red">x$name id.</span>  
 
 
 ## Indexing matrices
-1. x[i,j] element at row i, column j
+1. x[i,j] element at row i, column j  
 Returns the value of x at row i and column j.
 ```{r}
 x <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[2,2]
 ```
 
-2. x[i,] row i
+2. x[i,] row i  
 Returns all values of x in row i.
 ```{r}
 x <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[2,]
 ```
 
-3. x[,j] column j
+3. x[,j] column j  
 Returns all values of x in column j.
 ```{r}
 x <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[,2]
 ```
 
-4. x[,c(1,3)] columns 1 and 3
+4. x[,c(1,3)] columns 1 and 3  
 Return all values of x in columns 1 and 3 (regardless of rows).
 ```{r}
 x <- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[,c(1,3)]
 ```
 
-5. <span style="color:red">x["name",] row named "name"</span>
+5. <span style="color:red">x["name",] row named "name"</span>  
 
 
 ## Indexing data frames (matrix indexing plus the following) 
-1. <span style="color:red>x[["name"]] column named "name"</span>
+1. <span style="color:red>x[["name"]] column named "name"</span>  
 
-2. x$nameid.
+2. x$nameid.  
 Returns column of x labeled "nameid".
 ```{r}
 a <- c(1,10,100)
@@ -242,14 +243,14 @@ x$a
 
 ## Variable conversion
 
-1. as.data.frame(x)
+1. as.data.frame(x)  
 Transforms object into a data frame.
 ```{r}
 x <- as.data.frame(matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE))
 x
 ```
 
-2. as.numeric(x)
+2. as.numeric(x)  
 Transforms object into numeric class (if possible).
 ```{r}
 x <- "1"
@@ -257,7 +258,7 @@ x <- as.numeric(x)
 class(x)
 ```
 
-3. as.logical(x)
+3. as.logical(x)  
 Transforms object into boolean class (if possible).
 ```{r}
 x <- 1
@@ -265,7 +266,7 @@ x <- as.logical(x)
 class(x)
 ```
 
-4. as.character(x)
+4. as.character(x)  
 Transforms object into character class.
 ```{r}
 x <- 1
@@ -274,49 +275,49 @@ class(x)
 ```
 
 ## Variable information
-1. is.na(x)
+1. is.na(x)  
 Returns logical value TRUE is value is N/A or missing.
 ```{r}
 x <- 1
 is.na(x[2])
 ```
 
-2. is.null(x)
+2. is.null(x)  
 Returns logical value TRUE is value is null.
 ```{r}
 x <- 1
 is.null(x[2])
 ```
 
-3. is.data.frame(x)
+3. is.data.frame(x)  
 Returns logical value TRUE if object class is a data frame.
 ```{r}
 x <- data.frame(1,1)
 is.data.frame(x)
 ```
 
-4. is.numeric(x)
+4. is.numeric(x)  
 Returns logical value TRUE if object class is numeric.
 ```{r}
 x <- 1
 is.numeric(x)
 ```
 
-5. is.character(x)
+5. is.character(x)  
 Returns logical value TRUE if object class is character.
 ```{r}
 x <- "1"
 is.character(x)
 ```
 
-6. length(x)
+6. length(x)  
 Returns the length of the object.
 ```{r}
 x <- c(1,2,3)
 length(x)
 ```
 
-7. dim(x)
+7. dim(x)  
 Returns the dimensions of the object (prints the amount of rows and columns).
 ```{r}
 x <- cbind(c(1,2,3),c(11,12,13))
@@ -324,7 +325,7 @@ x
 dim(x)
 ```
 
-8. dimnames(x)
+8. dimnames(x)  
 Returns the names of the dimensions of an object.
 ```{r}
 a <- c(1,10,100)
@@ -334,21 +335,21 @@ x <- data.frame(a,b,c)
 dimnames(x)
 ```
 
-9. nrow(x)
+9. nrow(x)  
 Returns the number of rows in an object.
 ```{r}
 x <- cbind(c(1,2,3),c(11,12,13))
 nrow(x)
 ```
 
-10. ncol(x)
+10. ncol(x)  
 Returns the number of columns in an object.
 ```{r}
 x <- cbind(c(1,2,3),c(11,12,13))
 ncol(x)
 ```
 
-11. class()
+11. class()  
 Returns the class type of an object.
 ```{r}
 x <- 1
@@ -357,7 +358,7 @@ class(x)
 class(y)
 ```
 
-12. attributes()
+12. attributes()  
 Lists the attributes of a given object.
 ```{r}
 x <- cbind(c(1,2,3),c(11,12,13))
@@ -365,49 +366,49 @@ attributes(x)
 ```
 
 ## Data selection and manipulation
-1. which.max()
+1. which.max()  
 Returns the index of the maximum value of an object.
 ```{r}
 x <- c(1,2,3,4,5,5,6,7)
 which.max(x)
 ```
 
-2. which.min()
+2. which.min()  
 Returns the index of the minimum value of an object.
 ```{r}
 x <- c(1,2,3,4,5,5,6,7)
 which.min(x)
 ```
 
-3. which()
+3. which()  
 Returns the indices of the values of x that match the logical condition.
 ```{r}
 x <- c(1,2,3,4,5,5,6,7)
 which(x==5)
 ```
 
-4. sort()
+4. sort()  
 Sorts the data.
 ```{r}
 x <- c(3,5,1,4,2)
 sort(x)
 ```
 
-5. unique()
+5. unique()  
 Removes duplicates from an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 unique(x)
 ```
 
-6. table()
+6. table()  
 Produces a table of the counts of each value in an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 table(x)
 ```
 
-7. sample()
+7. sample()  
 Produces a random sample of a specified size from an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
@@ -415,62 +416,62 @@ sample(x, 3)
 ```
 
 ## Math
-1. max()
+1. max()  
 Returns the maximum value of an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 max(x)
 ```
-
-2. min()
+ 
+2. min()  
 Returns the minimum value of an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 min(x)
 ```
 
-3. range()
+3. range()  
 Returns the minimum and maximium values of an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 range(x)
 ```
 
-4. sum()
+4. sum()  
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 sum(x)
 ```
 
-5. mean()
+5. mean()  
 Returns the average of the valeus in an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 mean(x)
 ```
 
-6. median()
+6. median()  
 Returns the median value in an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 median(x)
 ```
 
-7. var()
+7. var()  
 Returns the variance of the values in an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 var(x)
 ```
 
-8. sd()
+8. sd()  
 Returns the standard deviation of the values in an object.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
 sd(x)
 ```
 
-9. cor()
+9. cor()  
 Returns the correlation of two sets of values.
 ```{r}
 x <- c(1,2,2,3,4,5,5,6)
@@ -478,35 +479,108 @@ y <- c(10,12,13,13,15,16,17,20)
 cor(x,y)
 ```
 
-10. round()
+10. round()  
 Rounds a value to a specified number of decimal places.
 ```{r}
 round(3.145, 2)
 ```
 
-11. abs()
+11. abs()  
 Returns the absolute value.
 ```{r}
 abs(-12)
 ```
 
 ## Matrices
-1. t()
-2. diag()
-3. rowSums()
-4. colSums()
-5. rowMeans()
-6. colMeans()
+1. t()  
+Transposes; switches the rows and columns.
+```{r}
+x <- cbind(c(1,2,3),c(11,12,13))
+x
+t(x)
+```
+
+2. diag()  
+Returns the diagonal of a matrix.
+```{r}
+x <- matrix(c(1,2,3,11,22,33,111,222,333), nrow = 3, ncol = 3, byrow = TRUE)
+x
+diag(x)
+```
+
+3. rowSums()  
+Returns the sum of each row.
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x
+rowSums(x)
+```
+
+4. colSums()  
+Returns the sum of each column.
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x
+colSums(x)
+```
+
+5. rowMeans()  
+Returns the mean of each row.
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x
+rowMeans(x)
+```
+
+6. colMeans()  
+Returns the mean of each column
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x
+colMeans(x)
+```
 
 ## Advanced Data processing
-1. apply()
-2. aggregate()
+1. apply()  
+Applies a function to the margins of an object.
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x
+apply(X = x, MARGIN = 1, FUN = sum)
+```
+
+2. <span style="color:red">aggregate()</span>
 
 ## Strings
-1. paste()
-2. strsplit()
-3. tolower()
-4. toupper
+1. paste()  
+Combines objects into a string.
+```{r}
+x <- "hello"
+y <- "world"
+paste(x, y, sep = " ")
+```
+
+2. strsplit()  
+Splits a string into smaller strings at every instance of the second argument.
+```{r}
+alice <- "curiouser and curiouser!"
+strsplit(alice, split = "")
+```
+
+3. tolower()  
+Translates upper case characters into lower case characters.
+```{r}
+x <- "UPPER CASE"
+tolower(x)
+```
+
+4. toupper()  
+Translates lower case characters into upper case characters.
+```{r}
+x <- "lower case"
+toupper(x)
+```
+
 
 ## Plotting
 1. hist()
@@ -534,4 +608,3 @@ Use the packages tab in R-studio to install these packages. You will need to be 
 4. data.table
 5. reshape2
 6. stringr
-

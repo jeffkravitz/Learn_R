@@ -413,120 +413,145 @@ div.tocify {
 <div id="general" class="section level2">
 <h2>General</h2>
 <ol style="list-style-type: decimal">
-<li>help(topic) Opens the topic in the R-help tab; describes the function and arguments used.</li>
+<li>help(topic)<br />
+Opens the topic in the R-help tab; describes the function and arguments used.</li>
 </ol>
 <pre class="r"><code>help(mean)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>?topic Opens the topic in the R-help tab; describes the function and arguments used.</li>
+<li>?topic<br />
+Opens the topic in the R-help tab; describes the function and arguments used.</li>
 </ol>
 <pre class="r"><code>?mean</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>ls() Lists the objects in the current R environment.</li>
+<li>ls()<br />
+Lists the objects in the current R environment.</li>
 </ol>
 <pre class="r"><code>ls()</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>dir() Lists the names of each file in the R project.</li>
+<li>dir()<br />
+Lists the names of each file in the R project.</li>
 </ol>
 <pre class="r"><code>dir()</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>list.files() Lists the names of each file in the R project.</li>
+<li>list.files()<br />
+Lists the names of each file in the R project.</li>
 </ol>
 <pre class="r"><code>list.files()</code></pre>
 </div>
 <div id="input-and-output" class="section level2">
 <h2>Input and output</h2>
 <ol style="list-style-type: decimal">
-<li>save() Saves an R object to a specified file.</li>
+<li>save()<br />
+Saves an R object to a specified file.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 save(&quot;x&quot;, file=&quot;newfile.txt&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>load() Loads saved data.</li>
+<li>load()<br />
+Loads saved data.</li>
 </ol>
 <pre class="r"><code>load(file=&quot;newfile.txt&quot;)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>data() Loads specified data.</li>
+<li>data()<br />
+Loads specified data.</li>
 </ol>
 <pre class="r"><code>data(&quot;UCBAdmissions&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>library() Loads a library/package into R.</li>
+<li>library()<br />
+Loads a library/package into R.</li>
 </ol>
 <pre class="r"><code>library(psych)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>read.table() Reads a table and produces a data frame.</li>
+<li>read.table()<br />
+Reads a table and produces a data frame.</li>
 </ol>
 <pre class="r"><code>read.table(file = &quot;newfile.txt&quot;)</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>read.csv() Reads a table and produces a data frame.</li>
+<li>read.csv()<br />
+Reads a table and produces a data frame.</li>
 </ol>
 <pre class="r"><code>read.csv(file = &quot;newfile.csv&quot;)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>scan() Read data into a vector from the console or file.</li>
+<li>scan()<br />
+Read data into a vector from the console or file.</li>
 </ol>
 <pre class="r"><code>scan(file = &quot;newfile.txt&quot;)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>print() Prints the contents.</li>
+<li>print()<br />
+Prints the contents.</li>
 </ol>
 <pre class="r"><code>print(&quot;hello&quot;)</code></pre>
 <pre><code>## [1] &quot;hello&quot;</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>cat() Concatenates and prints the contents.</li>
+<li>cat()<br />
+Concatenates and prints the contents.</li>
 </ol>
 <pre class="r"><code>cat(&quot;hello&quot;,&quot;there&quot;)</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li>write.table() Converts contents to a data frame and prints.</li>
+<li>write.table()<br />
+Converts contents to a data frame and prints.</li>
 </ol>
 <pre class="r"><code>write.table(x, file = &quot;newfile.txt&quot;)</code></pre>
 </div>
 <div id="data-creation" class="section level2">
 <h2>Data Creation</h2>
 <ol style="list-style-type: decimal">
-<li>c() Concatonates (combines) data into a vector.</li>
+<li>c()<br />
+Concatonates (combines) data into a vector.</li>
 </ol>
 <pre class="r"><code>c(1,2,3)</code></pre>
 <pre><code>## [1] 1 2 3</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>from:to (where from and to are replaced with numbers, e.g. 1:10) Lists all numbers in between the given numbers.</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10)<br />
+Lists all numbers in between the given numbers.</li>
 </ol>
 <pre class="r"><code>1:10</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>seq() Lists numbers from the first argument to the second argument, adding the third argument to the first argument until the third argument is reached.</li>
+<li>seq()<br />
+Lists numbers from the first argument to the second argument, adding the third argument to the first argument until the third argument is reached.</li>
 </ol>
 <pre class="r"><code>seq(2,10,3)</code></pre>
 <pre><code>## [1] 2 5 8</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>rep() Replicates the values in the first argument for the amount in the second argument.</li>
+<li>rep()<br />
+Replicates the values in the first argument for the amount in the second argument.</li>
 </ol>
 <pre class="r"><code>rep(5, 10)</code></pre>
 <pre><code>##  [1] 5 5 5 5 5 5 5 5 5 5</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>x[-(1:n)] elements from n+1 to the end Returns values of x besides the values in indices 1 to n.</li>
+<li>x[-(1:n)] elements from n+1 to the end<br />
+Returns values of x besides the values in indices 1 to n.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1:10
 x[-(1:5)]</code></pre>
 <pre><code>## [1]  6  7  8  9 10</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>x[c(1,4,2)] specific elements Returns the values of x in the indices of 1, 4, and 2.</li>
+<li>x[c(1,4,2)] specific elements<br />
+Returns the values of x in the indices of 1, 4, and 2.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1:10
 x[c(1,4,2)]</code></pre>
 <pre><code>## [1] 1 4 2</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li><p><span style="color:red">x[“name”] elements named “name”</span></p></li>
-<li><p>x[x&gt;3] all elements greater than 3 Returns the values of x that are greater than 3.</p></li>
+<li><p><span style="color:red">x[“name”] elements named “name”</span><br />
+Use table function?</p></li>
+<li><p>x[x&gt;3] all elements greater than 3<br />
+Returns the values of x that are greater than 3.</p></li>
 </ol>
 <pre class="r"><code>x &lt;- 1:10
 x[x&gt;3]</code></pre>
 <pre><code>## [1]  4  5  6  7  8  9 10</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5 Returns the va;ues of x that are greater than 3 and less than 5.</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5<br />
+Returns the va;ues of x that are greater than 3 and less than 5.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1:10
 x[x&gt;3 &amp; x&lt;5]</code></pre>
 <pre><code>## [1] 4</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set Reutrns the values of x that match “a”, “and”, and “the”.</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set<br />
+Reutrns the values of x that match “a”, “and”, and “the”.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(&quot;This&quot;,&quot;is&quot;,&quot;the&quot;,&quot;example&quot;,&quot;and&quot;,&quot;the&quot;,&quot;text&quot;,&quot;that&quot;,&quot;will&quot;,&quot;be&quot;,&quot;analyzed&quot;)
 x[x %in% c(&quot;a&quot;,&quot;and&quot;,&quot;the&quot;)]</code></pre>
@@ -535,14 +560,16 @@ x[x %in% c(&quot;a&quot;,&quot;and&quot;,&quot;the&quot;)]</code></pre>
 <div id="indexing-lists" class="section level2">
 <h2>Indexing lists</h2>
 <ol style="list-style-type: decimal">
-<li>x[n] list with elements n Returns the nth object in the list, in list format.</li>
+<li>x[n] list with elements n<br />
+Returns the nth object in the list, in list format.</li>
 </ol>
 <pre class="r"><code>x &lt;- list(&quot;a&quot; &lt;- c(1,10), &quot;b&quot; &lt;- c(2,20), &quot;c&quot; &lt;- c(3,30))
 x[2]</code></pre>
 <pre><code>## [[1]]
 ## [1]  2 20</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>x[[n]] nt h element of the list Returns the nth object in the list.</li>
+<li>x[[n]] nt h element of the list<br />
+Returns the nth object in the list.</li>
 </ol>
 <pre class="r"><code>x &lt;- list(&quot;a&quot; &lt;- c(1,10), &quot;b&quot; &lt;- c(2,20), &quot;c&quot; &lt;- c(3,30))
 x[[2]]</code></pre>
@@ -555,25 +582,29 @@ x[[2]]</code></pre>
 <div id="indexing-matrices" class="section level2">
 <h2>Indexing matrices</h2>
 <ol style="list-style-type: decimal">
-<li>x[i,j] element at row i, column j Returns the value of x at row i and column j.</li>
+<li>x[i,j] element at row i, column j<br />
+Returns the value of x at row i and column j.</li>
 </ol>
 <pre class="r"><code>x &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[2,2]</code></pre>
 <pre><code>## [1] 12</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>x[i,] row i Returns all values of x in row i.</li>
+<li>x[i,] row i<br />
+Returns all values of x in row i.</li>
 </ol>
 <pre class="r"><code>x &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[2,]</code></pre>
 <pre><code>## [1] 11 12 13</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>x[,j] column j Returns all values of x in column j.</li>
+<li>x[,j] column j<br />
+Returns all values of x in column j.</li>
 </ol>
 <pre class="r"><code>x &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[,2]</code></pre>
 <pre><code>## [1]  2 12</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>x[,c(1,3)] columns 1 and 3 Return all values of x in columns 1 and 3 (regardless of rows).</li>
+<li>x[,c(1,3)] columns 1 and 3<br />
+Return all values of x in columns 1 and 3 (regardless of rows).</li>
 </ol>
 <pre class="r"><code>x &lt;- matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE)
 x[,c(1,3)]</code></pre>
@@ -588,7 +619,8 @@ x[,c(1,3)]</code></pre>
 <h2>Indexing data frames (matrix indexing plus the following)</h2>
 <ol style="list-style-type: decimal">
 <li><p><span style="color:red&gt;x[[" name"]]="" column="" named="" "name"<="" span="">x[[“name”]] column named “name”</span></p></li>
-<li><p>x$nameid. Returns column of x labeled “nameid”.</p></li>
+<li><p>x$nameid.<br />
+Returns column of x labeled “nameid”.</p></li>
 </ol>
 <pre class="r"><code>a &lt;- c(1,10,100)
 b &lt;- c(2,20,200)
@@ -600,7 +632,8 @@ x$a</code></pre>
 <div id="variable-conversion" class="section level2">
 <h2>Variable conversion</h2>
 <ol style="list-style-type: decimal">
-<li>as.data.frame(x) Transforms object into a data frame.</li>
+<li>as.data.frame(x)<br />
+Transforms object into a data frame.</li>
 </ol>
 <pre class="r"><code>x &lt;- as.data.frame(matrix(c(1,2,3,11,12,13), nrow = 2, ncol = 3, byrow = TRUE))
 x</code></pre>
@@ -608,21 +641,24 @@ x</code></pre>
 ## 1  1  2  3
 ## 2 11 12 13</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>as.numeric(x) Transforms object into numeric class (if possible).</li>
+<li>as.numeric(x)<br />
+Transforms object into numeric class (if possible).</li>
 </ol>
 <pre class="r"><code>x &lt;- &quot;1&quot;
 x &lt;- as.numeric(x)
 class(x)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>as.logical(x) Transforms object into boolean class (if possible).</li>
+<li>as.logical(x)<br />
+Transforms object into boolean class (if possible).</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 x &lt;- as.logical(x)
 class(x)</code></pre>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>as.character(x) Transforms object into character class.</li>
+<li>as.character(x)<br />
+Transforms object into character class.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 x &lt;- as.character(x)
@@ -632,43 +668,50 @@ class(x)</code></pre>
 <div id="variable-information" class="section level2">
 <h2>Variable information</h2>
 <ol style="list-style-type: decimal">
-<li>is.na(x) Returns logical value TRUE is value is N/A or missing.</li>
+<li>is.na(x)<br />
+Returns logical value TRUE is value is N/A or missing.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 is.na(x[2])</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>is.null(x) Returns logical value TRUE is value is null.</li>
+<li>is.null(x)<br />
+Returns logical value TRUE is value is null.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 is.null(x[2])</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>is.data.frame(x) Returns logical value TRUE if object class is a data frame.</li>
+<li>is.data.frame(x)<br />
+Returns logical value TRUE if object class is a data frame.</li>
 </ol>
 <pre class="r"><code>x &lt;- data.frame(1,1)
 is.data.frame(x)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>is.numeric(x) Returns logical value TRUE if object class is numeric.</li>
+<li>is.numeric(x)<br />
+Returns logical value TRUE if object class is numeric.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 is.numeric(x)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>is.character(x) Returns logical value TRUE if object class is character.</li>
+<li>is.character(x)<br />
+Returns logical value TRUE if object class is character.</li>
 </ol>
 <pre class="r"><code>x &lt;- &quot;1&quot;
 is.character(x)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>length(x) Returns the length of the object.</li>
+<li>length(x)<br />
+Returns the length of the object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3)
 length(x)</code></pre>
 <pre><code>## [1] 3</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>dim(x) Returns the dimensions of the object (prints the amount of rows and columns).</li>
+<li>dim(x)<br />
+Returns the dimensions of the object (prints the amount of rows and columns).</li>
 </ol>
 <pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
 x</code></pre>
@@ -679,7 +722,8 @@ x</code></pre>
 <pre class="r"><code>dim(x)</code></pre>
 <pre><code>## [1] 3 2</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>dimnames(x) Returns the names of the dimensions of an object.</li>
+<li>dimnames(x)<br />
+Returns the names of the dimensions of an object.</li>
 </ol>
 <pre class="r"><code>a &lt;- c(1,10,100)
 b &lt;- c(2,20,200)
@@ -692,19 +736,22 @@ dimnames(x)</code></pre>
 ## [[2]]
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>nrow(x) Returns the number of rows in an object.</li>
+<li>nrow(x)<br />
+Returns the number of rows in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
 nrow(x)</code></pre>
 <pre><code>## [1] 3</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li>ncol(x) Returns the number of columns in an object.</li>
+<li>ncol(x)<br />
+Returns the number of columns in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
 ncol(x)</code></pre>
 <pre><code>## [1] 2</code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li>class() Returns the class type of an object.</li>
+<li>class()<br />
+Returns the class type of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- 1
 y &lt;- &quot;1&quot;
@@ -713,7 +760,8 @@ class(x)</code></pre>
 <pre class="r"><code>class(y)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <ol start="12" style="list-style-type: decimal">
-<li>attributes() Lists the attributes of a given object.</li>
+<li>attributes()<br />
+Lists the attributes of a given object.</li>
 </ol>
 <pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
 attributes(x)</code></pre>
@@ -723,37 +771,43 @@ attributes(x)</code></pre>
 <div id="data-selection-and-manipulation" class="section level2">
 <h2>Data selection and manipulation</h2>
 <ol style="list-style-type: decimal">
-<li>which.max() Returns the index of the maximum value of an object.</li>
+<li>which.max()<br />
+Returns the index of the maximum value of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
 which.max(x)</code></pre>
 <pre><code>## [1] 8</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>which.min() Returns the index of the minimum value of an object.</li>
+<li>which.min()<br />
+Returns the index of the minimum value of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
 which.min(x)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>which() Returns the indices of the values of x that match the logical condition.</li>
+<li>which()<br />
+Returns the indices of the values of x that match the logical condition.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5,5,6,7)
 which(x==5)</code></pre>
 <pre><code>## [1] 5 6</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>sort() Sorts the data.</li>
+<li>sort()<br />
+Sorts the data.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(3,5,1,4,2)
 sort(x)</code></pre>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>unique() Removes duplicates from an object.</li>
+<li>unique()<br />
+Removes duplicates from an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 unique(x)</code></pre>
 <pre><code>## [1] 1 2 3 4 5 6</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>table() Produces a table of the counts of each value in an object.</li>
+<li>table()<br />
+Produces a table of the counts of each value in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 table(x)</code></pre>
@@ -761,7 +815,8 @@ table(x)</code></pre>
 ## 1 2 3 4 5 6 
 ## 1 2 1 1 2 1</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>sample() Produces a random sample of a specified size from an object.</li>
+<li>sample()<br />
+Produces a random sample of a specified size from an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 sample(x, 3)</code></pre>
@@ -770,19 +825,22 @@ sample(x, 3)</code></pre>
 <div id="math" class="section level2">
 <h2>Math</h2>
 <ol style="list-style-type: decimal">
-<li>max() Returns the maximum value of an object.</li>
+<li>max()<br />
+Returns the maximum value of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 max(x)</code></pre>
 <pre><code>## [1] 6</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>min() Returns the minimum value of an object.</li>
+<li>min()<br />
+Returns the minimum value of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 min(x)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>range() Returns the minimum and maximium values of an object.</li>
+<li>range()<br />
+Returns the minimum and maximium values of an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 range(x)</code></pre>
@@ -794,43 +852,50 @@ range(x)</code></pre>
 sum(x)</code></pre>
 <pre><code>## [1] 28</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>mean() Returns the average of the valeus in an object.</li>
+<li>mean()<br />
+Returns the average of the valeus in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 mean(x)</code></pre>
 <pre><code>## [1] 3.5</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>median() Returns the median value in an object.</li>
+<li>median()<br />
+Returns the median value in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 median(x)</code></pre>
 <pre><code>## [1] 3.5</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>var() Returns the variance of the values in an object.</li>
+<li>var()<br />
+Returns the variance of the values in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 var(x)</code></pre>
 <pre><code>## [1] 3.142857</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>sd() Returns the standard deviation of the values in an object.</li>
+<li>sd()<br />
+Returns the standard deviation of the values in an object.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 sd(x)</code></pre>
 <pre><code>## [1] 1.772811</code></pre>
 <ol start="9" style="list-style-type: decimal">
-<li>cor() Returns the correlation of two sets of values.</li>
+<li>cor()<br />
+Returns the correlation of two sets of values.</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,2,3,4,5,5,6)
 y &lt;- c(10,12,13,13,15,16,17,20)
 cor(x,y)</code></pre>
 <pre><code>## [1] 0.9683297</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li>round() Rounds a value to a specified number of decimal places.</li>
+<li>round()<br />
+Rounds a value to a specified number of decimal places.</li>
 </ol>
 <pre class="r"><code>round(3.145, 2)</code></pre>
 <pre><code>## [1] 3.15</code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li>abs() Returns the absolute value.</li>
+<li>abs()<br />
+Returns the absolute value.</li>
 </ol>
 <pre class="r"><code>abs(-12)</code></pre>
 <pre><code>## [1] 12</code></pre>
@@ -838,29 +903,131 @@ cor(x,y)</code></pre>
 <div id="matrices" class="section level2">
 <h2>Matrices</h2>
 <ol style="list-style-type: decimal">
-<li>t()</li>
-<li>diag()</li>
-<li>rowSums()</li>
-<li>colSums()</li>
-<li>rowMeans()</li>
-<li>colMeans()</li>
+<li>t()<br />
+Transposes; switches the rows and columns.</li>
 </ol>
+<pre class="r"><code>x &lt;- cbind(c(1,2,3),c(11,12,13))
+x</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1   11
+## [2,]    2   12
+## [3,]    3   13</code></pre>
+<pre class="r"><code>t(x)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]   11   12   13</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>diag()<br />
+Returns the diagonal of a matrix.</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,11,22,33,111,222,333), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]   11   22   33
+## [3,]  111  222  333</code></pre>
+<pre class="r"><code>diag(x)</code></pre>
+<pre><code>## [1]   1  22 333</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>rowSums()<br />
+Returns the sum of each row.</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<pre class="r"><code>rowSums(x)</code></pre>
+<pre><code>## [1]  6 15 24</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>colSums()<br />
+Returns the sum of each column.</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<pre class="r"><code>colSums(x)</code></pre>
+<pre><code>## [1] 12 15 18</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>rowMeans()<br />
+Returns the mean of each row.</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<pre class="r"><code>rowMeans(x)</code></pre>
+<pre><code>## [1] 2 5 8</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>colMeans()<br />
+Returns the mean of each column</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<pre class="r"><code>colMeans(x)</code></pre>
+<pre><code>## [1] 4 5 6</code></pre>
 </div>
 <div id="advanced-data-processing" class="section level2">
 <h2>Advanced Data processing</h2>
 <ol style="list-style-type: decimal">
-<li>apply()</li>
-<li>aggregate()</li>
+<li>apply()<br />
+Applies a function to the margins of an object.</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3, byrow = TRUE)
+x</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9</code></pre>
+<pre class="r"><code>apply(X = x, MARGIN = 1, FUN = sum)</code></pre>
+<pre><code>## [1]  6 15 24</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><span style="color:red">aggregate()</span></li>
 </ol>
 </div>
 <div id="strings" class="section level2">
 <h2>Strings</h2>
 <ol style="list-style-type: decimal">
-<li>paste()</li>
-<li>strsplit()</li>
-<li>tolower()</li>
-<li>toupper</li>
+<li>paste()<br />
+Combines objects into a string.</li>
 </ol>
+<pre class="r"><code>x &lt;- &quot;hello&quot;
+y &lt;- &quot;world&quot;
+paste(x, y, sep = &quot; &quot;)</code></pre>
+<pre><code>## [1] &quot;hello world&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>strsplit()<br />
+Splits a string into smaller strings at every instance of the second argument.</li>
+</ol>
+<pre class="r"><code>alice &lt;- &quot;curiouser and curiouser!&quot;
+strsplit(alice, split = &quot;&quot;)</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;c&quot; &quot;u&quot; &quot;r&quot; &quot;i&quot; &quot;o&quot; &quot;u&quot; &quot;s&quot; &quot;e&quot; &quot;r&quot; &quot; &quot; &quot;a&quot; &quot;n&quot; &quot;d&quot; &quot; &quot; &quot;c&quot; &quot;u&quot; &quot;r&quot;
+## [18] &quot;i&quot; &quot;o&quot; &quot;u&quot; &quot;s&quot; &quot;e&quot; &quot;r&quot; &quot;!&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>tolower()<br />
+Translates upper case characters into lower case characters.</li>
+</ol>
+<pre class="r"><code>x &lt;- &quot;UPPER CASE&quot;
+tolower(x)</code></pre>
+<pre><code>## [1] &quot;upper case&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>toupper()<br />
+Translates lower case characters into upper case characters.</li>
+</ol>
+<pre class="r"><code>x &lt;- &quot;lower case&quot;
+toupper(x)</code></pre>
+<pre><code>## [1] &quot;LOWER CASE&quot;</code></pre>
 </div>
 <div id="plotting" class="section level2">
 <h2>Plotting</h2>
