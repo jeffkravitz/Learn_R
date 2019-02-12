@@ -1,1 +1,6 @@
 base
+ggplot2
+dplyr
+data.table
+reshape2
+stringr
