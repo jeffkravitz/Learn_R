@@ -1,0 +1,123 @@
+---
+title: "Data Visualization"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 2
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Class Notes 2/15/19
+```{r}
+a <- data.frame()
+Names <- c("Peter","Paul","Mary")
+Ages <- c(1000,1200,100)
+Sex <- c("M","M","F")
+my_df <- data.frame(Names,Ages,Sex)
+```
+
+Add NA in order to add empty data cells.  
+```{r}
+a <- data.frame()
+Names <- c("Peter","Paul","Mary",NA)
+Ages <- c(1000,1200,100,50)
+Sex <- c("M","M","F",NA)
+my_df <- data.frame(Names,Ages,Sex)
+```
+
+Prevent strings from being treated as factors.  
+```{r}
+a <- data.frame()
+Names <- c("Peter","Paul","Mary",NA)
+Ages <- c(1000,1200,100,50)
+Sex <- c("M","M","F",NA)
+my_df <- data.frame(Names,Ages,Sex)
+my_df$Names <- as.character(my_df$Names)
+my_df$Names
+```
+
+```{r}
+# Create dataframe
+a <- c(1,2,3,2,3,4,5,4)
+b <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(a,b)
+
+
+# basic scatterplot
+library(ggplot2)
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()
+```
+
+```{r}
+a <- c(1,2,3,2,3,4,5,4)
+b <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(a,b)
+
+# customize, add regression line
+library(ggplot2)
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a scatterplot")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+factor_one <- rep(as.factor(c("A","B","C")),2)
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+library(ggplot2)
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("Bar graph 2 factors")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Figure 1
+```{r eval_false}
+
+Names <- rep(c("Dara", "Rita","Liza", "Katie", "Azalea","Barbi","Rowena","Fiona"),each=2)
+MF <- c(60,59,55,51,37,46,3,3,47,23,46,1,40,5,11,0)
+Condition <- rep(c("Social Condition", "Nonsocial Condition"),4)
+Aversity <- rep(c("A","N_A"), each=4)
+new_df <- data.frame(Names, Condition, Aversity, MF)
+
+library(ggplot2)
+ggplot(new_df, aes(x=Condition, y=MF, group=Names, linetype=Aversity))+
+  geom_line()+
+  geom_text(label=Names)+
+  theme_classic()+
+  labs(x=" ",y="Mean Frequency of Risky Choice")
+
+```
+

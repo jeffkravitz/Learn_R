@@ -8,6 +8,8 @@ navbar:
       href: Journal.html
     - text: "Dictionary"
       href: Dictionary.html
+    - text: "Data Visualization"
+      href: DataVis.html
     - text: "Notes"
       href: Notes.html
     - text: "Resources"
