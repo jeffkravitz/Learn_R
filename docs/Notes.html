@@ -512,6 +512,83 @@ everybody$grades[1]
 # Levels
 class(everybody$first_names) # Factor Class</code></pre>
 </div>
+<div id="class-notes-21519" class="section level2">
+<h2>Class Notes 2/15/19</h2>
+<pre class="r"><code>a &lt;- data.frame()
+Names &lt;- c(&quot;Peter&quot;,&quot;Paul&quot;,&quot;Mary&quot;)
+Ages &lt;- c(1000,1200,100)
+Sex &lt;- c(&quot;M&quot;,&quot;M&quot;,&quot;F&quot;)
+my_df &lt;- data.frame(Names,Ages,Sex)</code></pre>
+<p>Add NA in order to add empty data cells.</p>
+<pre class="r"><code>a &lt;- data.frame()
+Names &lt;- c(&quot;Peter&quot;,&quot;Paul&quot;,&quot;Mary&quot;,NA)
+Ages &lt;- c(1000,1200,100,50)
+Sex &lt;- c(&quot;M&quot;,&quot;M&quot;,&quot;F&quot;,NA)
+my_df &lt;- data.frame(Names,Ages,Sex)</code></pre>
+<p>Prevent strings from being treated as factors.</p>
+<pre class="r"><code>a &lt;- data.frame()
+Names &lt;- c(&quot;Peter&quot;,&quot;Paul&quot;,&quot;Mary&quot;,NA)
+Ages &lt;- c(1000,1200,100,50)
+Sex &lt;- c(&quot;M&quot;,&quot;M&quot;,&quot;F&quot;,NA)
+my_df &lt;- data.frame(Names,Ages,Sex)
+my_df$Names &lt;- as.character(my_df$Names)
+my_df$Names</code></pre>
+<pre><code>## [1] &quot;Peter&quot; &quot;Paul&quot;  &quot;Mary&quot;  NA</code></pre>
+<pre class="r"><code># Create dataframe
+a &lt;- c(1,2,3,2,3,4,5,4)
+b &lt;- c(4,3,4,3,2,1,2,3)
+plot_df &lt;- data.frame(a,b)
+
+
+# basic scatterplot
+library(ggplot2)
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>a &lt;- c(1,2,3,2,3,4,5,4)
+b &lt;- c(4,3,4,3,2,1,2,3)
+plot_df &lt;- data.frame(a,b)
+
+# customize, add regression line
+library(ggplot2)
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  xlab(&quot;x-axis label&quot;)+
+  ylab(&quot;y-axis label&quot;)+
+  ggtitle(&quot;I made a scatterplot&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>factor_one &lt;- rep(as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)),2)
+factor_two &lt;- rep(as.factor(c(&quot;IIA&quot;,&quot;IIB&quot;)),3)
+dv_means &lt;- c(20,30,40,20,40,40)
+dv_SEs   &lt;- c(4,3.4,4,3,2,4)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+library(ggplot2)
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)+
+  coord_cartesian(ylim=c(0,100))+
+  xlab(&quot;x-axis label&quot;)+
+  ylab(&quot;y-axis label&quot;)+
+  ggtitle(&quot;Bar graph 2 factors&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="Notes_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
 </div>
 
 
