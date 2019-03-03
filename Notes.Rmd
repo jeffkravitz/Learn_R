@@ -13,11 +13,6 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-```{css, echo=false}
-body {
-  background-color: black;
-}
-```
 
 # Notes (for mac)
 
