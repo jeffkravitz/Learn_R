@@ -79,3 +79,30 @@ ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=likelihood))+
   labs(x=" ", y="Percentage of participants")
 ```
 
+```{r, echo=FALSE, out.width="400px"}
+knitr::include_graphics("datavis_figs/ques_8.png")
+```
+
+```{r}
+group1 <- rep(c("Prior","Model Posterior","Reported Posterior"),times=2)
+group1 <- factor(group1, levels=group1[c(1,2,3)])
+group2 <- rep(factor(c("Group 1","Group 2")),each=3)
+scores <- c(69,87,86,29,71,75)
+SE <- rep(4,6)
+new_df <- data.frame(group1,group2,scores,SE)
+new_df
+
+library(ggplot2)
+ggplot(new_df, aes(x=group2, y=scores, fill=group1))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=scores-SE,
+                    ymax=scores+SE),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  labs(x=" ",y="P(Target=Doctor")+
+  theme_classic(base_size=12)
+
+```
+
+
