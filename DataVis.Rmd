@@ -75,8 +75,8 @@ knitr::include_graphics("datavis_figs/Cao1A.png")
 ```{r}
 person <- rep(c("Doctor","Butcher","Firefighter","Construction Worker"),each=3)
 person <- factor(person,levels=person[c(1,4,7,10)])
-likelihood <- rep(c("Woman More Likely", "Equally Likely", "Man More Likely"),times=4)
-likelihood <- factor(likelihood,levels=likelihood[c(1,2,3)])
+Likelihood <- rep(c("Woman More Likely", "Equally Likely", "Man More Likely"),times=4)
+Likelihood <- factor(Likelihood,levels=Likelihood[c(1,2,3)])
 
 #agree <- c(8,92,0,32,65,3,39,60,1,39,58,3)
 agree <- c(0,92,8,3,65,32,1,60,39,3,58,39)
@@ -84,8 +84,8 @@ agree <- c(0,92,8,3,65,32,1,60,39,3,58,39)
 agr_df <- data.frame(person,likelihood,agree)
 
 library(ggplot2)
-ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=likelihood))+
-  geom_bar(stat="identity")+
+ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=Likelihood))+
+  geom_bar(stat="identity", width=0.75)+
   scale_fill_manual(values=c("#E37B71","#58AD58","#7595C7"))+
   scale_x_discrete(breaks=c("Doctor",
                             "Butcher",
@@ -100,7 +100,10 @@ ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=likelihood))+
                      limits=c(0,100),
                      expand = c(0, 0))+
   theme_classic(base_size=12)+
-  labs(x=" ", y="Percentage of participants")
+  theme(plot.margin = unit(c(3,0,0,0),"cm"),
+        legend.position=c(0.5,1.25))+
+  labs(x=" ", y="Percentage of participants")+
+  coord_fixed(ratio=0.025)
 ```
 
 ```{r, echo=FALSE, out.width="400px"}
