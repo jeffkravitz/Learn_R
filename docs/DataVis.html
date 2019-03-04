@@ -505,7 +505,10 @@ g1&lt;- ggplot(df, aes(x=y))+
   scale_x_continuous(breaks=c(),
                      labels=c(&quot; &quot;),
                      limits = c(0,35), expand = c(0, 0))+
-  scale_y_continuous(limits = c(0,40), expand = c(0, 0))+
+  scale_y_continuous(breaks=c(0,10,20,30,40),
+                     labels=c(&quot;0%&quot;,&quot;10%&quot;,&quot;20%&quot;,&quot;30%&quot;,&quot;40%&quot;),
+                     limits=c(0,40),
+                     expand = c(0, 0))+
   labs(x=&quot; &quot;, y=&quot;Participants (In Each Condition)&quot;)+
   ggtitle(&quot;Man Performed Surgery\nn = 152&quot;)+
   geom_vline(xintercept=17, linetype=&quot;dotted&quot;)+
@@ -522,7 +525,10 @@ g2 &lt;- ggplot(df, aes(x=y))+
                      labels=c(&quot;-Inf&quot;,&quot;-4&quot;,&quot;-2&quot;,&quot;0&quot;,&quot;2&quot;,&quot;4&quot;,&quot;Inf&quot;),
                      limits=c(-11.25,12),
                      expand = c(0, 0))+
-  scale_y_continuous(limits = c(0,40), expand = c(0, 0))+
+  scale_y_continuous(breaks=c(0,10,20,30,40),
+                     labels=c(&quot;0%&quot;,&quot;10%&quot;,&quot;20%&quot;,&quot;30%&quot;,&quot;40%&quot;),
+                     limits=c(0,40),
+                     expand = c(0, 0))+
   labs(x=&quot;Log Liklihood Ratio&quot;, y=&quot;Participants (In Each Condition)&quot;)+
   ggtitle(&quot;Woman Performed Surgery\nn = 142&quot;)+
   geom_vline(xintercept=0, linetype=&quot;dotted&quot;)+
