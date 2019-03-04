@@ -90,7 +90,6 @@ group2 <- rep(factor(c("Group 1","Group 2")),each=3)
 scores <- c(69,87,86,29,71,75)
 SE <- rep(4,6)
 new_df <- data.frame(group1,group2,scores,SE)
-new_df
 
 library(ggplot2)
 ggplot(new_df, aes(x=group2, y=scores, fill=group1))+
@@ -105,4 +104,23 @@ ggplot(new_df, aes(x=group2, y=scores, fill=group1))+
 
 ```
 
+```{r, echo=FALSE, out.width="400px"}
+knitr::include_graphics("datavis_figs/ques_6_7.png")
+```
+
+```{r}
+y <- c(rep(15,2),rep(16,2),rep(17,8),rep(18,14),rep(19,14),rep(20,7),rep(21,6),rep(22,7),rep(23,5),rep(24,5),rep(25,1),rep(32,28))
+x <- c(rep(0,99))
+df <- data.frame(x,y)
+
+library(ggplot2)
+ggplot(df, aes(x=y))+
+  geom_histogram(binwidth=1, color="black", fill="#009090")+
+  coord_cartesian(xlim=c(0,35),ylim=c(0,40))+
+  labs(x=" ", y="Participants (In Each Condition)")+
+  geom_vline(xintercept=17, linetype="dotted")+
+  theme_classic(base_size = 12)
+  
+
+```
 
