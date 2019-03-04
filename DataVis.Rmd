@@ -23,20 +23,25 @@ Figure 1
 ```{r eval_false}
 
 Names <- rep(c("Dara", "Rita","Liza", "Katie", "Azalea","Barbi","Rowena","Fiona"),each=2)
-MF <- c(60,59,55,51,37,46,3,3,47,23,46,1,40,5,11,0)
+Names <- factor(Names,levels=Names[c(1,3,5,7,9,11,13,15)])
+MF <- c(59,60,51,55,46,37,3,3,23,47,1,46,5,40,0,11)
 Condition <- rep(c("Social Condition", "Nonsocial Condition"),4)
+Condition <- factor(Condition, levels=Condition[c(1,2)])
 Aversity <- rep(c("Aversive","Not Aversive"), each=8)
+Aversity <- factor(Aversity, levels=Aversity[c(1,9)])
 new_df <- data.frame(Names, Condition, Aversity, MF)
-new_df
 
 library(ggplot2)
 ggplot(new_df, aes(x=Condition, y=MF, group=Names))+
   geom_line(aes(linetype=Aversity))+
+  scale_y_continuous(breaks=c(0,10,20,30,40,50,60,70),
+                     limits=c(0,70),
+                     expand = c(0, 0))+
   scale_linetype_manual(values=c("dashed","solid"))+
-  geom_text(label=Names, y=(MF-c(1,100,4,100,-10,100,0,100,100,-26,100,-45,100,-36,100,-12)), x=rep(c(0.9,2.14),times=8))+
+  geom_text(label=Names, y=(c(59,100,51,100,46,100,3,100,100,49,100,46,100,40,100,11)),
+            x=rep(c(0.9,2.14),times=8))+
   theme_classic()+
   labs(x=" ",y="Mean Frequency of Risky Choice")
-
 ```
 
 ```{r, echo=FALSE, out.width="600px"}
