@@ -76,16 +76,29 @@ knitr::include_graphics("datavis_figs/Cao1A.png")
 person <- rep(c("Doctor","Butcher","Firefighter","Construction Worker"),each=3)
 person <- factor(person,levels=person[c(1,4,7,10)])
 likelihood <- rep(c("Woman More Likely", "Equally Likely", "Man More Likely"),times=4)
-likelihood <- factor(likelihood,levels=likelihood[c(1,5,9,13)])
+likelihood <- factor(likelihood,levels=likelihood[c(1,2,3)])
 
 #agree <- c(8,92,0,32,65,3,39,60,1,39,58,3)
 agree <- c(0,92,8,3,65,32,1,60,39,3,58,39)
+#agree <- c(0,92,100,3,68,100,1,61,100,3,61,100)
 agr_df <- data.frame(person,likelihood,agree)
 
 library(ggplot2)
 ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=likelihood))+
   geom_bar(stat="identity")+
   scale_fill_manual(values=c("#E37B71","#58AD58","#7595C7"))+
+  scale_x_discrete(breaks=c("Doctor",
+                            "Butcher",
+                            "Firefighter",
+                            "Construction Worker"),
+                  labels=c("Doctor\nStudy 1\nN = 199",
+                            "Butcher\nStudy 2\nn = 200",
+                            "Firefighter\nStudy 2\nn = 200",
+                            "Construction Worker\nStudy 2\nn = 205"))+
+  scale_y_continuous(breaks=c(seq(0, 100, 10)),
+                     labels=c("0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%"),
+                     limits=c(0,100),
+                     expand = c(0, 0))+
   theme_classic(base_size=12)+
   labs(x=" ", y="Percentage of participants")
 ```
@@ -121,26 +134,29 @@ knitr::include_graphics("datavis_figs/ques_6_7.png")
 ```
 
 ```{r}
-y <- c(rep(15,2),rep(16,2),rep(17,8),rep(18,14),rep(19,14),rep(20,7),rep(21,6),rep(22,7),rep(23,5),rep(24,5),rep(25,1),rep(32,28))
-x <- c(rep(0,99))
+y <- c(rep(-2,1),rep(-1.5,1),rep(-1,2),rep(-0.5,2),rep(0,8),rep(0.5,14),rep(1,14),rep(1.5,13),
+       rep(2,7),rep(2.5,6),rep(3,7),rep(3.5,5),rep(4,5),rep(4.5,1),rep(10,28))
+x <- c(rep(0,114))
 df <- data.frame(x,y)
 
 library(ggplot2)
 
 g1<- ggplot(df, aes(x=y))+
-  geom_histogram(binwidth=1, color="black", fill="#53B7BD")+
+  geom_histogram(binwidth=0.5, color="black", fill="#53B7BD")+
   scale_x_continuous(breaks=c(),
                      labels=c(" "),
-                     limits = c(0,35), expand = c(0, 0))+
+                     limits = c(-10,11), 
+                     expand = c(0, 0))+
   scale_y_continuous(breaks=c(0,10,20,30,40),
                      labels=c("0%","10%","20%","30%","40%"),
                      limits=c(0,40),
                      expand = c(0, 0))+
   labs(x=" ", y="Participants (In Each Condition)")+
   ggtitle("Man Performed Surgery\nn = 152")+
-  geom_vline(xintercept=17, linetype="dotted")+
+  geom_vline(xintercept=0, linetype="dotted")+
   theme_classic(base_size = 10)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  coord_fixed(ratio=0.4)
 
 y <- c(rep(-2,1),rep(-1.5,4),rep(-1,6),rep(-0.5,4),rep(0,6),rep(0.5,5),rep(1,7),rep(1.5,8),rep(2,16),rep(2.5,9),rep(3,3),rep(3.5,4),rep(4,2),rep(10,40))
 x <- rep(0,115)
@@ -149,8 +165,8 @@ df <- data.frame(x,y)
 g2 <- ggplot(df, aes(x=y))+
   geom_histogram(binwidth=0.5, color="black", fill="#53B7BD")+
   scale_x_continuous(breaks=c(-10,-4,-2,0,2,4,10),
-                     labels=c("-Inf","-4","-2","0","2","4","Inf"),
-                     limits=c(-11.25,12),
+                     labels=c("- Inf","-4","-2","0","2","4","+ Inf"),
+                     limits=c(-10,11),
                      expand = c(0, 0))+
   scale_y_continuous(breaks=c(0,10,20,30,40),
                      labels=c("0%","10%","20%","30%","40%"),
@@ -160,8 +176,9 @@ g2 <- ggplot(df, aes(x=y))+
   ggtitle("Woman Performed Surgery\nn = 142")+
   geom_vline(xintercept=0, linetype="dotted")+
   theme_classic(base_size = 10)+
-  theme(plot.title = element_text(hjust = 0.5))
-
+  theme(plot.title = element_text(hjust = 0.5))+
+  coord_fixed(ratio=0.35)
+  
 library(gridExtra)
 grid.arrange(g1, g2, nrow=2)
 ```

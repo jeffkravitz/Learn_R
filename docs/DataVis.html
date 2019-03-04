@@ -457,16 +457,29 @@ ggplot(soc_df, aes(x=nonsoc_risk, y=soc_risk))+
 <pre class="r"><code>person &lt;- rep(c(&quot;Doctor&quot;,&quot;Butcher&quot;,&quot;Firefighter&quot;,&quot;Construction Worker&quot;),each=3)
 person &lt;- factor(person,levels=person[c(1,4,7,10)])
 likelihood &lt;- rep(c(&quot;Woman More Likely&quot;, &quot;Equally Likely&quot;, &quot;Man More Likely&quot;),times=4)
-likelihood &lt;- factor(likelihood,levels=likelihood[c(1,5,9,13)])
+likelihood &lt;- factor(likelihood,levels=likelihood[c(1,2,3)])
 
 #agree &lt;- c(8,92,0,32,65,3,39,60,1,39,58,3)
 agree &lt;- c(0,92,8,3,65,32,1,60,39,3,58,39)
+#agree &lt;- c(0,92,100,3,68,100,1,61,100,3,61,100)
 agr_df &lt;- data.frame(person,likelihood,agree)
 
 library(ggplot2)
 ggplot(agr_df, aes(x=person, y=agree, group=likelihood, fill=likelihood))+
   geom_bar(stat=&quot;identity&quot;)+
   scale_fill_manual(values=c(&quot;#E37B71&quot;,&quot;#58AD58&quot;,&quot;#7595C7&quot;))+
+  scale_x_discrete(breaks=c(&quot;Doctor&quot;,
+                            &quot;Butcher&quot;,
+                            &quot;Firefighter&quot;,
+                            &quot;Construction Worker&quot;),
+                  labels=c(&quot;Doctor\nStudy 1\nN = 199&quot;,
+                            &quot;Butcher\nStudy 2\nn = 200&quot;,
+                            &quot;Firefighter\nStudy 2\nn = 200&quot;,
+                            &quot;Construction Worker\nStudy 2\nn = 205&quot;))+
+  scale_y_continuous(breaks=c(seq(0, 100, 10)),
+                     labels=c(&quot;0%&quot;,&quot;10%&quot;,&quot;20%&quot;,&quot;30%&quot;,&quot;40%&quot;,&quot;50%&quot;,&quot;60%&quot;,&quot;70%&quot;,&quot;80%&quot;,&quot;90%&quot;,&quot;100%&quot;),
+                     limits=c(0,100),
+                     expand = c(0, 0))+
   theme_classic(base_size=12)+
   labs(x=&quot; &quot;, y=&quot;Percentage of participants&quot;)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
@@ -491,26 +504,29 @@ ggplot(new_df, aes(x=group2, y=scores, fill=group1))+
   theme_classic(base_size=12)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><img src="datavis_figs/ques_6_7.png" width="400px" /></p>
-<pre class="r"><code>y &lt;- c(rep(15,2),rep(16,2),rep(17,8),rep(18,14),rep(19,14),rep(20,7),rep(21,6),rep(22,7),rep(23,5),rep(24,5),rep(25,1),rep(32,28))
-x &lt;- c(rep(0,99))
+<pre class="r"><code>y &lt;- c(rep(-2,1),rep(-1.5,1),rep(-1,2),rep(-0.5,2),rep(0,8),rep(0.5,14),rep(1,14),rep(1.5,13),
+       rep(2,7),rep(2.5,6),rep(3,7),rep(3.5,5),rep(4,5),rep(4.5,1),rep(10,28))
+x &lt;- c(rep(0,114))
 df &lt;- data.frame(x,y)
 
 library(ggplot2)
 
 g1&lt;- ggplot(df, aes(x=y))+
-  geom_histogram(binwidth=1, color=&quot;black&quot;, fill=&quot;#53B7BD&quot;)+
+  geom_histogram(binwidth=0.5, color=&quot;black&quot;, fill=&quot;#53B7BD&quot;)+
   scale_x_continuous(breaks=c(),
                      labels=c(&quot; &quot;),
-                     limits = c(0,35), expand = c(0, 0))+
+                     limits = c(-10,11), 
+                     expand = c(0, 0))+
   scale_y_continuous(breaks=c(0,10,20,30,40),
                      labels=c(&quot;0%&quot;,&quot;10%&quot;,&quot;20%&quot;,&quot;30%&quot;,&quot;40%&quot;),
                      limits=c(0,40),
                      expand = c(0, 0))+
   labs(x=&quot; &quot;, y=&quot;Participants (In Each Condition)&quot;)+
   ggtitle(&quot;Man Performed Surgery\nn = 152&quot;)+
-  geom_vline(xintercept=17, linetype=&quot;dotted&quot;)+
+  geom_vline(xintercept=0, linetype=&quot;dotted&quot;)+
   theme_classic(base_size = 10)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  coord_fixed(ratio=0.4)
 
 y &lt;- c(rep(-2,1),rep(-1.5,4),rep(-1,6),rep(-0.5,4),rep(0,6),rep(0.5,5),rep(1,7),rep(1.5,8),rep(2,16),rep(2.5,9),rep(3,3),rep(3.5,4),rep(4,2),rep(10,40))
 x &lt;- rep(0,115)
@@ -519,8 +535,8 @@ df &lt;- data.frame(x,y)
 g2 &lt;- ggplot(df, aes(x=y))+
   geom_histogram(binwidth=0.5, color=&quot;black&quot;, fill=&quot;#53B7BD&quot;)+
   scale_x_continuous(breaks=c(-10,-4,-2,0,2,4,10),
-                     labels=c(&quot;-Inf&quot;,&quot;-4&quot;,&quot;-2&quot;,&quot;0&quot;,&quot;2&quot;,&quot;4&quot;,&quot;Inf&quot;),
-                     limits=c(-11.25,12),
+                     labels=c(&quot;- Inf&quot;,&quot;-4&quot;,&quot;-2&quot;,&quot;0&quot;,&quot;2&quot;,&quot;4&quot;,&quot;+ Inf&quot;),
+                     limits=c(-10,11),
                      expand = c(0, 0))+
   scale_y_continuous(breaks=c(0,10,20,30,40),
                      labels=c(&quot;0%&quot;,&quot;10%&quot;,&quot;20%&quot;,&quot;30%&quot;,&quot;40%&quot;),
@@ -530,12 +546,14 @@ g2 &lt;- ggplot(df, aes(x=y))+
   ggtitle(&quot;Woman Performed Surgery\nn = 142&quot;)+
   geom_vline(xintercept=0, linetype=&quot;dotted&quot;)+
   theme_classic(base_size = 10)+
-  theme(plot.title = element_text(hjust = 0.5))
-
+  theme(plot.title = element_text(hjust = 0.5))+
+  coord_fixed(ratio=0.35)
+  
 library(gridExtra)
 grid.arrange(g1, g2, nrow=2)</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_bar).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).
+
+## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 
 
