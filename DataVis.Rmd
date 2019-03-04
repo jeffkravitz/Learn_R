@@ -57,9 +57,15 @@ library(ggplot2)
 ggplot(soc_df, aes(x=nonsoc_risk, y=soc_risk))+
   geom_point()+
   geom_smooth(method=lm, se = FALSE, color="black")+
+  scale_x_continuous(breaks=c(0,10,20,30,40,50,60,70),
+                     limits=c(0,70),
+                     expand = c(0, 0))+
+  scale_y_continuous(breaks=c(0,10,20,30,40,50,60,70),
+                     limits=c(0,70),
+                     expand = c(0, 0))+
   theme_classic(base_size=12)+
-  labs(x="Average Frequency of Nonsocial Risk", y="Average Frequency of Social Risk")
-
+  labs(x="Average Frequency of Nonsocial Risk", y="Average Frequency of Social Risk")+
+  coord_fixed(ratio=1)
 ```
 
 ```{r, echo=FALSE, out.width="400px"}

@@ -443,8 +443,15 @@ library(ggplot2)
 ggplot(soc_df, aes(x=nonsoc_risk, y=soc_risk))+
   geom_point()+
   geom_smooth(method=lm, se = FALSE, color=&quot;black&quot;)+
+  scale_x_continuous(breaks=c(0,10,20,30,40,50,60,70),
+                     limits=c(0,70),
+                     expand = c(0, 0))+
+  scale_y_continuous(breaks=c(0,10,20,30,40,50,60,70),
+                     limits=c(0,70),
+                     expand = c(0, 0))+
   theme_classic(base_size=12)+
-  labs(x=&quot;Average Frequency of Nonsocial Risk&quot;, y=&quot;Average Frequency of Social Risk&quot;)</code></pre>
+  labs(x=&quot;Average Frequency of Nonsocial Risk&quot;, y=&quot;Average Frequency of Social Risk&quot;)+
+  coord_fixed(ratio=1)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><img src="datavis_figs/Cao1A.png" width="400px" /></p>
 <pre class="r"><code>person &lt;- rep(c(&quot;Doctor&quot;,&quot;Butcher&quot;,&quot;Firefighter&quot;,&quot;Construction Worker&quot;),each=3)
