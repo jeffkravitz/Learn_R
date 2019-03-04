@@ -492,7 +492,19 @@ ggplot(new_df, aes(x=group2, y=scores, fill=group1))+
   labs(x=&quot; &quot;,y=&quot;P(Target=Doctor&quot;)+
   theme_classic(base_size=12)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p><img src="datavis_figs/ques_6_7" width="400px" /></p>
+<p><img src="datavis_figs/ques_6_7.png" width="400px" /></p>
+<pre class="r"><code>y &lt;- c(rep(15,2),rep(16,2),rep(17,8),rep(18,14),rep(19,14),rep(20,7),rep(21,6),rep(22,7),rep(23,5),rep(24,5),rep(25,1),rep(32,28))
+x &lt;- c(rep(0,99))
+df &lt;- data.frame(x,y)
+
+library(ggplot2)
+ggplot(df, aes(x=y))+
+  geom_histogram(binwidth=1, color=&quot;black&quot;, fill=&quot;#009090&quot;)+
+  coord_cartesian(xlim=c(0,35),ylim=c(0,40))+
+  labs(x=&quot; &quot;, y=&quot;Participants (In Each Condition)&quot;)+
+  geom_vline(xintercept=17, linetype=&quot;dotted&quot;)+
+  theme_classic(base_size = 12)</code></pre>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 
 
 
