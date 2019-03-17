@@ -453,7 +453,6 @@ ggplot(soc_df, aes(x=nonsoc_risk, y=soc_risk))+
   labs(x=&quot;Average Frequency of Nonsocial Risk&quot;, y=&quot;Average Frequency of Social Risk&quot;)+
   coord_fixed(ratio=1)</code></pre>
 <p><img src="DataVis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p><img src="datavis_figs/Cao1A.png" width="400px" /></p>
 <pre class="r"><code>person &lt;- rep(c(&quot;Doctor&quot;,&quot;Butcher&quot;,&quot;Firefighter&quot;,&quot;Construction Worker&quot;),each=3)
 person &lt;- factor(person,levels=person[c(1,4,7,10)])
 Likelihood &lt;- rep(c(&quot;Woman More Likely&quot;, &quot;Equally Likely&quot;, &quot;Man More Likely&quot;),times=4)
@@ -463,7 +462,11 @@ agree &lt;- c(0,92,8,3,65,32,1,60,39,3,58,39)
 agr_df &lt;- data.frame(person,Likelihood,agree)
 
 library(ggplot2)
-ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
+library(grid)
+library(gridExtra)
+library(png)
+
+my_graph &lt;- ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
   geom_bar(stat=&quot;identity&quot;, width=0.75)+
   scale_fill_manual(values=c(&quot;#E37B71&quot;,&quot;#58AD58&quot;,&quot;#7595C7&quot;))+
   scale_x_discrete(breaks=c(&quot;Doctor&quot;,
@@ -482,9 +485,13 @@ ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
   theme(plot.margin = unit(c(3,0,0,0),&quot;cm&quot;),
         legend.position=c(0.5,1.25))+
   labs(x=&quot; &quot;, y=&quot;Percentage of participants&quot;)+
-  coord_fixed(ratio=0.025)</code></pre>
-<p><img src="DataVis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p><img src="datavis_figs/ques_8.png" width="400px" /></p>
+  coord_fixed(ratio=0.038)
+
+lay &lt;- rbind(c(1,1,2,2),
+             c(1,1,2,2))
+image &lt;-  rasterGrob(as.raster(readPNG(&quot;datavis_figs/Cao1A.png&quot;)))
+grid.arrange(image,my_graph,layout_matrix=lay)</code></pre>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>group1 &lt;- c(0.4,1.2,2,3.4,4.2,5)
 scores &lt;- c(69,87,86,29,71,75)
 SE &lt;- rep(4,6)
@@ -492,7 +499,10 @@ new_df &lt;- data.frame(group1,scores,SE)
 
 library(ggplot2)
 library(grid)
-ggplot(new_df, aes(x=group1, y=scores))+
+library(gridExtra)
+library(png)
+
+my_graph &lt;- ggplot(new_df, aes(x=group1, y=scores))+
   geom_bar(stat=&quot;identity&quot;, position=position_dodge(width = 0.8), width = 0.7,
            fill=c(&quot;#E37B71&quot;,&quot;#87AB52&quot;,&quot;#A082B5&quot;,&quot;#E37B71&quot;,&quot;#87AB52&quot;,&quot;#A082B5&quot;))+
   scale_x_continuous(breaks=c(0.4,1.2,2,3.4,4.2,5),
@@ -508,20 +518,28 @@ ggplot(new_df, aes(x=group1, y=scores))+
                 width=.2,
                 color=&quot;black&quot;)+
   labs(x=&quot; &quot;,y=&quot;P(Target=Doctor)&quot;)+
-  theme_classic(base_size=12)+
+  theme_classic(base_size=8)+
   theme(legend.title = element_blank())+
   annotation_custom(grobTree(textGrob(&quot;Men Performed Surgery\nn = 152&quot;, x=0.22,
-                                      y=0.969, gp=gpar(fontsize=8))))+
+                                      y=0.969, gp=gpar(fontsize=6))))+
   annotation_custom(grobTree(textGrob(&quot;Women Performed Surgery\nn = 152&quot;, x=.68,
-                                      y=0.969, gp=gpar(fontsize=8))))</code></pre>
-<p><img src="DataVis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p><img src="datavis_figs/ques_6_7.png" width="400px" /></p>
+                                      y=0.969, gp=gpar(fontsize=6))))+
+  coord_fixed(ratio=0.07)
+
+lay &lt;- rbind(c(1,1,2,2),
+             c(1,1,2,2))
+image &lt;-  rasterGrob(as.raster(readPNG(&quot;datavis_figs/ques_8.png&quot;)))
+grid.arrange(image,my_graph,layout_matrix=lay)</code></pre>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>y &lt;- c(rep(-2,1),rep(-1.5,1),rep(-1,2),rep(-0.5,2),rep(0,8),rep(0.5,14),rep(1,14),rep(1.5,13),
        rep(2,7),rep(2.5,6),rep(3,7),rep(3.5,5),rep(4,5),rep(4.5,1),rep(10,28))
 x &lt;- c(rep(0,114))
 df &lt;- data.frame(x,y)
 
 library(ggplot2)
+library(grid)
+library(gridExtra)
+library(png)
 
 g1&lt;- ggplot(df, aes(x=y))+
   geom_histogram(binwidth=0.5, color=&quot;black&quot;, fill=&quot;#53B7BD&quot;)+
@@ -561,12 +579,13 @@ g2 &lt;- ggplot(df, aes(x=y))+
   theme(plot.title = element_text(hjust = 0.5))+
   coord_fixed(ratio=0.35)
   
-library(gridExtra)
-grid.arrange(g1, g2, nrow=2)</code></pre>
+image &lt;-  rasterGrob(as.raster(readPNG(&quot;datavis_figs/ques_6_7.png&quot;)))
+lay &lt;- rbind(c(1,1,2,2),c(1,1,3,3))
+grid.arrange(image,g1,g2, layout_matrix = lay)</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).
 
 ## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
-<p><img src="DataVis_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="DataVis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 
 
 

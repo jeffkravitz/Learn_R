@@ -67,9 +67,6 @@ ggplot(soc_df, aes(x=nonsoc_risk, y=soc_risk))+
   coord_fixed(ratio=1)
 ```
 
-```{r, echo=FALSE, out.width="400px"}
-knitr::include_graphics("datavis_figs/Cao1A.png")
-```
 
 ```{r}
 person <- rep(c("Doctor","Butcher","Firefighter","Construction Worker"),each=3)
@@ -81,7 +78,11 @@ agree <- c(0,92,8,3,65,32,1,60,39,3,58,39)
 agr_df <- data.frame(person,Likelihood,agree)
 
 library(ggplot2)
-ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
+library(grid)
+library(gridExtra)
+library(png)
+
+my_graph <- ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
   geom_bar(stat="identity", width=0.75)+
   scale_fill_manual(values=c("#E37B71","#58AD58","#7595C7"))+
   scale_x_discrete(breaks=c("Doctor",
@@ -100,11 +101,12 @@ ggplot(agr_df, aes(x=person, y=agree, group=Likelihood, fill=Likelihood))+
   theme(plot.margin = unit(c(3,0,0,0),"cm"),
         legend.position=c(0.5,1.25))+
   labs(x=" ", y="Percentage of participants")+
-  coord_fixed(ratio=0.025)
-```
+  coord_fixed(ratio=0.038)
 
-```{r, echo=FALSE, out.width="400px"}
-knitr::include_graphics("datavis_figs/ques_8.png")
+lay <- rbind(c(1,1,2,2),
+             c(1,1,2,2))
+image <-  rasterGrob(as.raster(readPNG("datavis_figs/Cao1A.png")))
+grid.arrange(image,my_graph,layout_matrix=lay)
 ```
 
 ```{r, eval=FALSE, echo=FALSE}
@@ -144,7 +146,10 @@ new_df <- data.frame(group1,scores,SE)
 
 library(ggplot2)
 library(grid)
-ggplot(new_df, aes(x=group1, y=scores))+
+library(gridExtra)
+library(png)
+
+my_graph <- ggplot(new_df, aes(x=group1, y=scores))+
   geom_bar(stat="identity", position=position_dodge(width = 0.8), width = 0.7,
            fill=c("#E37B71","#87AB52","#A082B5","#E37B71","#87AB52","#A082B5"))+
   scale_x_continuous(breaks=c(0.4,1.2,2,3.4,4.2,5),
@@ -160,23 +165,21 @@ ggplot(new_df, aes(x=group1, y=scores))+
                 width=.2,
                 color="black")+
   labs(x=" ",y="P(Target=Doctor)")+
-  theme_classic(base_size=12)+
+  theme_classic(base_size=8)+
   theme(legend.title = element_blank())+
   annotation_custom(grobTree(textGrob("Men Performed Surgery\nn = 152", x=0.22,
-                                      y=0.969, gp=gpar(fontsize=8))))+
+                                      y=0.969, gp=gpar(fontsize=6))))+
   annotation_custom(grobTree(textGrob("Women Performed Surgery\nn = 152", x=.68,
-                                      y=0.969, gp=gpar(fontsize=8))))
+                                      y=0.969, gp=gpar(fontsize=6))))+
+  coord_fixed(ratio=0.07)
+
+lay <- rbind(c(1,1,2,2),
+             c(1,1,2,2))
+image <-  rasterGrob(as.raster(readPNG("datavis_figs/ques_8.png")))
+grid.arrange(image,my_graph,layout_matrix=lay)
+
 ```
 
-
-
-
-
-
-
-```{r, echo=FALSE, out.width="400px"}
-knitr::include_graphics("datavis_figs/ques_6_7.png")
-```
 
 ```{r}
 y <- c(rep(-2,1),rep(-1.5,1),rep(-1,2),rep(-0.5,2),rep(0,8),rep(0.5,14),rep(1,14),rep(1.5,13),
@@ -185,6 +188,9 @@ x <- c(rep(0,114))
 df <- data.frame(x,y)
 
 library(ggplot2)
+library(grid)
+library(gridExtra)
+library(png)
 
 g1<- ggplot(df, aes(x=y))+
   geom_histogram(binwidth=0.5, color="black", fill="#53B7BD")+
@@ -224,7 +230,8 @@ g2 <- ggplot(df, aes(x=y))+
   theme(plot.title = element_text(hjust = 0.5))+
   coord_fixed(ratio=0.35)
   
-library(gridExtra)
-grid.arrange(g1, g2, nrow=2)
+image <-  rasterGrob(as.raster(readPNG("datavis_figs/ques_6_7.png")))
+lay <- rbind(c(1,1,2,2),c(1,1,3,3))
+grid.arrange(image,g1,g2, layout_matrix = lay)
 ```
 
