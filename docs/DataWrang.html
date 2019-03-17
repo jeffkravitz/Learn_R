@@ -11,7 +11,7 @@
 
 
 
-<title>Resources</title>
+<title>Data Wrangling</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -267,101 +264,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -409,42 +311,96 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Resources</h1>
+<h1 class="title toc-ignore">Data Wrangling</h1>
 
 </div>
 
 
-<div id="additional-r-resources" class="section level1">
-<h1>Additional R resources</h1>
-<div id="crump" class="section level2">
-<h2>Crump</h2>
+<div id="flanker-task" class="section level2">
+<h2>Flanker task</h2>
+<p>In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers).</p>
+<p>For example, the stimulus could be “HHH”, and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be “HSH”, and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus.</p>
+<p>The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials.</p>
+</div>
+<div id="load-the-data-and-libraries-you-will-use" class="section level2">
+<h2>Load the data and libraries you will use</h2>
+<p>I will help you with some sample code that compiles all of the text files in a single long format data frame.</p>
+<p>The data is contained in this .zip file: <a href="https://crumplab.github.io/psyc7709/Presentations/FlankerData.zip">FlankerData.zip</a></p>
+<p>The code chunk below assumes that you have placed the folder FlankerData into your R project folder.</p>
+<pre class="r"><code>library(data.table)
+library(dplyr)
+library(ggplot2)
+
+
+# get the file names
+file_names &lt;- list.files(path=&quot;FlankerData&quot;)
+
+# create headers for each column
+the_headers &lt;- c(&quot;stimulus&quot;,&quot;congruency&quot;,&quot;proportion&quot;,
+                 &quot;block&quot;,&quot;condition&quot;,&quot;dualtask&quot;,&quot;unknown&quot;,
+                 &quot;stimulus_onset&quot;,&quot;response_time&quot;,&quot;response&quot;,&quot;subject&quot;)
+# Load data
+# create empty dataframe
+all_data&lt;-data.frame()
+
+# loop to add each file to the dataframe
+for(i in file_names){
+  one_subject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
+  names(one_subject) &lt;- the_headers
+  one_subject$subject &lt;- rep(i,dim(one_subject)[1])
+  one_subject &lt;- cbind(one_subject, trial= 1:dim(one_subject)[1])
+  all_data &lt;- rbind(all_data,one_subject)
+}</code></pre>
+</div>
+<div id="pre-processing" class="section level2">
+<h2>Pre-processing</h2>
+<div id="get-accuracy-for-each-trial" class="section level3">
+<h3>get accuracy for each trial</h3>
+<p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
+</div>
+<div id="get-reaction-time-on-each-trial" class="section level3">
+<h3>Get Reaction time on each trial</h3>
+<p>The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.</p>
+<p>**<a href="tip:**" class="uri">tip:**</a> notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.</p>
+</div>
+</div>
+<div id="checks" class="section level2">
+<h2>Checks</h2>
+<p>Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.</p>
+<div id="exclusion" class="section level3">
+<h3>Exclusion</h3>
+<p>It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms</p>
+</div>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div id="reaction-time-analysis" class="section level3">
+<h3>Reaction Time analysis</h3>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://crumplab.github.io/statistics/">Matt Crump’s new stats book</a></p></li>
-<li><p><a href="https://crumplab.github.io/programmingforpsych/">Matt Crump’s older programming book</a></p></li>
-<li><p><a href="https://crumplab.github.io/statisticsLab/">Matt Crump’s lab manual</a></p></li>
+<li><p>Get the individual subject mean reaction times for <strong>correct</strong> congruent and incongruent trials.</p></li>
+<li><p>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</p></li>
+<li><p>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</p></li>
 </ol>
+<p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
 </div>
-<div id="open-source-textbooks" class="section level2">
-<h2>Open source textbooks</h2>
+<div id="exploratory-analysis" class="section level3">
+<h3>Exploratory analysis</h3>
+<p>Multiple questions may often be asked of data, especially questions that may not have been of original interest to the researchers.</p>
+<p>In flanker experiments, like this one, it is well known that the flanker effect is modulated by the nature of the previous trial. Specifically, the flanker effect on trial n (the current trial), is larger when the previous trial (trial n-1) involved a congruent item, compared to an incongruent item.</p>
+<p>Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency.</p>
+<p>First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:</p>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://compcogscisydney.org/learning-statistics-with-r/">Danielle Navarro’s free Psych Stats textbook using R</a></p></li>
-<li><p><a href="http://compcogscisydney.org/psyr/">Daniell Navarro’s recently made website for introducing R</a></p></li>
-<li><p><a href="https://bookdown.org/yihui/rmarkdown/">Guide for R Markdown</a></p></li>
+<li>trial n congruent : trial n-1 congruent</li>
+<li>trial n incongruent : trial n-1 congruent</li>
+<li>trial n congruent : trial n-1 incongruent</li>
+<li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
-</div>
-<div id="other" class="section level2">
-<h2>Other</h2>
-<ol style="list-style-type: decimal">
-<li><p><a href="https://stackoverflow.com">Stackoverflow</a></p></li>
-<li><p><a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal Template</a></p></li>
-</ol>
+<p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
 </div>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 

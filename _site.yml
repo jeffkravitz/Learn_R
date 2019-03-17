@@ -10,6 +10,8 @@ navbar:
       href: Dictionary.html
     - text: "Data Visualization"
       href: DataVis.html
+    - text: "Data Wrangling"
+      href: DataWrang.html
     - text: "Notes"
       href: Notes.html
     - text: "Resources"
