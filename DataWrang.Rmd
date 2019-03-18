@@ -76,8 +76,6 @@ new_df_1 <- all_data %>%
   mutate(upper_answer = toupper(all_data$response),
          correct_answer = correct_answer,
          accuracy=upper_answer == correct_answer)
-
-new_df_1
 ```
 
 ### Get Reaction time on each trial
@@ -91,8 +89,6 @@ library(dplyr)
 
 new_df_2 <- new_df_1 %>%
   mutate(reaction_time = new_df_1$response_time - new_df_1$stimulus_onset)
-
-new_df_2
 ```
 
 
@@ -141,7 +137,12 @@ new_df_4
 It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
 
 ```{r}
+library(dplyr)
 
+new_df_2$reaction_time <- as.double(new_df_2$reaction_time)
+
+new_df_5 <- new_df_2 %>%
+  filter(reaction_time <= 2000*(10^(-6)))
 ```
 
 ## Analysis
@@ -151,6 +152,14 @@ It is common to exclude Reaction times that are very slow. There are many method
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
 ```{r}
+library(dplyr)
+
+new_df_2$congruency <- as.factor(new_df_2$congruency)
+
+new_df_6 <- new_df_2 %>%
+  filter(accuracy == TRUE) %>%
+  group_by(subject, congruency) %>%
+  dplyr::summarise(mean_reaction = mean(reaction_time))
 
 ```
 
