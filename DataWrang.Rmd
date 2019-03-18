@@ -65,8 +65,19 @@ for(i in file_names){
 A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
 
 ```{r}
+library(dplyr)
 
+correct_answer <- c()
+for (i in 1:4224) {
+  correct_answer[i] = strsplit(all_data$stimulus, split = "")[[i]][2]
+}
 
+new_df_1 <- all_data %>%
+  mutate(upper_answer = toupper(all_data$response),
+         correct_answer = correct_answer,
+         accuracy=upper_answer == correct_answer)
+
+new_df_1
 ```
 
 ### Get Reaction time on each trial
@@ -76,7 +87,12 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 **tip:** notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.
 
 ```{r}
+library(dplyr)
 
+new_df_2 <- new_df_1 %>%
+  mutate(reaction_time = new_df_1$response_time - new_df_1$stimulus_onset)
+
+new_df_2
 ```
 
 
@@ -85,10 +101,39 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
 
 ```{r}
+library(plyr)
+library(dplyr)
+
+new_df_2$subject <- as.factor(new_df_2$subject)
+
+new_df_3 <- new_df_2 %>%
+  group_by(subject) %>%
+  summarise(completed_trials = plyr::count(new_df_2$subject))
+
+new_df_4 <- new_df_2 %>%
+  filter(congruency=="C") 
+
+int_accuracy <- c()
+for (i in 1:dim(new_df_4)[1]) {
+  if (new_df_4[i,]$accuracy == TRUE) {
+    int_accuracy[i] = 1
+  }
+  else if (new_df_4[i,]$accuracy == FALSE) {
+    int_accuracy[i] = 0
+  }
+}
+
+new_df_4 <- cbind(new_df_4, int_accuracy = int_accuracy)
+
+new_df_4 <- new_df_4 %>%
+  group_by(subject) %>%
+  dplyr::summarise(mean_cong_acc = mean(int_accuracy, na.rm = TRUE),
+            mean_cong_react = mean(reaction_time, na.rm = TRUE))
 
 
+new_df_3
+new_df_4
 ```
-
 
 
 ### Exclusion
