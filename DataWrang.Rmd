@@ -103,7 +103,7 @@ library(dplyr)
 new_df_2$subject <- as.factor(new_df_2$subject)
 
 new_df_3 <- new_df_2 %>%
-  group_by(subject) %>%
+  group_by(subject, congruency) %>%
   summarise(completed_trials = plyr::count(new_df_2$subject))
 
 new_df_4 <- new_df_2 %>%
@@ -161,14 +161,23 @@ new_df_6 <- new_df_2 %>%
   group_by(subject, congruency) %>%
   dplyr::summarise(mean_reaction = mean(reaction_time))
 
+new_df_6
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
 ```{r}
+library(dplyr)
+library(psych)
 
-  
-  
+new_df_2$congruency <- as.factor(new_df_2$congruency)
+
+new_df_7 <- new_df_2 %>%
+  group_by(congruency) %>%
+  dplyr::summarise(mean_react = mean(reaction_time),
+                   std_err = describe(reaction_time)[[13]])
+
+new_df_7
 ```
 
 3. Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect

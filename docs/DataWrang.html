@@ -388,7 +388,7 @@ library(dplyr)
 new_df_2$subject &lt;- as.factor(new_df_2$subject)
 
 new_df_3 &lt;- new_df_2 %&gt;%
-  group_by(subject) %&gt;%
+  group_by(subject, congruency) %&gt;%
   summarise(completed_trials = plyr::count(new_df_2$subject))
 
 new_df_4 &lt;- new_df_2 %&gt;%
@@ -476,10 +476,45 @@ new_df_2$congruency &lt;- as.factor(new_df_2$congruency)
 new_df_6 &lt;- new_df_2 %&gt;%
   filter(accuracy == TRUE) %&gt;%
   group_by(subject, congruency) %&gt;%
-  dplyr::summarise(mean_reaction = mean(reaction_time))</code></pre>
+  dplyr::summarise(mean_reaction = mean(reaction_time))
+
+new_df_6</code></pre>
+<pre><code>## # A tibble: 44 x 3
+## # Groups:   subject [22]
+##    subject congruency mean_reaction
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;
+##  1 1.txt   C              2.76e-321
+##  2 1.txt   I              2.73e-321
+##  3 10.txt  C              5.37e-321
+##  4 10.txt  I              5.78e-321
+##  5 11.txt  C              3.53e-321
+##  6 11.txt  I              4.22e-321
+##  7 12.txt  C              3.03e-321
+##  8 12.txt  I              2.81e-321
+##  9 13.txt  C              2.72e-321
+## 10 13.txt  I              3.15e-321
+## # … with 34 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</p></li>
-<li><p>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</p></li>
+<li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
+</ol>
+<pre class="r"><code>library(dplyr)
+library(psych)
+
+new_df_2$congruency &lt;- as.factor(new_df_2$congruency)
+
+new_df_7 &lt;- new_df_2 %&gt;%
+  group_by(congruency) %&gt;%
+  dplyr::summarise(mean_react = mean(reaction_time),
+                   std_err = describe(reaction_time)[[13]])
+
+new_df_7</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   congruency mean_react std_err
+##   &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;
+## 1 C           3.75e-321       0
+## 2 I           3.96e-321       0</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
 </div>
