@@ -331,7 +331,19 @@ $(document).ready(function () {
 <li>Assume an alpha criteria of p&lt;.05 for a directional test. What is the critical value for a positive mean difference? In other words, how large must a positive mean difference be in order to occur less than 5% of the time under the null?</li>
 <li>Assume an alpha criteria of p&lt;.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?</li>
 </ol>
-<pre class="r"><code>mean_dif &lt;- c()
+<pre class="r"><code># Critical value for a directional mean difference test
+mean_dif &lt;- c()
+for (i in 1:100000) {
+  sample_A &lt;- rnorm(10,0,1)
+  sample_B &lt;- rnorm(10,0,1)
+  mean_dif[i] &lt;- mean(sample_A)-mean(sample_B)
+}
+critical_value &lt;- quantile(mean_dif, 0.95)
+critical_value</code></pre>
+<pre><code>##       95% 
+## 0.7348881</code></pre>
+<pre class="r"><code># Critical value for a non-directional mean difference test
+mean_dif &lt;- c()
 for (i in 1:100000) {
   sample_A &lt;- rnorm(10,0,1)
   sample_B &lt;- rnorm(10,0,1)
@@ -340,7 +352,7 @@ for (i in 1:100000) {
 critical_value &lt;- quantile(mean_dif, 0.95)
 critical_value</code></pre>
 <pre><code>##       95% 
-## 0.8789289</code></pre>
+## 0.8803674</code></pre>
 </div>
 <div id="t-distribution" class="section level2">
 <h2>t-distribution</h2>
@@ -355,7 +367,7 @@ critical_value</code></pre>
 analytic_t &lt;- rt(10000, 9)
 analytic_t_prob &lt;- ecdf(analytic_t)(c(0.5,1,1.5,2,2.5))
 analytic_t_prob</code></pre>
-<pre><code>## [1] 0.6836 0.8283 0.9195 0.9633 0.9861</code></pre>
+<pre><code>## [1] 0.6765 0.8258 0.9158 0.9636 0.9843</code></pre>
 <pre class="r"><code># Simulated t probabilities with 10,000 samples
 t_values &lt;- c()
 for (i in 1:100000) {
@@ -366,11 +378,11 @@ for (i in 1:100000) {
 }
 sim_t_probs_10000 &lt;- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
 sim_t_probs_10000</code></pre>
-<pre><code>## [1] 0.68506 0.82861 0.91589 0.96179 0.98321</code></pre>
+<pre><code>## [1] 0.68598 0.82960 0.91655 0.96231 0.98345</code></pre>
 <pre class="r"><code># Difference between analytic and simulated (10,000 samples) t probabilites
 t_dif_10000 &lt;- analytic_t_prob - sim_t_probs_10000
 t_dif_10000</code></pre>
-<pre><code>## [1] -0.00146 -0.00031  0.00361  0.00151  0.00289</code></pre>
+<pre><code>## [1] -0.00948 -0.00380 -0.00075  0.00129  0.00085</code></pre>
 <pre class="r"><code># Simulated t probabilities with 100 samples
 t_values &lt;- c()
 for (i in 1:100) {
@@ -381,11 +393,11 @@ for (i in 1:100) {
 }
 sim_t_probs_100 &lt;- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
 sim_t_probs_100</code></pre>
-<pre><code>## [1] 0.69 0.81 0.92 0.95 0.97</code></pre>
+<pre><code>## [1] 0.67 0.88 0.97 0.98 0.99</code></pre>
 <pre class="r"><code># Difference between analytic and simulated (100 samples) t probabilites
 t_dif_100 &lt;- analytic_t_prob - sim_t_probs_100
 t_dif_100</code></pre>
-<pre><code>## [1] -0.0064  0.0183 -0.0005  0.0133  0.0161</code></pre>
+<pre><code>## [1]  0.0065 -0.0542 -0.0542 -0.0164 -0.0057</code></pre>
 <pre class="r"><code># Simulated t probabilities with 100,000 samples
 t_values &lt;- c()
 for (i in 1:100000) {
@@ -396,11 +408,11 @@ for (i in 1:100000) {
 }
 sim_t_probs_100000 &lt;- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
 sim_t_probs_100000</code></pre>
-<pre><code>## [1] 0.68808 0.83056 0.91711 0.96169 0.98236</code></pre>
+<pre><code>## [1] 0.68593 0.82884 0.91730 0.96275 0.98385</code></pre>
 <pre class="r"><code># Difference between analytic and simulated (100,000 samples) t probabilites
 t_dif_100000 &lt;- analytic_t_prob - sim_t_probs_100000
 t_dif_100000</code></pre>
-<pre><code>## [1] -0.00448 -0.00226  0.00239  0.00161  0.00374</code></pre>
+<pre><code>## [1] -0.00943 -0.00304 -0.00150  0.00085  0.00045</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
@@ -419,8 +431,8 @@ for (i in 1:100000) {
 }
 critical_value_10 &lt;- quantile(cor_sim, 0.95)
 critical_value_10</code></pre>
-<pre><code>##      95% 
-## 0.632604</code></pre>
+<pre><code>##       95% 
+## 0.6325001</code></pre>
 <pre class="r"><code># Simulation of critical correlation values, 10,000 samples of size 100
 cor_sim &lt;- c()
 for (i in 1:100000) {
@@ -430,8 +442,8 @@ for (i in 1:100000) {
 }
 critical_value_100 &lt;- quantile(cor_sim, 0.95)
 critical_value_100</code></pre>
-<pre><code>##      95% 
-## 0.196162</code></pre>
+<pre><code>##       95% 
+## 0.1969034</code></pre>
 </div>
 <div id="f-values" class="section level2">
 <h2>F-values</h2>
@@ -460,7 +472,7 @@ for (i in 1:10000) {
 critical_value &lt;- quantile(sim_f_values, 0.95)
 critical_value</code></pre>
 <pre><code>##      95% 
-## 4.226342</code></pre>
+## 4.277724</code></pre>
 </div>
 </div>
 
