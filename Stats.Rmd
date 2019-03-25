@@ -118,6 +118,22 @@ t_dif_100000 <- analytic_t_prob - sim_t_probs_100000
 t_dif_100000
 ```
 
+With replicate:
+```{r}
+analytic_p <- 1 - (pt(c(0.5,1,1.5,2,2.5), 9))
+analytic_p
+
+t_s <- replicate(10000, t.test(rnorm(10,0,1), mu=0)$statistic[[1]])
+sim_p <- c(length(t_s[t_s > 0.5])/10000,
+           length(t_s[t_s > 1])/10000,
+           length(t_s[t_s > 1.5])/10000,
+           length(t_s[t_s > 2])/10000,
+           length(t_s[t_s > 2.5])/10000)
+sim_p
+
+analytic_p - sim_p
+```
+
 ## Correlation
 
 Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly.
@@ -188,4 +204,5 @@ critical_value <- quantile(sim_f_values, 0.95)
 critical_value
 ```
 
-
+sum_out <- summary(aov(x~y))
+sum_out[[1]]$'F value'[1]

@@ -418,6 +418,20 @@ sim_t_probs_100000</code></pre>
 t_dif_100000 &lt;- analytic_t_prob - sim_t_probs_100000
 t_dif_100000</code></pre>
 <pre><code>## [1] -0.00850 -0.00246 -0.00023  0.00301  0.00061</code></pre>
+<p>With replicate:</p>
+<pre class="r"><code>analytic_p &lt;- 1 - (pt(c(0.5,1,1.5,2,2.5), 9))
+analytic_p</code></pre>
+<pre><code>## [1] 0.31453565 0.17171820 0.08392533 0.03827641 0.01693091</code></pre>
+<pre class="r"><code>t_s &lt;- replicate(10000, t.test(rnorm(10,0,1), mu=0)$statistic[[1]])
+sim_p &lt;- c(length(t_s[t_s &gt; 0.5])/10000,
+           length(t_s[t_s &gt; 1])/10000,
+           length(t_s[t_s &gt; 1.5])/10000,
+           length(t_s[t_s &gt; 2])/10000,
+           length(t_s[t_s &gt; 2.5])/10000)
+sim_p</code></pre>
+<pre><code>## [1] 0.3172 0.1688 0.0801 0.0371 0.0179</code></pre>
+<pre class="r"><code>analytic_p - sim_p</code></pre>
+<pre><code>## [1] -0.0026643501  0.0029181981  0.0038253280  0.0011764119 -0.0009690862</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
@@ -437,7 +451,7 @@ for (i in 1:100000) {
 critical_value_10 &lt;- quantile(cor_sim, 0.95)
 critical_value_10</code></pre>
 <pre><code>##       95% 
-## 0.6330129</code></pre>
+## 0.6329138</code></pre>
 <pre class="r"><code># Simulation of critical correlation values, 10,000 samples of size 100
 cor_sim &lt;- c()
 for (i in 1:100000) {
@@ -447,8 +461,8 @@ for (i in 1:100000) {
 }
 critical_value_100 &lt;- quantile(cor_sim, 0.95)
 critical_value_100</code></pre>
-<pre><code>##      95% 
-## 0.196685</code></pre>
+<pre><code>##       95% 
+## 0.1965721</code></pre>
 </div>
 <div id="f-values" class="section level2">
 <h2>F-values</h2>
@@ -477,7 +491,8 @@ for (i in 1:10000) {
 critical_value &lt;- quantile(sim_f_values, 0.95)
 critical_value</code></pre>
 <pre><code>##      95% 
-## 4.197191</code></pre>
+## 4.302551</code></pre>
+<p>sum_out &lt;- summary(aov(x~y)) sum_out[[1]]$‘F value’[1]</p>
 </div>
 </div>
 
