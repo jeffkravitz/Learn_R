@@ -12,6 +12,8 @@ navbar:
       href: DataVis.html
     - text: "Data Wrangling"
       href: DataWrang.html
+    - text: "Statistics Problems"
+      href: Stats.html
     - text: "Notes"
       href: Notes.html
     - text: "Resources"

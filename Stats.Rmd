@@ -1,0 +1,176 @@
+---
+title: "Statistics Problems"
+output:
+  html_document:
+    toc: false
+    collapsed: false
+    number_sections: false
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+
+# Statistics Problems
+
+## Null distribution of mean differences
+
+If you take two random samples from the same distribution they can be different because of random sampling. This question asks you to construct a null-distribution using simulation.
+
+    Assume your samples come from a normal distribution with mean =0, sd =1. (use rnorm)
+    Assume sample size for each sample is n =10 (e.g., rnorm(10,0,1))
+    Create the null-distribution: Run a simulation 10,000 times that finds the difference between means of sample A and B. You should have a vector of 10,000 difference scores
+    Assume an alpha criteria of p<.05 for a directional test. What is the critical value for a positive mean difference? In other words, how large must a positive mean difference be in order to occur less than 5% of the time under the null?
+    Assume an alpha criteria of p<.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?
+
+```{r}
+
+mean_dif <- c()
+for (i in 1:100000) {
+  sample_A <- rnorm(10,0,1)
+  sample_B <- rnorm(10,0,1)
+  mean_dif[i] <- abs(mean(sample_A)-mean(sample_B))
+}
+critical_value <- quantile(mean_dif, 0.95)
+critical_value
+```
+
+
+## t-distribution
+
+Show that the properties of a simulated t-distribution are the same as the properties of the analytic t-distribution. Assume df = 9.
+
+    For example, what are the probabilities of t(9) >= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the qt() function.
+
+    Create a simulated t-distribution for the null hypothesis with df=9. Here, the model situation involves taking samples of size n=10 from a normal distribution. The t-value is computed for each sample (sample mean - 0)/SEM. The process is repeated 10,000 times, and each t-value is saved. The resulting 10,000 t-values are the simulated t-distribution.
+
+    Using the simulated t-distribution, find the probability of t(9) >= .5, 1, 1.5, 2, and 2.5
+
+    Compare the two sets of probabilities to show that the difference is small. What happens to the difference if the simulation is repeated fewer times (e.g., 100) vs. more times (e.g., 100,000)
+
+
+```{r}
+# Analytic t probabilities
+analytic_t <- rt(10000, 9)
+analytic_t_prob <- ecdf(analytic_t)(c(0.5,1,1.5,2,2.5))
+analytic_t_prob
+
+# Simulated t probabilities with 10,000 samples
+t_values <- c()
+for (i in 1:100000) {
+  sample_T <- rnorm(10,0,1)
+
+  t_values[i] <- (mean(sample_T) - 0)/(sd(sample_T)/sqrt(length(sample_T)))
+  
+}
+sim_t_probs_10000 <- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
+sim_t_probs_10000
+
+# Difference between analytic and simulated (10,000 samples) t probabilites
+t_dif_10000 <- analytic_t_prob - sim_t_probs_10000
+t_dif_10000
+
+# Simulated t probabilities with 100 samples
+t_values <- c()
+for (i in 1:100) {
+  sample_T <- rnorm(10,0,1)
+
+  t_values[i] <- (mean(sample_T) - 0)/(sd(sample_T)/sqrt(length(sample_T)))
+  
+}
+sim_t_probs_100 <- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
+sim_t_probs_100
+
+# Difference between analytic and simulated (100 samples) t probabilites
+t_dif_100 <- analytic_t_prob - sim_t_probs_100
+t_dif_100
+
+# Simulated t probabilities with 100,000 samples
+t_values <- c()
+for (i in 1:100000) {
+  sample_T <- rnorm(10,0,1)
+
+  t_values[i] <- (mean(sample_T) - 0)/(sd(sample_T)/sqrt(length(sample_T)))
+  
+}
+sim_t_probs_100000 <- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
+sim_t_probs_100000
+
+# Difference between analytic and simulated (100,000 samples) t probabilites
+t_dif_100000 <- analytic_t_prob - sim_t_probs_100000
+t_dif_100000
+```
+
+## Correlation
+
+Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly.
+
+    Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)
+
+    Find the critical value such that the absolute value of the correlation occurs less than 5% of the time by chance.
+
+    Find the critical value when the sample-size is increased to 100
+
+```{r}
+# Simulation of critical correlation values, 10,000 samples of size 10
+cor_sim <- c()
+for (i in 1:100000) {
+  sample_A <- rnorm(10,0,1)
+  sample_B <- rnorm(10,0,1)
+  cor_sim[i] <- abs(cor(sample_A, sample_B))
+}
+critical_value_10 <- quantile(cor_sim, 0.95)
+critical_value_10
+
+# Simulation of critical correlation values, 10,000 samples of size 100
+cor_sim <- c()
+for (i in 1:100000) {
+  sample_A <- rnorm(100,0,1)
+  sample_B <- rnorm(100,0,1)
+  cor_sim[i] <- abs(cor(sample_A, sample_B))
+}
+critical_value_100 <- quantile(cor_sim, 0.95)
+critical_value_100
+
+```
+
+
+## F-values
+
+There are three groups of different subjects. The means for each subject in each group are below. Calculate the F-value for the main effect of group.
+
+A <- c(1,2,3,4)
+B <- c(3,4,5,6)
+C <- c(5,6,7,8)
+
+F simulation
+
+Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from normal distribution with mean =0 and sd =1.
+
+    Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.
+
+    Using the simulated F-distribution, what is the critical value of F for alpha set at, p<.05
+
+    Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.
+
+```{r}
+group <- c(rep("A",4),rep("B",4),rep("C",4))
+group <- factor(group, levels=group[c(1,5,9)])
+set_scores <- c(1,2,3,4,3,4,5,6,5,6,7,8)
+
+# F value of the given scores
+summary(aov(set_scores ~ group))[[1]][4][[1]][1]
+
+# Critical F value from 10,000 random samples
+sim_f_values <- c()
+for (i in 1:10000) {
+  rand_scores <- rnorm(12, 0, 1)
+  sim_f_values[i] <- summary(aov(rand_scores ~ group))[[1]][4][[1]][1]
+}
+critical_value <- quantile(sim_f_values, 0.95)
+critical_value
+```
+
+
