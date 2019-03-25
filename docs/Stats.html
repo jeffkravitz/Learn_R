@@ -324,11 +324,13 @@ $(document).ready(function () {
 <div id="null-distribution-of-mean-differences" class="section level2">
 <h2>Null distribution of mean differences</h2>
 <p>If you take two random samples from the same distribution they can be different because of random sampling. This question asks you to construct a null-distribution using simulation.</p>
-<pre><code>Assume your samples come from a normal distribution with mean =0, sd =1. (use rnorm)
-Assume sample size for each sample is n =10 (e.g., rnorm(10,0,1))
-Create the null-distribution: Run a simulation 10,000 times that finds the difference between means of sample A and B. You should have a vector of 10,000 difference scores
-Assume an alpha criteria of p&lt;.05 for a directional test. What is the critical value for a positive mean difference? In other words, how large must a positive mean difference be in order to occur less than 5% of the time under the null?
-Assume an alpha criteria of p&lt;.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?</code></pre>
+<ol style="list-style-type: decimal">
+<li>Assume your samples come from a normal distribution with mean =0, sd =1. (use rnorm)</li>
+<li>Assume sample size for each sample is n =10 (e.g., rnorm(10,0,1))</li>
+<li>Create the null-distribution: Run a simulation 10,000 times that finds the difference between means of sample A and B. You should have a vector of 10,000 difference scores</li>
+<li>Assume an alpha criteria of p&lt;.05 for a directional test. What is the critical value for a positive mean difference? In other words, how large must a positive mean difference be in order to occur less than 5% of the time under the null?</li>
+<li>Assume an alpha criteria of p&lt;.05 for a non-directional test. What is the critical value for the absolute value of the mean difference. In other words, how large must the absolute value of the mean difference be in order to occur less than 5% of the time under the null?</li>
+</ol>
 <pre class="r"><code>mean_dif &lt;- c()
 for (i in 1:100000) {
   sample_A &lt;- rnorm(10,0,1)
@@ -343,13 +345,12 @@ critical_value</code></pre>
 <div id="t-distribution" class="section level2">
 <h2>t-distribution</h2>
 <p>Show that the properties of a simulated t-distribution are the same as the properties of the analytic t-distribution. Assume df = 9.</p>
-<pre><code>For example, what are the probabilities of t(9) &gt;= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the qt() function.
-
-Create a simulated t-distribution for the null hypothesis with df=9. Here, the model situation involves taking samples of size n=10 from a normal distribution. The t-value is computed for each sample (sample mean - 0)/SEM. The process is repeated 10,000 times, and each t-value is saved. The resulting 10,000 t-values are the simulated t-distribution.
-
-Using the simulated t-distribution, find the probability of t(9) &gt;= .5, 1, 1.5, 2, and 2.5
-
-Compare the two sets of probabilities to show that the difference is small. What happens to the difference if the simulation is repeated fewer times (e.g., 100) vs. more times (e.g., 100,000)</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>For example, what are the probabilities of t(9) &gt;= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the qt() function.</p></li>
+<li><p>Create a simulated t-distribution for the null hypothesis with df=9. Here, the model situation involves taking samples of size n=10 from a normal distribution. The t-value is computed for each sample (sample mean - 0)/SEM. The process is repeated 10,000 times, and each t-value is saved. The resulting 10,000 t-values are the simulated t-distribution.</p></li>
+<li><p>Using the simulated t-distribution, find the probability of t(9) &gt;= .5, 1, 1.5, 2, and 2.5</p></li>
+<li><p>Compare the two sets of probabilities to show that the difference is small. What happens to the difference if the simulation is repeated fewer times (e.g., 100) vs. more times (e.g., 100,000)</p></li>
+</ol>
 <pre class="r"><code># Analytic t probabilities
 analytic_t &lt;- rt(10000, 9)
 analytic_t_prob &lt;- ecdf(analytic_t)(c(0.5,1,1.5,2,2.5))
@@ -404,11 +405,11 @@ t_dif_100000</code></pre>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
 <p>Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly.</p>
-<pre><code>Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)
-
-Find the critical value such that the absolute value of the correlation occurs less than 5% of the time by chance.
-
-Find the critical value when the sample-size is increased to 100</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)</p></li>
+<li><p>Find the critical value such that the absolute value of the correlation occurs less than 5% of the time by chance.</p></li>
+<li><p>Find the critical value when the sample-size is increased to 100</p></li>
+</ol>
 <pre class="r"><code># Simulation of critical correlation values, 10,000 samples of size 10
 cor_sim &lt;- c()
 for (i in 1:100000) {
@@ -438,11 +439,11 @@ critical_value_100</code></pre>
 <p>A &lt;- c(1,2,3,4) B &lt;- c(3,4,5,6) C &lt;- c(5,6,7,8)</p>
 <p>F simulation</p>
 <p>Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from normal distribution with mean =0 and sd =1.</p>
-<pre><code>Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.
-
-Using the simulated F-distribution, what is the critical value of F for alpha set at, p&lt;.05
-
-Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.</p></li>
+<li><p>Using the simulated F-distribution, what is the critical value of F for alpha set at, p&lt;.05</p></li>
+<li><p>Compare your answer from above to the answer obtained using qf, that can compute the critical value directly.</p></li>
+</ol>
 <pre class="r"><code>group &lt;- c(rep(&quot;A&quot;,4),rep(&quot;B&quot;,4),rep(&quot;C&quot;,4))
 group &lt;- factor(group, levels=group[c(1,5,9)])
 set_scores &lt;- c(1,2,3,4,3,4,5,6,5,6,7,8)
