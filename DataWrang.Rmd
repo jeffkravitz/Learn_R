@@ -34,6 +34,7 @@ The code chunk below assumes that you have placed the folder FlankerData into yo
 library(data.table)
 library(dplyr)
 library(ggplot2)
+library(bit64)
 
 
 # get the file names
@@ -49,7 +50,7 @@ all_data<-data.frame()
 
 # loop to add each file to the dataframe
 for(i in file_names){
-  one_subject <- fread(paste("FlankerData/",i, sep=""))
+  one_subject <- fread(paste("FlankerData/",i, sep=""), integer64 = "double")
   names(one_subject) <- the_headers
   one_subject$subject <- rep(i,dim(one_subject)[1])
   one_subject <- cbind(one_subject, trial= 1:dim(one_subject)[1])

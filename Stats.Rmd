@@ -47,6 +47,15 @@ critical_value <- quantile(mean_dif, 0.95)
 critical_value
 ```
 
+With replicate:
+```{r}
+# Critical value for a directional mean difference test
+quantile(replicate(10000, mean(rnorm(10,0,1))-mean(rnorm(10,0,1))), 0.95)
+
+# Critical value for a non-directional mean difference test
+quantile(replicate(10000, abs(mean(rnorm(10,0,1))-mean(rnorm(10,0,1)))), 0.95)
+```
+
 
 ## t-distribution
 
@@ -71,9 +80,7 @@ analytic_t_prob
 t_values <- c()
 for (i in 1:100000) {
   sample_T <- rnorm(10,0,1)
-
   t_values[i] <- (mean(sample_T) - 0)/(sd(sample_T)/sqrt(length(sample_T)))
-  
 }
 sim_t_probs_10000 <- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
 sim_t_probs_10000
@@ -86,9 +93,7 @@ t_dif_10000
 t_values <- c()
 for (i in 1:100) {
   sample_T <- rnorm(10,0,1)
-
   t_values[i] <- (mean(sample_T) - 0)/(sd(sample_T)/sqrt(length(sample_T)))
-  
 }
 sim_t_probs_100 <- ecdf(t_values)(c(0.5,1,1.5,2,2.5))
 sim_t_probs_100

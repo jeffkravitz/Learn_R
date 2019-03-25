@@ -333,6 +333,7 @@ $(document).ready(function () {
 <pre class="r"><code>library(data.table)
 library(dplyr)
 library(ggplot2)
+library(bit64)
 
 
 # get the file names
@@ -348,7 +349,7 @@ all_data&lt;-data.frame()
 
 # loop to add each file to the dataframe
 for(i in file_names){
-  one_subject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
+  one_subject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;), integer64 = &quot;double&quot;)
   names(one_subject) &lt;- the_headers
   one_subject$subject &lt;- rep(i,dim(one_subject)[1])
   one_subject &lt;- cbind(one_subject, trial= 1:dim(one_subject)[1])
@@ -443,16 +444,16 @@ new_df_3</code></pre>
 <pre><code>## # A tibble: 22 x 3
 ##    subject mean_cong_acc mean_cong_react
 ##    &lt;fct&gt;           &lt;dbl&gt;           &lt;dbl&gt;
-##  1 1.txt           0.917       2.73e-321
-##  2 10.txt          0.948       5.32e-321
-##  3 11.txt          0.938       3.50e-321
-##  4 12.txt          0.927       3.08e-321
-##  5 13.txt          0.896       2.70e-321
-##  6 14.txt          0.969       3.56e-321
-##  7 15.txt          0.990       3.13e-321
-##  8 16.txt          0.958       2.84e-321
-##  9 17.txt          0.969       3.13e-321
-## 10 18.txt          1           3.97e-321
+##  1 1.txt           0.917            551.
+##  2 10.txt          0.948           1075.
+##  3 11.txt          0.938            708.
+##  4 12.txt          0.927            623.
+##  5 13.txt          0.896            545.
+##  6 14.txt          0.969            720.
+##  7 15.txt          0.990            632.
+##  8 16.txt          0.958            573.
+##  9 17.txt          0.969            633.
+## 10 18.txt          1                802.
 ## # … with 12 more rows</code></pre>
 <div id="exclusion" class="section level3">
 <h3>Exclusion</h3>
@@ -486,16 +487,16 @@ new_df_6</code></pre>
 ## # Groups:   subject [22]
 ##    subject congruency mean_reaction
 ##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;
-##  1 1.txt   C              2.76e-321
-##  2 1.txt   I              2.73e-321
-##  3 10.txt  C              5.37e-321
-##  4 10.txt  I              5.78e-321
-##  5 11.txt  C              3.53e-321
-##  6 11.txt  I              4.22e-321
-##  7 12.txt  C              3.03e-321
-##  8 12.txt  I              2.81e-321
-##  9 13.txt  C              2.72e-321
-## 10 13.txt  I              3.15e-321
+##  1 1.txt   C                   557.
+##  2 1.txt   I                   551.
+##  3 10.txt  C                  1085.
+##  4 10.txt  I                  1167.
+##  5 11.txt  C                   714.
+##  6 11.txt  I                   853.
+##  7 12.txt  C                   613.
+##  8 12.txt  I                   568.
+##  9 13.txt  C                   549.
+## 10 13.txt  I                   636.
 ## # … with 34 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
@@ -514,8 +515,8 @@ new_df_7</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   congruency mean_react std_err
 ##   &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;
-## 1 C           3.75e-321       0
-## 2 I           3.96e-321       0</code></pre>
+## 1 C                757.    7.78
+## 2 I                800.    7.83</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
