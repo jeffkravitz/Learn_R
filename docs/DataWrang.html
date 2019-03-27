@@ -1052,6 +1052,36 @@ ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congr
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
+<pre class="r"><code>library(dplyr)
+
+reaction_times &lt;- included_data %&gt;%
+  group_by(subject, congruency) %&gt;%
+  dplyr::summarise(mean_reaction = mean(reaction_time))
+
+congruent_reaction &lt;- reaction_times %&gt;%
+  filter(congruency==&quot;C&quot;)
+incrongruent_reaction &lt;- reaction_times %&gt;%
+  filter(congruency==&quot;I&quot;)
+
+flanker &lt;- incrongruent_reaction$mean_reaction - congruent_reaction$mean_reaction
+flanker_mean &lt;- mean(flanker)
+flanker_std_error &lt;- sd(flanker)/(sqrt(length(flanker)))
+flanker_df &lt;- data.frame(flanker_mean = flanker_mean,
+                         standard_error = flanker_std_error,
+                         x = &quot;Flanker Effect&quot;)
+
+library(ggplot2)
+
+ggplot(flanker_df, aes(x=x, y=flanker_mean))+
+  geom_bar(stat=&quot;identity&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Mean Flanker Effect&quot;)+
+  geom_errorbar(aes(ymin=flanker_mean-flanker_std_error,
+                    ymax=flanker_mean+flanker_std_error),
+                position=position_dodge(width=0.9),
+                width=.1,
+                color=&quot;black&quot;)</code></pre>
+<p><img src="DataWrang_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="exploratory-analysis" class="section level3">
 <h3>Exploratory analysis</h3>

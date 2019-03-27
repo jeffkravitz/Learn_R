@@ -206,7 +206,35 @@ ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congr
 **tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
 ```{r}
+library(dplyr)
 
+reaction_times <- included_data %>%
+  group_by(subject, congruency) %>%
+  dplyr::summarise(mean_reaction = mean(reaction_time))
+
+congruent_reaction <- reaction_times %>%
+  filter(congruency=="C")
+incrongruent_reaction <- reaction_times %>%
+  filter(congruency=="I")
+
+flanker <- incrongruent_reaction$mean_reaction - congruent_reaction$mean_reaction
+flanker_mean <- mean(flanker)
+flanker_std_error <- sd(flanker)/(sqrt(length(flanker)))
+flanker_df <- data.frame(flanker_mean = flanker_mean,
+                         standard_error = flanker_std_error,
+                         x = "Flanker Effect")
+
+library(ggplot2)
+
+ggplot(flanker_df, aes(x=x, y=flanker_mean))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Mean Flanker Effect")+
+  geom_errorbar(aes(ymin=flanker_mean-flanker_std_error,
+                    ymax=flanker_mean+flanker_std_error),
+                position=position_dodge(width=0.9),
+                width=.1,
+                color="black")
 
 ```
 
