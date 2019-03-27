@@ -185,6 +185,7 @@ descriptives_by_group <- reaction_time_correct_trials %>%
 knitr::kable(descriptives_by_group)
 
 library(ggplot2)
+
 ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congruency))+
          geom_bar(stat = "identity", width=0.75)+
          theme_classic(base_size=12)+
@@ -198,7 +199,6 @@ ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congr
                 color="black")+
          theme(plot.title = element_text(hjust = 0.5))+
          coord_cartesian(ylim=c(500,850))
-
 ```
 
 3. Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect
@@ -235,7 +235,6 @@ ggplot(flanker_df, aes(x=x, y=flanker_mean))+
                 position=position_dodge(width=0.9),
                 width=.1,
                 color="black")
-
 ```
 
 
@@ -247,7 +246,7 @@ In flanker experiments, like this one, it is well known that the flanker effect 
 
 Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency. 
 
-First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:
+First get the subject means for each condition, then create a table and plot for the overall means and SEMs in each condition. This should include:
 
 1. trial n congruent : trial n-1 congruent
 2. trial n incongruent : trial n-1 congruent
@@ -257,13 +256,44 @@ First get teh subject means for each condition, then create a table and plot for
 **tip:** be careful, note that the first trial in each experiment can not be included, because it had no preceding trial
 
 ```{r}
+prev_congruency <- 0
 
+for (i in 2:length(included_data$subject)) {
+  if (included_data$subject[i]==included_data$subject[i-1]) {
+    prev_congruency[i] <- included_data$congruency[i-1]
+  }
+  else {
+    prev_congruency[i] <- 0
+  }
+}
+
+prev_analysis <- included_data %>%
+  mutate(prev_congruency = prev_congruency) %>%
+  filter(prev_congruency != 0, accuracy == TRUE) %>%
+  group_by(subject,congruency,prev_congruency) %>%
+  dplyr::summarise(mean_reaction = mean(reaction_time))
+
+prev_analysis <- prev_analysis %>%
+  group_by(congruency,prev_congruency) %>%
+  dplyr::summarise(mean_react = mean(mean_reaction),
+                   standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(prev_analysis)
+
+library(ggplot2)
+
+ggplot(prev_analysis, aes(x=congruency, y=mean_react, fill=prev_congruency))+
+         geom_bar(stat = "identity", width=0.75, position=position_dodge(width=0.9))+
+         theme_classic(base_size=12)+
+         labs(x="Congruency",
+              y="Mean Reaction Time (milliseconds)",
+              title = "Mean Reaction Time by Congruency and Previous Congruency")+
+         geom_errorbar(aes(ymin=mean_react-standard_error,
+                           ymax=mean_react+standard_error),
+                       position=position_dodge(width=0.9),
+                width=.1,
+                color="black")+
+         theme(plot.title = element_text(hjust = 0))+
+         coord_cartesian(ylim=c(500,850))
 
 ```
-
-
-
-
-
-
-

@@ -1034,6 +1034,7 @@ knitr::kable(descriptives_by_group)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>library(ggplot2)
+
 ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congruency))+
          geom_bar(stat = &quot;identity&quot;, width=0.75)+
          theme_classic(base_size=12)+
@@ -1088,7 +1089,7 @@ ggplot(flanker_df, aes(x=x, y=flanker_mean))+
 <p>Multiple questions may often be asked of data, especially questions that may not have been of original interest to the researchers.</p>
 <p>In flanker experiments, like this one, it is well known that the flanker effect is modulated by the nature of the previous trial. Specifically, the flanker effect on trial n (the current trial), is larger when the previous trial (trial n-1) involved a congruent item, compared to an incongruent item.</p>
 <p>Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency.</p>
-<p>First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:</p>
+<p>First get the subject means for each condition, then create a table and plot for the overall means and SEMs in each condition. This should include:</p>
 <ol style="list-style-type: decimal">
 <li>trial n congruent : trial n-1 congruent</li>
 <li>trial n incongruent : trial n-1 congruent</li>
@@ -1096,6 +1097,81 @@ ggplot(flanker_df, aes(x=x, y=flanker_mean))+
 <li>trial n incongruent : trial n-1 incongruent</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
+<pre class="r"><code>prev_congruency &lt;- 0
+
+for (i in 2:length(included_data$subject)) {
+  if (included_data$subject[i]==included_data$subject[i-1]) {
+    prev_congruency[i] &lt;- included_data$congruency[i-1]
+  }
+  else {
+    prev_congruency[i] &lt;- 0
+  }
+}
+
+prev_analysis &lt;- included_data %&gt;%
+  mutate(prev_congruency = prev_congruency) %&gt;%
+  filter(prev_congruency != 0, accuracy == TRUE) %&gt;%
+  group_by(subject,congruency,prev_congruency) %&gt;%
+  dplyr::summarise(mean_reaction = mean(reaction_time))
+
+prev_analysis &lt;- prev_analysis %&gt;%
+  group_by(congruency,prev_congruency) %&gt;%
+  dplyr::summarise(mean_react = mean(mean_reaction),
+                   standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
+
+knitr::kable(prev_analysis)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">congruency</th>
+<th align="left">prev_congruency</th>
+<th align="right">mean_react</th>
+<th align="right">standard_error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="right">713.3460</td>
+<td align="right">29.27478</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">I</td>
+<td align="right">753.8704</td>
+<td align="right">31.18765</td>
+</tr>
+<tr class="odd">
+<td align="left">I</td>
+<td align="left">C</td>
+<td align="right">794.2973</td>
+<td align="right">33.59446</td>
+</tr>
+<tr class="even">
+<td align="left">I</td>
+<td align="left">I</td>
+<td align="right">748.9065</td>
+<td align="right">32.50908</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(ggplot2)
+
+ggplot(prev_analysis, aes(x=congruency, y=mean_react, fill=prev_congruency))+
+         geom_bar(stat = &quot;identity&quot;, width=0.75, position=position_dodge(width=0.9))+
+         theme_classic(base_size=12)+
+         labs(x=&quot;Congruency&quot;,
+              y=&quot;Mean Reaction Time (milliseconds)&quot;,
+              title = &quot;Mean Reaction Time by Congruency and Previous Congruency&quot;)+
+         geom_errorbar(aes(ymin=mean_react-standard_error,
+                           ymax=mean_react+standard_error),
+                       position=position_dodge(width=0.9),
+                width=.1,
+                color=&quot;black&quot;)+
+         theme(plot.title = element_text(hjust = 0))+
+         coord_cartesian(ylim=c(500,850))</code></pre>
+<p><img src="DataWrang_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
 
