@@ -73,10 +73,10 @@ for (i in 1:4224) {
   correct_answer[i] = strsplit(all_data$stimulus, split = "")[[i]][2]
 }
 
-new_df_1 <- all_data %>%
+all_data <- all_data %>%
   mutate(upper_answer = toupper(all_data$response),
          correct_answer = correct_answer,
-         accuracy=upper_answer == correct_answer)
+         accuracy= upper_answer == correct_answer)
 ```
 
 ### Get Reaction time on each trial
@@ -88,8 +88,8 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 ```{r}
 library(dplyr)
 
-new_df_2 <- new_df_1 %>%
-  mutate(reaction_time = new_df_1$response_time - new_df_1$stimulus_onset)
+all_data <- all_data %>%
+  mutate(reaction_time = as.integer(new_df_1$response_time - new_df_1$stimulus_onset))
 ```
 
 
@@ -98,16 +98,15 @@ new_df_2 <- new_df_1 %>%
 Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
 
 ```{r}
-library(plyr)
-library(dplyr)
+library(plyr); library(dplyr)
 
-new_df_2$subject <- as.factor(new_df_2$subject)
+all_data$subject <- as.factor(all_data$subject)
 
-new_df_3 <- new_df_2 %>%
+new_df_3 <- all_data %>%
   group_by(subject, congruency) %>%
-  summarise(completed_trials = plyr::count(new_df_2$subject))
+  summarise(completed_trials = plyr::count(all_data$subject))
 
-new_df_4 <- new_df_2 %>%
+new_df_4 <- all_data %>%
   filter(congruency=="C") 
 
 int_accuracy <- c()
@@ -126,10 +125,22 @@ new_df_4 <- new_df_4 %>%
   group_by(subject) %>%
   dplyr::summarise(mean_cong_acc = mean(int_accuracy, na.rm = TRUE),
             mean_cong_react = mean(reaction_time, na.rm = TRUE))
+```
 
+With shorter, neater code:  
 
-new_df_3
-new_df_4
+```{r}
+library(dplyr)
+
+subject_check <- all_data %>%
+                  mutate(subject = as.factor(subject),
+                         congruency = as.factor(congruency)) %>%
+                  group_by(subject,congruency) %>%
+                  dplyr::summarise(total_trials = length(reaction_time),
+                            mean_reaction_time = mean(reaction_time),
+                            mean_accuracy = mean(accuracy))
+
+knitr::kable(subject_check)
 ```
 
 
@@ -140,10 +151,8 @@ It is common to exclude Reaction times that are very slow. There are many method
 ```{r}
 library(dplyr)
 
-new_df_2$reaction_time <- as.double(new_df_2$reaction_time)
-
-new_df_5 <- new_df_2 %>%
-  filter(reaction_time <= 2000*(10^(-6)))
+included_data <- all_data %>%
+  filter(reaction_time <= 2000)
 ```
 
 ## Analysis
@@ -155,30 +164,41 @@ new_df_5 <- new_df_2 %>%
 ```{r}
 library(dplyr)
 
-new_df_2$congruency <- as.factor(new_df_2$congruency)
-
-new_df_6 <- new_df_2 %>%
+reaction_time_correct_trials <- included_data %>%
   filter(accuracy == TRUE) %>%
   group_by(subject, congruency) %>%
   dplyr::summarise(mean_reaction = mean(reaction_time))
 
-new_df_6
+knitr::kable(reaction_time_correct_trials)
 ```
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
 ```{r}
 library(dplyr)
-library(psych)
 
-new_df_2$congruency <- as.factor(new_df_2$congruency)
-
-new_df_7 <- new_df_2 %>%
+descriptives_by_group <- reaction_time_correct_trials %>%
   group_by(congruency) %>%
-  dplyr::summarise(mean_react = mean(reaction_time),
-                   std_err = describe(reaction_time)[[13]])
+  dplyr::summarise(mean_reaction_time = mean(mean_reaction),
+                   standard_error = sd(mean_reaction)/(sqrt(length(mean_reaction))))
 
-new_df_7
+knitr::kable(descriptives_by_group)
+
+library(ggplot2)
+ggplot(descriptives_by_group, aes(x=congruency, y=mean_reaction_time, fill=congruency))+
+         geom_bar(stat = "identity", width=0.75)+
+         theme_classic(base_size=12)+
+         labs(x="Congruency",
+              y="Mean Reaction Time (milliseconds)",
+              title = "Mean Reaction Time by Congruency Condition")+
+         geom_errorbar(aes(ymin=mean_reaction_time-standard_error,
+                           ymax=mean_reaction_time+standard_error),
+                       position=position_dodge(width=0.9),
+                width=.1,
+                color="black")+
+         theme(plot.title = element_text(hjust = 0.5))+
+         coord_cartesian(ylim=c(500,850))
+
 ```
 
 3. Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect
@@ -187,7 +207,7 @@ new_df_7
 
 ```{r}
 
-  
+
 ```
 
 
