@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Bootstrapped Mediation Analyses in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jeffrey Kravitz" />
+    <link href="site_libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="site_libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Bootstrapped Mediation Analyses in R
+### Jeffrey Kravitz
+### 5/15/2019
+
+---
+
+
+# Overview
+
+## The aim of this tutorial is to:
+
+- Review the concepts of mediation, moderation, and bootstrapping
+
+- Demonstrate how to complete bootsrapped mediation analyses in R
+
+- Generate hypothetical datasets to explore various possible mediation outcomes
+
+
+---
+
+## Explanatory Value of Analyses
+
+- Simple statistical analyses like ANOVAs allow us to establish whether or not a relationship exists between two variables
+
+- These analyses are limited, however, in that they *only* discern whether or not this relationship exists
+
+- More complex statistical analyses such as **Mediation** and **Moderation** go beyond this, and allow us to test theoretically rich ideas
+
+---
+
+.pull-left[
+
+## Mediation
+
+- Mediation analyses help us examine the  * **mechanism**  * of the relationship between two variables
+
+- Mediation answers the question of * **how** * variables are related
+
+- A mediator variable * **explains the relationship** * between an independent variable and a dependent variable
+
+]
+
+.pull-right[
+
+## Moderation
+
+- Moderation analyses help us examine the * **conditions** * in which two variables are related
+
+- Moderation answers the question of * **when** * variables are related
+
+- A moderator variable * **affects the strength and/or direction** * of the relationship between an independent variable and a dependent variable
+
+]
+
+---
+
+## Bootstrapping
+
+- Bootstrapping is a statistical method that utilizes random resampling with replacement to estimate a population parameter
+
+- This technique samples from a given dataset to estimate a parameter when it would otherwise be impossible or impractical to do so
+
+- In this way, the dataset is treated as the population, and each random sample aims to replicate a potential score within the true population
+
+- The amount of resamples varies, but usually falls between 1,000 and 10,000
+
+- One advantage of the bootstrap method is that it produces confidence intervals for your statisitcal estimate
+
+---
+
+## Mediation: An Example
+
+- Consider a case in which we know that mindfulness increases happiness in people
+
+- Although there is clear evidence that mindfulness increases happiness, research has not yet explored why this is the case
+
+- Suppose we think that mindfulness decreases stress, which in turn increases happiness
+
+- In other words, we think that mindfulness only indirectly affects happiness *by means of* reducing stress.
+
+---
+
+## Mediation Effects
+
+- X = independent variable
+
+- Y = dependent variable
+
+- M = mediator variable
+
+![](images/mediation_model.png)
+
+---
+
+## Mediation Effects
+
+- The **total effect** is the total effect of X on Y, with no consideration of mediator variables
+
+- This is also known as the **c path**
+
+![](images/mediation_total.png)
+
+---
+
+## Mediation Effects
+
+- The **direct effect** is the effect of X on Y after removing the contribution of M
+
+- This is known as the **c' path**
+
+![](images/mediation_indirect.png)
+
+---
+
+## Mediation Effects
+
+- The effect of X on M is known as the **a path**
+
+- The effect of M on Y is known as the **b path**
+
+- The **indirect effect** is the effect of X on Y *through M*
+
+  - This is equivalent to the product of the a path and the b path
+
+![](images/mediation_indirect.png)
+
+---
+
+## Mediation in R: *Mediation Package*
+
+- This tutorial explains how to use the `mediate` function in the `mediation` package, and how to interpret the resulting statistics
+
+- The first step to conducting mediation analyses is to install and load the `mediation` package:
+
+
+```r
+install.packages("mediation")
+library(mediation)
+```
+
+---
+
+## Mediation in R: Structure
+
+
+```r
+X &lt;-
+Y &lt;-
+M &lt;-
+
+model.m &lt;- lm(M ~ X)
+model.y &lt;- lm(Y ~ X + M)
+
+library(mediation)
+mediation_results &lt;- mediate(model.m = model.m,
+                       model.y = model.y,
+                       sims = 
+                       boot = TRUE,
+                       mediator = "  ",
+                       treat = "  ")
+summary(mediation_results)
+```
+
+---
+
+## Mediation in R: Defining Variables
+
+
+```r
+X &lt;-
+Y &lt;-
+M &lt;-
+```
+
+- The following is a dataset generated following the previous example of mindfulness, happiness, and stress
+
+
+```r
+X_mindfulness &lt;- c(rep(0,50),rep(1,50))
+Y_happiness &lt;- c(rep(3,25),rep(4,25),rep(5,25),rep(6,25))
+M_stress  &lt;- c(rep(3,25),rep(4,25),rep(5,25),rep(6,25))
+```
+
+- This dataset models a full mediation
+
+---
+
+## Mediation in R: Defining Models
+
+- To use the `mediate` function, we must first define two linear models:
+
+  - `model.m`, predicting M from X
+  
+  - `model.y`, predicting Y from X and M
+
+
+```r
+model.m &lt;- lm(M ~ X)
+model.y &lt;- lm(Y ~ X + M)
+```
+
+- In our practical example, it would look like this:
+
+
+```r
+model.m &lt;- lm(M_stress ~ X_mindfulness)
+model.y &lt;- lm(Y_happiness ~ X_mindfulness + M_stress)
+```
+
+---
+
+## Mediation in R: Mediate
+
+- Next, we call the `mediate` function with the following arguments:
+
+  - `model.m` = `model.m`
+  
+  - `model.y` = `model.y`
+  
+  - `sims` = *the number of resamples that you want to use*
+  
+  - `boot` = `TRUE`
+  
+  - `mediator` = *your mediator variable, in quotes*
+  
+  - `treat` = *your independent variable, in quotes*
+
+
+```r
+library(mediation)
+mediation_results &lt;- mediate(model.m = model.m,
+                       model.y = model.y,
+                       sims = 
+                       boot = TRUE,
+                       mediator = "  ",
+                       treat = "  ")
+summary(mediation_results)
+```
+
+---
+
+## Mediation in R: Mediate
+
+
+```r
+library(mediation)
+mediation_results &lt;- mediate(model.m = model.m,
+                       model.y = model.y,
+                       sims = 
+                       boot = TRUE,
+                       mediator = "  ",
+                       treat = "  ")
+summary(mediation_results)
+```
+
+- In our example, it would look like this:
+
+
+```r
+library(mediation)
+full_mediation &lt;- mediate(model.m = model.m,
+                       model.y = model.y,
+                       sims = 500,
+                       boot = TRUE,
+                       mediator = "M_stress",
+                       treat = "X_mindfulness")
+summary(full_mediation)
+```
+
+
+```
+## Loading required package: MASS
+```
+
+```
+## Loading required package: Matrix
+```
+
+```
+## Loading required package: mvtnorm
+```
+
+```
+## Loading required package: sandwich
+```
+
+```
+## mediation: Causal Mediation Analysis
+## Version: 4.4.7
+```
+
+
+---
+
+## Mediation in R: Results
+
+
+
+- Let's look at the results for our mediation:
+
+
+```r
+summary(full_mediation)
+```
+
+```
+## 
+## Causal Mediation Analysis 
+## 
+## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
+## 
+##                 Estimate 95% CI Lower 95% CI Upper p-value    
+## ACME            2.00e+00     1.80e+00          2.2  &lt;2e-16 ***
+## ADE            -2.28e-15    -4.06e-15          0.0    0.91    
+## Total Effect    2.00e+00     1.80e+00          2.2  &lt;2e-16 ***
+## Prop. Mediated  1.00e+00     1.00e+00          1.0  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Sample Size Used: 100 
+## 
+## 
+## Simulations: 500
+```
+
+---
+
+## Mediation in R: Results
+
+- `ACME` is the Average Causal Mediation Effect, or the **indirect effect** (ab path)
+
+- `ADE` is the Average Direct Effect, or the **direct effect** (c' path)
+
+- `Total Effect` is the **total effect** (c path)
+
+- Our output also gives us confidence intervals and *p* values for each of these effects
+
+![](images/mediation_results.png)
+
+- As we see above, we have a full mediation denoted by our significant `ACME` and non-significant `ADE`
+
+---
+
+## Mediation in R: Partial Mediation
+
+- We can also examine a case in which there is partial mediation instead of full mediation
+
+
+```r
+# Partial Mediation
+
+X_mindfulness &lt;- c(rep(0,50), rep(1,50))
+Y_happiness &lt;- c(rep(3,25), rep(4,25), rep(5,25), rep(6,25))
+M_stress  &lt;- c(rnorm(25,3,1), rnorm(25,4,1), rnorm(25,5,1), rnorm(25,6,1))
+
+model.m &lt;- lm(M_stress ~ X_mindfulness)
+model.y &lt;- lm(Y_happiness ~ X_mindfulness + M_stress)
+library(mediation)
+partial_mediation &lt;- mediate(model.m = model.m,
+                       model.y = model.y,
+                       sims = 500,
+                       boot = TRUE,
+                       mediator = "M_stress",
+                       treat = "X_mindfulness")
+summary(partial_mediation)
+```
+
+---
+
+## Mediation in R: Partial Mediation
+
+
+
+
+```r
+summary(partial_mediation)
+```
+
+![](images/partial_results.png)
+
+- As we can see above, we have a significant indirect effect
+
+- However, the direct effect is still significant
+
+- This signifies a partial mediation
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

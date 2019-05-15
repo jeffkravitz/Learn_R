@@ -1,6 +1,6 @@
-name: "Jeff's R Markdown Journal"
+name: "Jeff's R Journal"
 navbar:
-  title: "Jeff's R Markdown Journal"
+  title: "Jeff's R Journal"
   left:
     - text: "Home"
       href: index.html
@@ -8,12 +8,16 @@ navbar:
       href: Journal.html
     - text: "Dictionary"
       href: Dictionary.html
-    - text: "Data Visualization"
+    - text: "Data Vis"
       href: DataVis.html
-    - text: "Data Wrangling"
+    - text: "Data Editing"
       href: DataWrang.html
-    - text: "Statistics Problems"
+    - text: "Stats Problems"
       href: Stats.html
+    - text: "Final Paper"
+      href: FinalPaper.html
+    - text: "Final Pres"
+      href: Presentation.html
     - text: "Notes"
       href: Notes.html
     - text: "Resources"
